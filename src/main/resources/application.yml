@@ -1,0 +1,56 @@
+server:
+  port: 9002
+
+# thymeleaf
+spring:
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+    servlet:
+      content-type: text/html
+    cache: false
+
+#配置mysql
+  datasource:
+    username: root
+    url:  jdbc:mysql://localhost:3306/hotelManagementSystem?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid数据源专有配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #配置监控统计拦截的filters，stat: 监控统计、log4j: 日志记录、wall: 防御sqL注入.
+    #如果允许时报错java. lang. ClassNotFoundException: org. apache. log4j. Priority
+    #则导入Log4j 依赖即可，Maven 地址: https://mvnrepository. com/artifact/log4j/Log4j
+    filters: stat, wall, 1og4j
+    maxPoolPreparedStatementPerConnectionSize: 26
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true; druid.stat.slowSqlMillis=500
+
+
+
+
+#配置mybatis
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.xu.pojo
+  #显示sql语句
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#打印sql 语句logging.level.com.boku.www.mapper=debug
+  #其中logging.level.com.你的Mapper包=日志等级
+logging:
+  level:
+    com.mapper: debug
+

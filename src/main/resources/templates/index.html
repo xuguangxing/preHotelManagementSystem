@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="fly-html-layui fly-html-store">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">-->
+    <meta name="keywords" content="酒店管理系统、晴天管理酒店">
+    <meta name="description" content="酒店管理系统、晴天管理酒店">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css">
+    <link rel="stylesheet" href="/css/global.css" charset="utf-8">
+    <link rel="stylesheet" href="/css/global(1).css" charset="utf-8">
+    <link rel="stylesheet" href="/css/store.css" charset="utf-8">
+    <link rel="icon" href="image/favicon.ico">
+</head>
+<title>首页-酒店管理系统</title>
+<body>
+<!--顶部 start-->
+<div class="layui-header header header-store" style="background-color: #083a6d;">
+    <div class="layui-container">
+        <a class="logo" href="/index/index">
+            <img src="/image/logo.png" alt="layui">
+        </a>
+        <div class="layui-form component" lay-filter="LAY-site-header-component"></div>
+        <ul class="layui-nav" id="layui-nav-userinfo">
+
+        </ul>
+    </div>
+</div>
+<!--顶部 end-->
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+<div class="shop-nav shop-index">
+    <!--搜索 start-->
+    <div id="LAY-topbar" style="height: auto;">
+        <form class="layui-form layuimini-form">
+            <div class="input-search">
+                <div id="searchRoom">
+                </div>
+                <div class="layui-container layui-hide-xs"><a href="http://www.xueden.cn/" class="topbar-logo"> <img
+                        src="/image/1.jpg"
+                        alt="layui"> </a></div>
+            </div>
+        </form>
+    </div>
+    <!--搜索 end-->
+    <div class="shop-banner">
+        <div class="layui-container layui-hide-xs">
+            <div class="product-list">
+                <dl id="getIndexRoomType"  class="flow-default" >
+                    <dt><a href="../hotel/lists.html" target="_blank">房间分类</a></dt>
+                    <!--<ul class="flow-default" id="LAY_demo1">
+
+                    </ul>-->
+                    <!--<dd><a href="../hotel/list/1/0/1/20.html" target="_blank">单人间</a></dd>
+                    <dd><a href="../hotel/list/1/0/1/20.html" target="_blank">双人间</a></dd>
+                    <dd><a href="../hotel/list/1/0/1/20.html" target="_blank">标准间</a></dd>
+                    <dd><a href="../hotel/list/1/0/1/20.html" target="_blank">商务间</a></dd>
+                    <dd><a href="../hotel/list/1/0/1/20.html" target="_blank">豪华间</a></dd>
+                    <dd><a href="../hotel/list/1/0/1/20.html" target="_blank">普通套间</a></dd>
+                    <dd><a href="../hotel/list/1/0/1/20.html" target="_blank">总统套间</a></dd>-->
+                </dl>
+            </div>
+        </div>
+
+
+        <div class="layui-carousel" lay-filter="LAY-store-banner" id="LAY-store-banner"
+             lay-anim="fade" lay-indicator="inside" lay-arrow="none">
+            <div carousel-item="">
+                <div>
+                    <div class="layui-container"><a href="javascript:;"> <img src="/image/1.jpg"> </a></div>
+                </div>
+                <div>
+                    <div class="layui-container"><a href="javascript:;"> <img src="/image/2.jpg"> </a></div>
+                </div>
+                <div>
+                    <div class="layui-container"><a href="javascript:;"> <img src="/image/3.jpg"> </a></div>
+                </div>
+                <div>
+                    <div class="layui-container"><a href="javascript:;"> <img src="/image/4.jpg"> </a></div>
+                </div>
+                <div>
+                    <div class="layui-container"><a href="javascript:;"> <img src="/image/5.jpg"> </a></div>
+                </div>
+                <div>
+                    <div class="layui-container"><a href="javascript:;"> <img src="/image/6.jpg"> </a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shop-temp" id="getIndexFloor">
+
+
+    <!--<div class="temp-hot">
+        <div class="layui-container">
+            <p class="temp-title-cn"><span></span>酒店1楼<span></span></p>
+            <div class="layui-row layui-col-space20">
+                      <div class="layui-col-xs6 layui-col-md3"> <a class="template store-list-box" href="/hotel/details/${item.id}.html" target="_blank">
+                                <img src="../hotel/images/f1-01.jpg" class="store-list-cover">
+                                <h2 class="layui-elip">经济舒适单人间</h2>
+                                <p class="price"> <span title="金额"> ￥99 </span> </p>
+                            </a>
+                        </div>
+            </div>
+        </div>
+    </div>-->
+
+
+    <!--<div class="temp-normal">
+     <div class="layui-container">
+         <p class="temp-title-cn"> <span></span> <a href="https://fly.layui.com/store/cat/0/">酒店2楼</a> <span></span> </p>
+         <div class="layui-row layui-col-space20 shoplist">
+                     <div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3"> <a class="template store-list-box" href="/hotel/details/1.html" target="_blank">
+                             <img src="../hotel/images/f1-02.jpg" class="store-list-cover">
+                             <h2 class="layui-elip">商务双床房</h2>
+                             <div> <label class="layui-badge-rim store-list-pay"> ￥99 </label>
+                                           <div class="store-list-colorbar" title=""> <span class="store-color-bar" style="color:  #fff;background: #cc9812;padding: 3px;text-align: center;">空闲</span>
+                                         </div>
+                             </div>
+                         </a>
+                     </div>
+         </div>
+     </div>
+ </div>-->
+
+</div>
+
+
+<!-- 底部 -->
+<div class="fly-footer">
+    <p><a href="http://www.xueden.cn/">学灯网</a> 2020 © <a href="http://www.xueden.cn/">xueden.cn</a></p>
+    <p>
+        友情链接
+        <a href="http://java.goodym.cn" target="_blank">java项目源码分享网</a>
+        <a href="http://www.goodym.cn/code/list/all/1/20.html" target="_blank">源码下载平台</a>
+        <a href="http://www.goodym.cn/market/list/all/1/20.html" target="_blank">源码市场</a>
+        <a href="http://www.goodym.cn/resumetemplate/list/1/20.html" target="_blank">简历制作</a>
+        <a href="http://www.goodym.cn/forum/list/0/1/20.html" target="_blank">社区论坛</a></p>
+
+</div>
+<!--<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createform("script");
+		hm.src = "https://hm.baidu.com/hm.js?b7f5096cbfe2b528bc14a1b1d84d5c9c";
+		var s = document.getformsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>-->
+
+<!--<script src="/static/js/project/index/index2.js"></script>-->
+<!--<script src="../api/baseApi.js"></script>
+<script src="../api/hotel/hotelIndexApi.js"></script>-->
+<ul class="layui-fixbar">
+    <li class="layui-icon layui-fixbar-top" lay-type="top" style=""></li>
+</ul>
+<script src="/static/layuiadmin/layui/layui.js"></script>
+<script src="/static/js/project/index/index.js"></script>
+</body>
+</html>
