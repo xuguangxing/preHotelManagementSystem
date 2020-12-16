@@ -84,8 +84,8 @@ layui.config({
                                 getIndexFloorHtml += '<div data-id="' + room.id + '" class="layui-col-xs6 layui-col-md3">\n';
                                 getIndexFloorHtml += '<a class="template store-list-box fly-case-active" href="JavaScript:void(0);" data-type="toRoomInfo">\n';
                                 getIndexFloorHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
-                                getIndexFloorHtml += '<h2 class="layui-elip">' + room.roomName + '</h2>\n';
-                                getIndexFloorHtml += '<p class="price"> <span title="金额"> ￥' + room.roomName + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
+                                getIndexFloorHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
+                                getIndexFloorHtml += '<p class="price"> <span title="金额"> ￥' + room.roomPrice + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
                                 getIndexFloorHtml += '</a>\n';
                                 getIndexFloorHtml += '</div>\n';
                             });
