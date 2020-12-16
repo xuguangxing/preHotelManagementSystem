@@ -104,52 +104,6 @@ layui.config({
             }
         });
     }
-/*function getAllHotelFloor() {
-    $.ajax({
-        url: "http://localhost:9001/floor/queryAllFloorAndRoom?page=1&limit=10",
-        success: function (res) {
-            layer.close(loadIndex);
-            //遍历data
-            var  getIndexFloorHtml ='';
-            $.each(res.data, function (index, floor) {
-                <!--循环开始 start-->
-                console.log("============开始============================");
-
-                getIndexFloorHtml += '<div class="temp-hot">\n';
-                getIndexFloorHtml += '<div class="layui-container">\n';
-                getIndexFloorHtml += '<p class="temp-title-cn"><span></span>酒店' + floor.floorName + '<span></span></p>\n';
-                getIndexFloorHtml += '<div class="layui-row layui-col-space20 >\n';
-                $.each(floor.roomList, function (index, room) {
-
-                    var getRoomHtml='';
-                    getRoomHtml += '<div data-id="'+room.id+ '" class="layui-col-xs6 layui-col-md3">\n';
-                    getRoomHtml += '<a class="template store-list-box fly-case-active" href="JavaScript:void(0);" data-type="toRoomInfo">\n';
-                    getRoomHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
-                    getRoomHtml += '<h2 class="layui-elip">' + room.roomName + '</h2>\n';
-                    getRoomHtml += '<p class="price"> <span title="金额"> ￥' + room.roomName + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
-                    getRoomHtml += '</a>\n';
-                    getRoomHtml += '</div>\n';
-                    console.log(getRoomHtml);
-                    getIndexFloorHtml +=getRoomHtml;
-                })
-
-                getIndexFloorHtml += '</div>\n';
-                getIndexFloorHtml += '</div>\n';
-                getIndexFloorHtml += '</div>\n';
-                <!--循环结束 end-->
-                getIndexFloorHtml += '\n';
-               /!* getIndexFloorHtml += '<br/>';*!/
-                $('#getIndexFloor').append(getIndexFloorHtml);
-                console.log("============结束============================");
-            })
-            element.render();
-        }, error: function () {
-        }
-    });
-
-}*/
-
-
 //阻止IE7以下访问
 if (device.ie && device.ie < 10) {
     layer.alert('如果您非得使用 IE 浏览器访问Fly社区，那么请使用 IE10+');
