@@ -1,4 +1,4 @@
-package com.xu.controller;
+package com.xu.controller.index;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Index {
 
 
+    /**
+     * 跳转到首页
+     * @return
+     */
     @RequestMapping("/index")
     public String index(){
         return "index";

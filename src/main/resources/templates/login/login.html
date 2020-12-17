@@ -1,0 +1,108 @@
+<!-- 头部 start-->
+<!DOCTYPE html>
+<html class="fly-html-layui fly-html-store">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="images/favicon.ico">
+    <meta name="keywords" content="酒店管理系统">
+    <meta name="description" content="酒店管理系统">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css">
+    <link rel="stylesheet" href="/css/global.css" charset="utf-8">
+    <link rel="stylesheet" href="/css/global(1).css" charset="utf-8">
+    <link rel="stylesheet" href="/css/store.css" charset="utf-8">
+    <link rel="icon" href="image/favicon.ico">
+
+</head>
+<!-- 头部 end-->
+<title>用户登入-酒店管理系统</title>
+<body>
+<!--顶部 start-->
+<div class="layui-header header header-store" style="background-color: #083a6d;">
+    <div class="layui-container">
+        <a class="logo" href="/index/index">
+            <img src="/image/logo.png" alt="layui">
+        </a>
+        <div class="layui-form component" lay-filter="LAY-site-header-component"></div>
+        <ul class="layui-nav" id="layui-nav-userinfo">
+
+        </ul>
+    </div>
+</div>
+<!--顶部 end-->
+<!--[if lt IE 9]>  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+<div class="shop-nav shopdata">
+    <!--搜索 start-->
+    <div id="LAY-topbar" style="height: auto;">
+        <form class="layui-form layuimini-form">
+            <div class="input-search">
+                <div id="searchRoom">
+                </div>
+                <div class="layui-container layui-hide-xs"> <a href="http://www.xueden.cn/" class="topbar-logo"> <img src="/image/1.jpg" alt="layui"> </a> </div>
+            </div>
+        </form>
+    </div>
+    <!--搜索 end-->
+</div>
+<div class="layui-container shopdata">
+    <div class="layui-card shopdata-intro">
+
+        <div class=" login-content">
+            <!--登录 start-->
+            <div class="login-bg">
+                <div class="login-cont w1200">
+                    <div class="form-box">
+                        <form class="layui-form" action="">
+                            <legend>手机号登录</legend>
+                            <div class="layui-form-item">
+                                <div class="layui-inline iphone">
+                                        <div class="layui-input-inline">
+                                        <i class="layui-icon layui-icon-cellphone iphone-icon"></i>
+                                        <input type="tel" name="mPhone" id="phone" lay-verify="required|phone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-inline veri-code">
+                                    <div class="layui-input-inline">
+                                        <input id="pnum" type="password" name="mPassword" lay-verify="required" placeholder="请输入登录密码" autocomplete="off" class="layui-input">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item login-btn">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="login" onclick="return false">登录</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--登录 end-->
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- 底部 start-->
+<div class="fly-footer">
+    <p>徐广兴 &nbsp;&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-login-qq"></i> 1832377033  &nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="layui-icon layui-icon-cellphone"></i>18317956639
+    </p>
+</div>
+<script>
+
+</script>
+<!-- 底部 end-->
+<ul class="layui-fixbar">
+    <li class="layui-icon layui-fixbar-top" lay-type="top" style=""></li>
+</ul>
+<script src="/static/layuiadmin/layui/layui.js"></script>
+<script src="/static/js/project/index/index.js"></script>
+
+</body>
+</html>

@@ -73,29 +73,29 @@ layui.config({
                 layer.close(loadIndex);
                 let getIndexFloorHtml = '';
 
-                    //遍历data
-                    $.each(res.data, function (index, floor) {
-                            <!--循环开始 start-->
-                            getIndexFloorHtml += '<div class="temp-hot">\n';
-                            getIndexFloorHtml += '<div class="layui-container">\n';
-                            getIndexFloorHtml += '<p class="temp-title-cn"><span></span>酒店' + floor.floorName + '<span></span></p>\n';
-                            getIndexFloorHtml += '<div class="layui-row layui-col-space20">\n';
-                            $.each(floor.roomList, function (index, room) {
-                                getIndexFloorHtml += '<div data-id="' + room.id + '" class="layui-col-xs6 layui-col-md3">\n';
-                                getIndexFloorHtml += '<a class="template store-list-box fly-case-active" href="JavaScript:void(0);" data-type="toRoomInfo">\n';
-                                getIndexFloorHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
-                                getIndexFloorHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
-                                getIndexFloorHtml += '<p class="price"> <span title="金额"> ￥' + room.roomPrice + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
-                                getIndexFloorHtml += '</a>\n';
-                                getIndexFloorHtml += '</div>\n';
-                            });
-                            getIndexFloorHtml += '</div>\n';
-                            getIndexFloorHtml += '</div>\n';
-                            getIndexFloorHtml += '</div>\n';
-                            <!--循环结束 end-->
-                            getIndexFloorHtml += '\n';
-                        /*	getIndexFloorHtml += '<dd data-id="'+roomType.id+'"><a class="fly-case-active"  href="JavaScript:void(0);" data-type="toRoomTypeList" target="_blank">' + roomType.typeName + '</a></dd>\n';*/
+                //遍历data
+                $.each(res.data, function (index, floor) {
+                    <!--循环开始 start-->
+                    getIndexFloorHtml += '<div class="temp-hot">\n';
+                    getIndexFloorHtml += '<div class="layui-container">\n';
+                    getIndexFloorHtml += '<p class="temp-title-cn"><span></span>酒店' + floor.floorName + '<span></span></p>\n';
+                    getIndexFloorHtml += '<div class="layui-row layui-col-space20">\n';
+                    $.each(floor.roomList, function (index, room) {
+                        getIndexFloorHtml += '<div data-id="' + room.id + '" class="layui-col-xs6 layui-col-md3">\n';
+                        getIndexFloorHtml += '<a class="template store-list-box fly-case-active" href="JavaScript:void(0);" data-type="toRoomInfo">\n';
+                        getIndexFloorHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
+                        getIndexFloorHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
+                        getIndexFloorHtml += '<p class="price"> <span title="金额"> ￥' + room.roomPrice + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
+                        getIndexFloorHtml += '</a>\n';
+                        getIndexFloorHtml += '</div>\n';
                     });
+                    getIndexFloorHtml += '</div>\n';
+                    getIndexFloorHtml += '</div>\n';
+                    getIndexFloorHtml += '</div>\n';
+                    <!--循环结束 end-->
+                    getIndexFloorHtml += '\n';
+                    /*	getIndexFloorHtml += '<dd data-id="'+roomType.id+'"><a class="fly-case-active"  href="JavaScript:void(0);" data-type="toRoomTypeList" target="_blank">' + roomType.typeName + '</a></dd>\n';*/
+                });
                 $('#getIndexFloor').html(getIndexFloorHtml);
                 element.render();
             },
@@ -104,221 +104,255 @@ layui.config({
             }
         });
     }
-//阻止IE7以下访问
-if (device.ie && device.ie < 10) {
-    layer.alert('如果您非得使用 IE 浏览器访问Fly社区，那么请使用 IE10+');
-}
 
-$.ajaxSetup({
-    // 发送cookie
-    xhrFields: {
-        withCredentials: true
+//阻止IE7以下访问
+    if (device.ie && device.ie < 10) {
+        layer.alert('如果您非得使用 IE 浏览器访问Fly社区，那么请使用 IE10+');
     }
-});
+
+    $.ajaxSetup({
+        // 发送cookie
+        xhrFields: {
+            withCredentials: true
+        }
+    });
 
 
 //加载搜索框
-let searchRoomHtml = '';
-searchRoomHtml += '<input type="text" placeholder="搜索你需要的房间" name="keywords" id="searchKeywords" autocomplete="off" value="">';
-searchRoomHtml += '<button class="layui-btn layui-btn-shop" lay-submit="" lay-filter="searchHotelRoom">';
-searchRoomHtml += '<i class="layui-icon layui-icon-search"></i>';
-searchRoomHtml += '</button>';
-$("#searchRoom").html(searchRoomHtml);
+    let searchRoomHtml = '';
+    searchRoomHtml += '<input type="text" placeholder="搜索你需要的房间" name="keywords" id="searchKeywords" autocomplete="off" value="">';
+    searchRoomHtml += '<button class="layui-btn layui-btn-shop" lay-submit="" lay-filter="searchHotelRoom">';
+    searchRoomHtml += '<i class="layui-icon layui-icon-search"></i>';
+    searchRoomHtml += '</button>';
+    $("#searchRoom").html(searchRoomHtml);
 
 
 //判断会员是否登录
-let loginMemberHtml = '';
-let sessionMemberDate = layui.sessionData('sessionMemberDate');
+    let loginMemberHtml = '';
+    let sessionMemberDate = layui.sessionData('sessionMemberDate');
 //获取顶部菜单编码
-let navCodeData = layui.sessionData('navCodeData');
+    let navCodeData = layui.sessionData('navCodeData');
 
 
-if (typeof (navCodeData.navCode) == "undefined" || navCodeData.navCode == "index") {
-    loginMemberHtml += '<li data-id="index" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">首页</a> </li>';
-} else {
-    loginMemberHtml += '<li data-id="index" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">首页</a> </li>';
-
-}
-
-if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "room") {
-    loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">房间</a> </li>';
-} else {
-    loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">房间</a> </li>';
-}
-
-if (typeof (sessionMemberDate.sessionMember) != "undefined" && sessionMemberDate.sessionMember != null) {
-    loginMemberHtml += '<li data-id="myInfo" class="layui-nav-item fly-layui-user" id="FLY-notice">';
-    loginMemberHtml += '<a class="fly-nav-avatar fly-case-active"data-type="toTopNav" href="JavaScript:void(0);" id="LAY_header_avatar">';
-    loginMemberHtml += '<img src="../hotel/images/head.jpg">';
-    loginMemberHtml += '<cite class="layui-hide-xs">欢迎您：' + sessionMemberDate.sessionMember.mNickname + '</cite>';
-    loginMemberHtml += '</a>';
-    loginMemberHtml += '</li>';
-    loginMemberHtml += '<li class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="exitSystem" href="JavaScript:void(0);">退出</a> </li>';
-} else {
-    if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "login") {
-        loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">登入</a> </li>';
+    if (typeof (navCodeData.navCode) == "undefined" || navCodeData.navCode == "index") {
+        loginMemberHtml += '<li data-id="index" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/index/index">首页</a> </li>';
     } else {
-        loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">登入</a> </li>';
+        loginMemberHtml += '<li data-id="index" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="/index/index">首页</a> </li>';
+
     }
 
-    if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "register") {
-        loginMemberHtml += '<li data-id="register" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">注册<span class="layui-badge-dot"></span></a>';
-        loginMemberHtml += '</li>';
+    if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "room") {
+        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">房间</a> </li>';
     } else {
-        loginMemberHtml += '<li data-id="register" class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">注册<span class="layui-badge-dot"></span></a>';
-        loginMemberHtml += '</li>';
+        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">房间</a> </li>';
     }
 
+    if (typeof (sessionMemberDate.sessionMember) != "undefined" && sessionMemberDate.sessionMember != null) {
+        loginMemberHtml += '<li data-id="myInfo" class="layui-nav-item fly-layui-user" id="FLY-notice">';
+        loginMemberHtml += '<a class="fly-nav-avatar fly-case-active"data-type="toTopNav" href="JavaScript:void(0);" id="LAY_header_avatar">';
+        loginMemberHtml += '<img src="../hotel/images/head.jpg">';
+        loginMemberHtml += '<cite class="layui-hide-xs">欢迎您：' + sessionMemberDate.sessionMember.mNickname + '</cite>';
+        loginMemberHtml += '</a>';
+        loginMemberHtml += '</li>';
+        loginMemberHtml += '<li class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="exitSystem" href="JavaScript:void(0);">退出</a> </li>';
+    } else {
+        if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "login") {
+            loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
+        } else {
+            loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
+        }
 
-}
-loginMemberHtml += '<span class="layui-nav-bar" style="left: 560px; top: 55px; width: 0px; opacity: 0;"></span>';
-$("#layui-nav-userinfo").html(loginMemberHtml);
+        if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "register") {
+            loginMemberHtml += '<li data-id="register" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/register/register">注册<span class="layui-badge-dot"></span></a>';
+            loginMemberHtml += '</li>';
+        } else {
+            loginMemberHtml += '<li data-id="register"  class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="/register/register">注册<span class="layui-badge-dot"></span></a>';
+            loginMemberHtml += '</li>';
+        }
+
+
+    }
+    loginMemberHtml += '<span class="layui-nav-bar" style="left: 560px; top: 55px; width: 0px; opacity: 0;"></span>';
+    $("#layui-nav-userinfo").html(loginMemberHtml);
 
 
 //监听提交搜索
-form.on('submit(searchHotelRoom)', function (data) {
+    form.on('submit(searchHotelRoom)', function (data) {
 
-    let loadIndex = layer.load(2, {
-        shade: [0.3, '#333']
-    });
+        let loadIndex = layer.load(2, {
+            shade: [0.3, '#333']
+        });
 
-    $.post({
-        url: searchUrl,
-        data: data.field,
-        dataType: "json",
-        timeout: 300000,
-        xhrFields: {withCredentials: true},
-        success: function (res) {
-            layer.close(loadIndex);
-            if (res.success) {
-                layui.sessionData('searchRoomListData', {
-                    key: 'searchRoomList'
-                    , value: res.data
-                })
-                window.location.href = "../hotel/search.html";
-            } else {
-                layer.msg(res.message);
+        $.post({
+            url: searchUrl,
+            data: data.field,
+            dataType: "json",
+            timeout: 300000,
+            xhrFields: {withCredentials: true},
+            success: function (res) {
+                layer.close(loadIndex);
+                if (res.success) {
+                    layui.sessionData('searchRoomListData', {
+                        key: 'searchRoomList'
+                        , value: res.data
+                    })
+                    window.location.href = "../hotel/search.html";
+                } else {
+                    layer.msg(res.message);
+                }
+            },
+            error: function () {
+
             }
-        },
-        error: function () {
+        });
 
-        }
+        return false;
     });
 
-    return false;
-});
 
+    laytpl.toDateString = function (d, format) {
+        if (undefined === d || null == d || '' === d) {
+            return "";
+        }
+        var date = new Date(d || new Date())
+            , ymd = [
+            this.digit(date.getFullYear(), 4)
+            , this.digit(date.getMonth() + 1)
+            , this.digit(date.getDate())
+        ]
+            , hms = [
+            this.digit(date.getHours())
+            , this.digit(date.getMinutes())
+            , this.digit(date.getSeconds())
+        ];
 
-laytpl.toDateString = function (d, format) {
-    if (undefined === d || null == d || '' === d) {
-        return "";
-    }
-    var date = new Date(d || new Date())
-        , ymd = [
-        this.digit(date.getFullYear(), 4)
-        , this.digit(date.getMonth() + 1)
-        , this.digit(date.getDate())
-    ]
-        , hms = [
-        this.digit(date.getHours())
-        , this.digit(date.getMinutes())
-        , this.digit(date.getSeconds())
-    ];
+        format = format || 'yyyy-MM-dd HH:mm:ss';
 
-    format = format || 'yyyy-MM-dd HH:mm:ss';
-
-    return format.replace(/yyyy/g, ymd[0])
-        .replace(/MM/g, ymd[1])
-        .replace(/dd/g, ymd[2])
-        .replace(/HH/g, hms[0])
-        .replace(/mm/g, hms[1])
-        .replace(/ss/g, hms[2]);
-};
+        return format.replace(/yyyy/g, ymd[0])
+            .replace(/MM/g, ymd[1])
+            .replace(/dd/g, ymd[2])
+            .replace(/HH/g, hms[0])
+            .replace(/mm/g, hms[1])
+            .replace(/ss/g, hms[2]);
+    };
 
 
 //监听用户提交注册
-form.on('submit(register)', function (data) {
-    let loadIndex = layer.load(2, {
-        shade: [0.3, '#333']
+    form.on('submit(register)', function (data) {
+        let loadIndex = layer.load(2, {
+            shade: [0.3, '#333']
+        });
+
+        $.ajax({
+            type: "post",
+            url: registerUrl,
+            data: data.field,
+            dataType: "json",//返回的
+            success: function (data) {
+                layer.close(loadIndex);
+                layer.msg(data.message, function () {
+                    parent.location.href = "../hotel/login.html";
+                });
+            },
+            error: function (msg) {
+                console.log(msg);
+            }
+        });
+
+
     });
-
-    $.ajax({
-        type: "post",
-        url: registerUrl,
-        data: data.field,
-        dataType: "json",//返回的
-        success: function (data) {
-            layer.close(loadIndex);
-            layer.msg(data.message, function () {
-                parent.location.href = "../hotel/login.html";
-            });
-        },
-        error: function (msg) {
-            console.log(msg);
-        }
-    });
-
-
-});
 
 //监听用户提交登录
-form.on('submit(login)', function (data) {
-    let loadIndex = layer.load(2, {
-        shade: [0.3, '#333']
-    });
-    $.post({
-        url: loginUrl,
-        data: data.field,
-        dataType: "json",
-        timeout: 300000,
-        xhrFields: {withCredentials: true},
-        success: function (res) {
-            layer.close(loadIndex);
-            if (res.success) {
-                layui.sessionData('sessionMemberDate', {
-                    key: 'sessionMember'
-                    , value: res.data
-                });
-                layui.sessionData('navCodeData', {
-                    key: 'navCode'
-                    , remove: true
-                });
-                window.location.href = "../hotel/index.html";
-            } else {
-                layer.msg(res.message);
+    form.on('submit(login)', function (data) {
+        let loadIndex = layer.load(2, {
+            shade: [0.3, '#333']
+        });
+        $.post({
+            url: loginUrl,
+            data: data.field,
+            dataType: "json",
+            timeout: 300000,
+            xhrFields: {withCredentials: true},
+            success: function (res) {
+                layer.close(loadIndex);
+                if (res.success) {
+                    layui.sessionData('sessionMemberDate', {
+                        key: 'sessionMember'
+                        , value: res.data
+                    });
+                    layui.sessionData('navCodeData', {
+                        key: 'navCode'
+                        , remove: true
+                    });
+                    window.location.href = "/index/index";
+                } else {
+                    layer.msg(res.message);
+                }
+            },
+            error: function () {
+
             }
-        },
-        error: function () {
+        });
 
-        }
     });
-
-});
 
 //会员预定酒店
-$('body').on('click', '.fly-memberReserveHotel', function () {
-    let roomId = $("#id").val();
-    console.info("roomId" + roomId);
+    $('body').on('click', '.fly-memberReserveHotel', function () {
+        let roomId = $("#id").val();
+        console.info("roomId" + roomId);
 
-    let index = layer.open({
-        title: '会员预定房间',
-        type: 2,
-        shade: 0.2,
-        shadeClose: true,
-        area: ['50%', '60%'],
-        content: 'memberReserveRoom.html'
+        let index = layer.open({
+            title: '会员预定房间',
+            type: 2,
+            shade: 0.2,
+            shadeClose: true,
+            area: ['50%', '60%'],
+            content: 'memberReserveRoom.html'
+        });
     });
-});
 
 
 //图片轮播
-carousel.render({
-    elem: '#LAY-store-banner'
-    , width: '100%'
-    , height: '460px'
-    , interval: 5000
-});
+    carousel.render({
+        elem: '#LAY-store-banner'
+        , width: '100%'
+        , height: '460px'
+        , interval: 5000
+    });
 
+
+    layui.focusInsert = function (obj, str) {
+        var result, val = obj.value;
+        obj.focus();
+        if (document.selection) { //ie
+            result = document.selection.createRange();
+            document.selection.empty();
+            result.text = str;
+        } else {
+            result = [val.substring(0, obj.selectionStart), str, val.substr(obj.selectionEnd)];
+            obj.focus();
+            obj.value = result.join('');
+        }
+    };
+
+
+    //数字前置补零
+    layui.laytpl.digit = function (num, length, end) {
+        var str = '';
+        num = String(num);
+        length = length || 2;
+        for (var i = num.length; i < length; i++) {
+            str += '0';
+        }
+        return num < Math.pow(10, length) ? str + (num | 0) : num;
+    };
+
+    //头像
+    if (device.android || device.ios) {
+        $('#LAY_header_avatar').on('click', function () {
+            return false;
+        })
+    }
 
 })
 ;
