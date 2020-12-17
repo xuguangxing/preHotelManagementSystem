@@ -1,0 +1,197 @@
+<!-- 头部 start-->
+<!DOCTYPE html>
+<html class="fly-html-layui fly-html-store">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="image/favicon.ico">
+    <meta name="keywords" content="酒店管理系统">
+    <meta name="description" content="酒店管理系统">
+    <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css">
+    <link rel="stylesheet" href="/layuiadmin/style/admin.css">
+    <link rel="stylesheet" href="/css/global.css" charset="utf-8">
+    <link rel="stylesheet" href="/css/global(1).css" charset="utf-8">
+    <link rel="stylesheet" href="/css/store.css" charset="utf-8">
+    <link rel="icon" href="image/favicon.ico">
+
+</head>
+<!-- 头部 end-->
+<title>酒店管理系统</title>
+<body>
+<!--顶部 start-->
+<div class="layui-header header header-store" style="background-color: #083a6d;">
+    <div class="layui-container">
+        <a class="logo" href="/index/index">
+            <img src="/image/logo.png" alt="layui">
+        </a>
+        <div class="layui-form component" lay-filter="LAY-site-header-component"></div>
+        <ul class="layui-nav" id="layui-nav-userinfo">
+
+        </ul>
+    </div>
+</div>
+<!--顶部 end-->
+<!--[if lt IE 9]>  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+<div class="shop-nav shopdata">
+    <!--搜索 start-->
+    <div id="LAY-topbar" style="height: auto;">
+        <form class="layui-form layuimini-form">
+            <div class="input-search">
+                <div id="searchRoom">
+                </div>
+                <div class="layui-container layui-hide-xs"> <a href="http://www.xueden.cn/" class="topbar-logo"> <img src="/image/1.jpg" alt="layui"> </a> </div>
+            </div>
+        </form>
+    </div>
+    <!--搜索 end-->
+</div>
+<div class="layui-container shopdata">
+    <div class="layui-card shopdata-intro">
+        <div class="layui-card-header">
+				<span class="layui-breadcrumb layui-hide-xs" style="visibility: visible;">
+				<a href="../hotel/index.html">酒店首页</a><span
+                        lay-separator="">/</span>
+						           <a href="JavaScript:void(0);" id="floorNumber"></a><span lay-separator="">/</span>
+
+						 <a><cite>房间详情</cite></a> </span>
+
+        </div>
+        <div class="layui-card-body layui-row">
+            <div class="layui-col-md6">
+                <div class="intro-img photos"> <img id="coverImg" src="../hotel/images/f1-02.jpg"
+                                                    alt="产品封面" layer-index="0"> </div>
+            </div>
+            <div class="layui-col-md6">
+                <div class="intro-txt">
+                    <h1 class="title" id="roomName"> </h1>
+                    <input type="hidden" id="id"  name="id" value="">
+                    <div class="store-attrs">
+                        <div class="summary">
+                            <p class="reference"><span>房间号</span> <span id="roomNumber"></span></p>
+                            <p class="reference"><span>床&#12288;型</span> <span id="bedType"></span></p>
+                            <p class="reference"><span>宽&#12288;带</span> <span id="broadband"></span></p>
+                            <p class="reference"><span>标准价</span> ￥<span id="standardPrice"></span></p>
+                            <p class="activity"><span>会员价</span><strong class="price"><i>￥</i><span id="memberPrice"></span></strong></p>
+                            <!--<p class="activity"><span>状&#12288;态</span>
+                            <strong class="status">
+
+                                 <span>空闲</span>
+
+                                </strong>
+
+                            </p>-->
+                        </div>
+                    </div>
+
+                    <p class="store-detail-active" id="shopEvent"> <a href="javascript:;"  data-type="memberReserveHotel" class="store-bg-orange fly-memberReserveHotel">
+                        <i class="layui-icon layui-icon-dollar"></i>立即预定 </a> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card shopdata-content">
+        <div class="layui-card-body detail-body layui-text">
+            <div class="layui-elem-quote"> 每天14：00后入住，12：00之前退房。</div>
+            <div id="roomContent">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 底部 start-->
+<div class="fly-footer">
+    <p>徐广兴 &nbsp;&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-login-qq"></i> 1832377033  &nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="layui-icon layui-icon-cellphone"></i>18317956639
+    </p>
+</div>
+<!-- 底部 end-->
+<script src="/static/layuiadmin/layui/layui.js"></script>
+<script src="/static/js/project/index/index.js"></script>
+<script>
+    layui.config({
+        version: "1545301148662"
+    }).extend({
+        'fly': '../hotel/layui/dist/lay/modules/fly/index'
+    }).use(["form","element","fly"], function () {
+        let form = layui.form,
+            layer = layui.layer,
+            element = layui.element,
+            $ = layui.$;
+        let loadIndex = layer.load(0, {
+            shade: [0.3, '#333']
+        });
+        //获取其他页传过来的房间id
+        let localDate = layui.sessionData('roomInfoData');
+        let roomId = localDate.roomId;
+        console.info("房间Id："+roomId);
+        if(roomId==null){
+            return layer.msg("房间Id不存在");
+        }else{
+            getRoomById();
+        }
+
+        //根据房间ID获取房间数据
+        function getRoomById(){
+            $.get({
+                url: getRoomInfoUrl,
+                dataType: "json",
+                timeout:300000,
+                data:{id:roomId},
+                xhrFields:{withCredentials: true},
+                success: function (res) {
+                    layer.close(loadIndex);
+                    if(res.success){
+                        initRoom(res.data);
+                    }else{
+                        layer.msg(res.message);
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        };
+
+        //初始化房间详情内容
+        function initRoom(data) {
+            //把房间信息保存到sessionData
+            layui.sessionData('reserveRoomData', {
+                key: 'reserveRoom'
+                ,value: data
+            });
+            //房间Id
+            $("#id").val(data.id);
+            $("#roomName").html(data.roomName);
+            $('title').html(data.roomName+'-酒店管理系统');
+            $("#roomNumber").html(data.roomNumber);
+            //床型
+            $("#bedType").html(data.bedType);
+            //宽带
+            $("#broadband").html(data.broadband);
+            //标准价
+            $("#standardPrice").html(data.standardPrice);
+            //会员价
+            $("#memberPrice").html(data.memberPrice);
+            //描述
+            $("#roomContent").html(data.roomContent);
+            //所属楼层
+            $("#floorNumber").html(data.hotelFloor.floorName);
+            //设置形象图
+            $('#coverImg').attr("src", data.coverImg);
+
+
+        }
+
+
+    });
+</script>
+
+<ul class="layui-fixbar">
+    <li class="layui-icon layui-fixbar-top" lay-type="top" style=""></li>
+</ul>
+</body>
+</html>

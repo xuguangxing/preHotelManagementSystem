@@ -142,9 +142,9 @@ layui.config({
     }
 
     if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "room") {
-        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">房间</a> </li>';
+        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/lists/lists">房间</a> </li>';
     } else {
-        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="JavaScript:void(0);">房间</a> </li>';
+        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="/lists/lists">房间</a> </li>';
     }
 
     if (typeof (sessionMemberDate.sessionMember) != "undefined" && sessionMemberDate.sessionMember != null) {

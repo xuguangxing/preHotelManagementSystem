@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/index")
-public class Index {
+public class IndexController {
 
 
     /**
