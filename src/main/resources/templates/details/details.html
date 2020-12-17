@@ -60,7 +60,7 @@
         </div>
         <div class="layui-card-body layui-row">
             <div class="layui-col-md6">
-                <div class="intro-img photos"> <img id="coverImg" src="../hotel/images/f1-02.jpg"
+                <div class="intro-img photos"> <img id="coverImg" src="/image/f1-02.jpg"
                                                     alt="产品封面" layer-index="0"> </div>
             </div>
             <div class="layui-col-md6">
@@ -70,10 +70,10 @@
                     <div class="store-attrs">
                         <div class="summary">
                             <p class="reference"><span>房间号</span> <span id="roomNumber"></span></p>
-                            <p class="reference"><span>床&#12288;型</span> <span id="bedType"></span></p>
-                            <p class="reference"><span>宽&#12288;带</span> <span id="broadband"></span></p>
+                            <p class="reference"><span>房&#12288;型</span> <span id="bedType"></span></p>
+                            <p class="reference"><span>宽&#12288;带</span> <span id="broadband">免费wifi</span></p>
                             <p class="reference"><span>标准价</span> ￥<span id="standardPrice"></span></p>
-                            <p class="activity"><span>会员价</span><strong class="price"><i>￥</i><span id="memberPrice"></span></strong></p>
+                            <!--<p class="activity"><span>会员价</span><strong class="price"><i>￥</i><span id="memberPrice"></span></strong></p>-->
                             <!--<p class="activity"><span>状&#12288;态</span>
                             <strong class="status">
 
@@ -93,7 +93,7 @@
     </div>
     <div class="layui-card shopdata-content">
         <div class="layui-card-body detail-body layui-text">
-            <div class="layui-elem-quote"> 每天14：00后入住，12：00之前退房。</div>
+            <div class="layui-elem-quote"> 入住之后，明天12：00之前退房。</div>
             <div id="roomContent">
 
             </div>
@@ -110,86 +110,8 @@
 </div>
 <!-- 底部 end-->
 <script src="/static/layuiadmin/layui/layui.js"></script>
-<script src="/static/js/project/index/index.js"></script>
-<script>
-    layui.config({
-        version: "1545301148662"
-    }).extend({
-        'fly': '../hotel/layui/dist/lay/modules/fly/index'
-    }).use(["form","element","fly"], function () {
-        let form = layui.form,
-            layer = layui.layer,
-            element = layui.element,
-            $ = layui.$;
-        let loadIndex = layer.load(0, {
-            shade: [0.3, '#333']
-        });
-        //获取其他页传过来的房间id
-        let localDate = layui.sessionData('roomInfoData');
-        let roomId = localDate.roomId;
-        console.info("房间Id："+roomId);
-        if(roomId==null){
-            return layer.msg("房间Id不存在");
-        }else{
-            getRoomById();
-        }
-
-        //根据房间ID获取房间数据
-        function getRoomById(){
-            $.get({
-                url: getRoomInfoUrl,
-                dataType: "json",
-                timeout:300000,
-                data:{id:roomId},
-                xhrFields:{withCredentials: true},
-                success: function (res) {
-                    layer.close(loadIndex);
-                    if(res.success){
-                        initRoom(res.data);
-                    }else{
-                        layer.msg(res.message);
-                    }
-                },
-                error: function () {
-
-                }
-            });
-        };
-
-        //初始化房间详情内容
-        function initRoom(data) {
-            //把房间信息保存到sessionData
-            layui.sessionData('reserveRoomData', {
-                key: 'reserveRoom'
-                ,value: data
-            });
-            //房间Id
-            $("#id").val(data.id);
-            $("#roomName").html(data.roomName);
-            $('title').html(data.roomName+'-酒店管理系统');
-            $("#roomNumber").html(data.roomNumber);
-            //床型
-            $("#bedType").html(data.bedType);
-            //宽带
-            $("#broadband").html(data.broadband);
-            //标准价
-            $("#standardPrice").html(data.standardPrice);
-            //会员价
-            $("#memberPrice").html(data.memberPrice);
-            //描述
-            $("#roomContent").html(data.roomContent);
-            //所属楼层
-            $("#floorNumber").html(data.hotelFloor.floorName);
-            //设置形象图
-            $('#coverImg').attr("src", data.coverImg);
-
-
-        }
-
-
-    });
-</script>
-
+<script src="/static/js/project/details/details.js"></script>
+<script src="/static/js/project/common/common.js"></script>
 <ul class="layui-fixbar">
     <li class="layui-icon layui-fixbar-top" lay-type="top" style=""></li>
 </ul>
