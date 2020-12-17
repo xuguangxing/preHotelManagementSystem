@@ -16,9 +16,9 @@ layui.config({
     var util = layui.util;
     var flow = layui.flow;
 
-    /*let loadIndex = layer.load(0, {
+    let loadIndex = layer.load(0, {
         shade: [0.3, '#333']
-    });*/
+    });
 
 
     //获取其他页传过来的房间id
@@ -34,17 +34,12 @@ layui.config({
     //根据房间ID获取房间数据
     function getRoomById(){
         $.get({
-            url: getRoomInfoUrl,
-            dataType: "json",
+            url: "http://localhost:9001/room/queryRoomById",
             data:{id:roomId},
             xhrFields:{withCredentials: false},
             success: function (res) {
                 layer.close(loadIndex);
-                if(res.success){
-                    initRoom(res.data);
-                }else{
-                    layer.msg(res.message);
-                }
+                initRoom(res);
             },
             error: function () {
 
@@ -61,23 +56,18 @@ layui.config({
         });
         //房间Id
         $("#id").val(data.id);
+        $("#roomAlias").html(data.roomAlias);
+       /* $('title').html(data.roomName+'-酒店管理系统');*/
+        //房型
+        $("#roomTypeName").html(data.roomTypeName);
+        //房间名称
         $("#roomName").html(data.roomName);
-        $('title').html(data.roomName+'-酒店管理系统');
-        $("#roomNumber").html(data.roomNumber);
-        //床型
-        $("#bedType").html(data.bedType);
-        //宽带
-        $("#broadband").html(data.broadband);
         //标准价
-        $("#standardPrice").html(data.standardPrice);
-        //会员价
-        $("#memberPrice").html(data.memberPrice);
-        //描述
-        $("#roomContent").html(data.roomContent);
+        $("#roomPrice").html(data.roomPrice);
         //所属楼层
-        $("#floorNumber").html(data.hotelFloor.floorName);
+        $("#floorName").html(data.floorName);
         //设置形象图
-        $('#coverImg').attr("src", data.coverImg);
+        $('#coverImg').attr("src", data.roomPhoto);
 
 
     }
