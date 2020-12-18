@@ -45,7 +45,7 @@ layui.config({
                             pageCount = res.count / 7 + 1;
                         }
                         $.each(res.data, function (index, roomType) {
-                            lis.push('<dd data-id="' + roomType.id + '"><a class="fly-case-active"  href="JavaScript:void(0);" data-type="toRoomTypeList">' + roomType.roomTypeName + '</a></dd>\n');
+                            lis.push('<dd data-id="' + roomType.id + '"><a class="fly-case-active"  onclick=toRoomTypeListByLists(this) data-type="toRoomTypeList">' + roomType.roomTypeName + '</a></dd>\n');
                         });
                     },
                     error: function () {
@@ -78,11 +78,11 @@ layui.config({
                     <!--循环开始 start-->
                     getIndexFloorHtml += '<div class="temp-hot">\n';
                     getIndexFloorHtml += '<div class="layui-container">\n';
-                    getIndexFloorHtml += '<p class="temp-title-cn"><span></span>酒店' + floor.floorName + '<span></span></p>\n';
+                    getIndexFloorHtml += '<p class="temp-title-cn"><span ></span>酒店' + floor.floorName + '<span></span></p>\n';
                     getIndexFloorHtml += '<div class="layui-row layui-col-space20">\n';
                     $.each(floor.roomList, function (index, room) {
                         getIndexFloorHtml += '<div data-id="' + room.id + '" class="layui-col-xs6 layui-col-md3">\n';
-                        getIndexFloorHtml += '<a class="template store-list-box fly-case-active" href="JavaScript:void(0);" data-type="toRoomInfo">\n';
+                        getIndexFloorHtml += '<a class="template store-list-box fly-case-active" onclick=toRoomInfo(this) data-type="toRoomInfo">\n';
                         getIndexFloorHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
                         getIndexFloorHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
                         getIndexFloorHtml += '<p class="price"> <span title="金额"> ￥' + room.roomPrice + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
@@ -117,63 +117,6 @@ layui.config({
         }
     });
 
-
-//加载搜索框
-    let searchRoomHtml = '';
-    searchRoomHtml += '<input type="text" placeholder="搜索你需要的房间" name="keywords" id="searchKeywords" autocomplete="off" value="">';
-    searchRoomHtml += '<button class="layui-btn layui-btn-shop" lay-submit="" lay-filter="searchHotelRoom">';
-    searchRoomHtml += '<i class="layui-icon layui-icon-search"></i>';
-    searchRoomHtml += '</button>';
-    $("#searchRoom").html(searchRoomHtml);
-
-
-//判断会员是否登录
-    let loginMemberHtml = '';
-    let sessionMemberDate = layui.sessionData('sessionMemberDate');
-//获取顶部菜单编码
-    let navCodeData = layui.sessionData('navCodeData');
-
-
-    if (typeof (navCodeData.navCode) == "undefined" || navCodeData.navCode == "index") {
-        loginMemberHtml += '<li data-id="index" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/index/index">首页</a> </li>';
-    } else {
-        loginMemberHtml += '<li data-id="index" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="/index/index">首页</a> </li>';
-
-    }
-
-    if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "room") {
-        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/lists/lists">房间</a> </li>';
-    } else {
-        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="/lists/lists">房间</a> </li>';
-    }
-
-    if (typeof (sessionMemberDate.sessionMember) != "undefined" && sessionMemberDate.sessionMember != null) {
-        loginMemberHtml += '<li data-id="myInfo" class="layui-nav-item fly-layui-user" id="FLY-notice">';
-        loginMemberHtml += '<a class="fly-nav-avatar fly-case-active"data-type="toTopNav" href="JavaScript:void(0);" id="LAY_header_avatar">';
-        loginMemberHtml += '<img src="../hotel/images/head.jpg">';
-        loginMemberHtml += '<cite class="layui-hide-xs">欢迎您：' + sessionMemberDate.sessionMember.mNickname + '</cite>';
-        loginMemberHtml += '</a>';
-        loginMemberHtml += '</li>';
-        loginMemberHtml += '<li class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="exitSystem" href="JavaScript:void(0);">退出</a> </li>';
-    } else {
-        if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "login") {
-            loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
-        } else {
-            loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
-        }
-
-        if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "register") {
-            loginMemberHtml += '<li data-id="register" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/register/register">注册<span class="layui-badge-dot"></span></a>';
-            loginMemberHtml += '</li>';
-        } else {
-            loginMemberHtml += '<li data-id="register"  class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="/register/register">注册<span class="layui-badge-dot"></span></a>';
-            loginMemberHtml += '</li>';
-        }
-
-
-    }
-    loginMemberHtml += '<span class="layui-nav-bar" style="left: 560px; top: 55px; width: 0px; opacity: 0;"></span>';
-    $("#layui-nav-userinfo").html(loginMemberHtml);
 
 
 //监听提交搜索
@@ -321,7 +264,7 @@ layui.config({
     });
 
 
-    layui.focusInsert = function (obj, str) {
+   /* layui.focusInsert = function (obj, str) {
         var result, val = obj.value;
         obj.focus();
         if (document.selection) { //ie
@@ -333,7 +276,7 @@ layui.config({
             obj.focus();
             obj.value = result.join('');
         }
-    };
+    };*/
 
 
     //数字前置补零
@@ -354,8 +297,41 @@ layui.config({
         })
     }
 
-})
-;
+});
+/*跳转到房间详情界面*/
+function toRoomInfo(obj) {
+    let a = $(obj).parent('div');
+    let dataId = a.data('id');
+    //把房间Id保存到session
+    layui.sessionData('roomInfoData', {
+        key: 'roomId'
+        , value: dataId
+    });
+    window.open("/details/details");
+}
+
+/**
+ * 点击房型跳转到房间列表界面
+ */
+function toRoomTypeListByLists(obj) {
+    let a = $(obj).parent('dd');
+    let roomTypeId = a.data('id');
+
+    //将该id存入到session中
+    layui.sessionData('roomTypeData', {
+        key: 'roomTypeId'
+        , value: roomTypeId
+    });
+    window.open("/lists/lists");
+}
+
+/**
+ * 点击楼层跳转到房间列表中
+ * @param obj
+ */
+function toFloorListByLists(obj) {
+alert("aa")
+}
 
 
 

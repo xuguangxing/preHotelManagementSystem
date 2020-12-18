@@ -258,11 +258,12 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util', 'carousel'
   };
 
   var fly = {
+    //模块路径
+   /* dir: layui.cache.host + 'static/lay/modules/fly/' */
 
-    dir: layui.cache.host + 'static/lay/modules/fly/' //模块路径
 
     //Ajax
-    , json: function (url, data, success, options) {
+     json: function (url, data, success, options) {
       var that = this, type = typeof data === 'function';
 
       if (type) {

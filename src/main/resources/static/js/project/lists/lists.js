@@ -32,7 +32,6 @@ layui.config({
     let localFloorData = layui.sessionData('floorData');
     if (typeof (localFloorData.floorId) != "undefined") {
         floorId = localFloorData.floorId;
-        console.info("楼层floorId:" + floorId);
     }
 
     //获取所有房间类别
@@ -44,18 +43,18 @@ layui.config({
             hrFields: {withCredentials: false},
             success: function (res) {
                 let getAllRoomTypeHtml = '';
-                if (roomTypeId == 0) {
-                    getAllRoomTypeHtml += '<li  class="active" data-id="0" > <a class="fly-case-active" href="JavaScript:void(0);" data-type="toRoomTypeListByLists">全部</a> </li>';
+                if (roomTypeId == null) {
+                    getAllRoomTypeHtml += '<li  class="active" data-id="0" > <a class="fly-case-active" onclick=getAllRoomType(this) data-type="toRoomTypeListByLists">全部</a> </li>';
                 } else {
-                    getAllRoomTypeHtml += '<li data-id="0" > <a class="fly-case-active" href="JavaScript:void(0);" data-type="toRoomTypeListByLists">全部</a> </li>';
+                    getAllRoomTypeHtml += '<li data-id="0" > <a class="fly-case-active" onclick=getAllRoomType(this) data-type="toRoomTypeListByLists">全部</a> </li>';
 
                 }
                 //遍历data
                 $.each(res, function (index, roomType) {
                     if (roomTypeId == roomType.id) {
-                        getAllRoomTypeHtml += '<li class="active"  data-id="' + roomType.id + '"> <a class="fly-case-active"  href="JavaScript:void(0);" data-type="toRoomTypeListByLists">' + roomType.roomTypeName + '</a> </li>\n';
+                        getAllRoomTypeHtml += '<li class="active"  data-id="' + roomType.id + '"> <a class="fly-case-active" onclick=getRoomType(this) data-type="toRoomTypeListByLists">' + roomType.roomTypeName + '</a> </li>\n';
                     } else {
-                        getAllRoomTypeHtml += '<li data-id="' + roomType.id + '"> <a class="fly-case-active"  href="JavaScript:void(0);" data-type="toRoomTypeListByLists">' + roomType.roomTypeName + '</a> </li>\n';
+                        getAllRoomTypeHtml += '<li data-id="' + roomType.id + '"> <a class="fly-case-active"  onclick=getRoomType(this) data-type="toRoomTypeListByLists">' + roomType.roomTypeName + '</a> </li>\n';
                     }
                 });
 
@@ -78,8 +77,8 @@ layui.config({
             success: function (res) {
                 let getAllFloorHtml = '';
 
-                getAllFloorHtml += '<li style="background: #F2F2F2" title="全部"> <a class="fly-case-active" href="JavaScript:void(0);" data-type="toFloorListByLists"> <img src="/image/all_bg.jpg">';
-                if (floorId == 0) {
+                getAllFloorHtml += '<li style="background: #F2F2F2" title="全部"> <a class="fly-case-active" onclick=getAllFloor(this) data-type="toFloorListByLists"> <img src="/image/all_bg.jpg">';
+                if (floorId == null) {
                     getAllFloorHtml += '<i class="layui-icon layui-icon-ok"></i>';
                 }
                 getAllFloorHtml += '</a>';
@@ -90,7 +89,7 @@ layui.config({
                 $.each(res, function (index, floor) {
 
                     getAllFloorHtml += '<li data-id="' + floor.id + '" title="' + floor.floorName + '" class="bg' + (index + 1) + '">\n';
-                    getAllFloorHtml += '<a class="fly-case-active"  href="JavaScript:void(0);" data-type="toFloorListByLists">\n';
+                    getAllFloorHtml += '<a class="fly-case-active"  onclick=getFloor(this) data-type="toFloorListByLists">\n';
                     if (floorId == floor.id) {
                         getAllFloorHtml += '<i class="layui-icon layui-icon-ok"></i>';
                     }
@@ -151,6 +150,7 @@ layui.config({
 
 });
 
+/*跳转到房间详情界面*/
 function toRoomInfo(obj) {
     let a = $(obj).parent('div');
     let dataId = a.data('id');
@@ -161,4 +161,131 @@ function toRoomInfo(obj) {
     });
     window.open("/details/details");
 }
+/**
+ * 获取所有的楼层信息
+ */
+function getAllFloor(obj) {
+    $(obj).parent("li").siblings().children().html("")
+    $(obj).append('<i class="layui-icon layui-icon-ok"></i>');
+    //取出本页面的房型id
+    let localDate = layui.sessionData('roomTypeDataLists');
+    let roomTypeId = localDate.roomTypeId;
+    if (typeof (roomTypeId) == "undefined"){
+        roomTypeId=null;
+    }
+    //存入本页面的楼层id
+    layui.sessionData('floorDataLists', {
+        key: 'floorId'
+        , value: null
+    });
+    getRoomListByType(roomTypeId, null);
+}
+
+/**
+ * 获取对应id的楼层信息
+ */
+function getFloor(obj) {
+
+    $(obj).parent("li").siblings().children().html("")
+     $(obj).append('<i class="layui-icon layui-icon-ok"></i>');
+
+    //楼层id
+    let a = $(obj).parent('li');
+    let floorId = a.data('id');
+
+    //取出本页面的房型id
+    let localDate = layui.sessionData('roomTypeDataLists');
+    let roomTypeId = localDate.roomTypeId;
+    if (typeof (roomTypeId) == "undefined"){
+        roomTypeId=null;
+    }
+    //存入本页面的楼层id
+    layui.sessionData('floorDataLists', {
+        key: 'floorId'
+        , value: floorId
+    });
+    getRoomListByType(roomTypeId, floorId);
+}
+
+/**
+ * 获取本页所有的房型信息
+ */
+function getAllRoomType(obj) {
+
+    $(obj).parent("li").siblings().removeClass("active");
+    $(obj).parent("li").addClass("active");
+    //取出本页面的楼层id
+    let localDate = layui.sessionData('floorDataLists');
+    let floorId = localDate.floorId;
+    if (typeof (floorId) == "undefined"){
+        floorId=null;
+    }
+    //存入本页面的房型id
+    layui.sessionData('roomTypeDataLists', {
+        key: 'roomTypeId'
+        , value: null
+    });
+
+   getRoomListByType(null, floorId);
+}
+//获取本页对应id的房型信息
+function getRoomType(obj) {
+
+    $(obj).parent("li").siblings().removeClass("active");
+    $(obj).parent("li").addClass("active");
+    //房型id
+    let a = $(obj).parent('li');
+    let roomTypeId = a.data('id');
+    //取出本页面的楼层id
+    let localDate = layui.sessionData('floorDataLists');
+    let floorId = localDate.floorId;
+    if (typeof (floorId) == "undefined"){
+        floorId=null;
+    }
+    //存入本页面的房型id
+    layui.sessionData('roomTypeDataLists', {
+        key: 'roomTypeId'
+        , value: roomTypeId
+    });
+   getRoomListByType(roomTypeId, floorId);
+
+}
+function getRoomListByType(roomTypeId, floorId) {
+    $.get({
+        url: "http://localhost:9001/room/queryRoomByFloorOrRoomType",
+        dataType: "json",
+        data: {
+            roomTypeId: roomTypeId,
+            floorId: floorId
+        },
+        xhrFields: {withCredentials: false},
+        success: function (res) {
+            let getRoomListHtml = '';
+            $("#filtTotal").html(res.count);
+            //遍历data
+            $.each(res.roomVoList, function (index, room) {
+                getRoomListHtml += '<div data-id="' + room.id + '"  class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">\n';
+                getRoomListHtml += '<a class="template store-list-box fly-case-active" onclick=toRoomInfo(this) data-type="toRoomInfo">\n';
+                getRoomListHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
+                getRoomListHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
+                getRoomListHtml += '<div> <label class="layui-badge-rim store-list-pay"> ￥' + room.roomPrice + ' </label>\n';
+                getRoomListHtml += '<div class="store-list-colorbar">\n';
+                getRoomListHtml += '<span class="store-color-bar" style="border-color: #009688;color: #009688;border-width: 1px;border-style: solid;background-color: #fff;    text-align: center;">NO.' + room.roomName + '</span>\n';
+                getRoomListHtml += '<span class="store-color-bar" style="border-color: #5fb878;color: #5fb878;border-width: 1px;border-style: solid;background-color: #fff;    text-align: center;">' + room.roomTypeName + '</span>\n';
+                getRoomListHtml += '<span class="store-color-bar" style="border-color: #01aaed;color: #01aaed;border-width: 1px;border-style: solid;background-color: #fff;    text-align: center;">' + room.floorName + '</span>\n';
+                getRoomListHtml += '</div>\n';
+                getRoomListHtml += '</div>\n';
+                getRoomListHtml += '</a>\n';
+                getRoomListHtml += '</div>\n';
+            });
+            $('#roomList').html(getRoomListHtml);
+        /*    element.render();*/
+        },
+        error: function () {
+
+        }
+    });
+}
+
+
 

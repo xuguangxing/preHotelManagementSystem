@@ -41,9 +41,9 @@ layui.config({
     }
 
     if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "room") {
-        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/lists/lists">房间</a> </li>';
+        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" onclick=toLists(this)>房间</a> </li>';
     } else {
-        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="/lists/lists">房间</a> </li>';
+        loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" onclick=toLists(this)>房间</a> </li>';
     }
 
     if (typeof (sessionMemberDate.sessionMember) != "undefined" && sessionMemberDate.sessionMember != null) {
@@ -75,3 +75,20 @@ layui.config({
     $("#layui-nav-userinfo").html(loginMemberHtml);
 
 })
+
+/**
+ * 点击房间链接
+ */
+function toLists() {
+    //清空session中存的房型id
+    layui.sessionData('roomTypeData', {
+        key: 'roomTypeId'
+        , remove: true
+    });
+    //清空session中存的楼层idfloorData
+    layui.sessionData('roomTypeData', {
+        key: 'roomTypeId'
+        , remove: true
+    });
+    window.open("/lists/lists");
+}
