@@ -239,21 +239,6 @@ layui.config({
 
     });
 
-//会员预定酒店
-    $('body').on('click', '.fly-memberReserveHotel', function () {
-        let roomId = $("#id").val();
-        console.info("roomId" + roomId);
-
-        let index = layer.open({
-            title: '会员预定房间',
-            type: 2,
-            shade: 0.2,
-            shadeClose: true,
-            area: ['50%', '60%'],
-            content: 'memberReserveRoom.html'
-        });
-    });
-
 
 //图片轮播
     carousel.render({
@@ -323,14 +308,6 @@ function toRoomTypeListByLists(obj) {
         , value: roomTypeId
     });
     window.open("/lists/lists");
-}
-
-/**
- * 点击楼层跳转到房间列表中
- * @param obj
- */
-function toFloorListByLists(obj) {
-alert("aa")
 }
 
 

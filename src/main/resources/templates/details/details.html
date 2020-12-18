@@ -33,7 +33,9 @@
     </div>
 </div>
 <!--顶部 end-->
-<!--[if lt IE 9]>  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 <div class="shop-nav shopdata">
     <!--搜索 start-->
     <div id="LAY-topbar" style="height: auto;">
@@ -41,7 +43,8 @@
             <div class="input-search">
                 <div id="searchRoom">
                 </div>
-                <div class="layui-container layui-hide-xs"> <a href="http://www.xueden.cn/" class="topbar-logo"> <img src="/image/1.jpg" alt="layui"> </a> </div>
+                <div class="layui-container layui-hide-xs"><a href="http://www.xueden.cn/" class="topbar-logo"> <img
+                        src="/image/1.jpg" alt="layui"> </a></div>
             </div>
         </form>
     </div>
@@ -60,13 +63,13 @@
         </div>
         <div class="layui-card-body layui-row">
             <div class="layui-col-md6">
-                <div class="intro-img photos"> <img id="coverImg" src="/image/f1-02.jpg"
-                                                    alt="产品封面" layer-index="0"> </div>
+                <div class="intro-img photos"><img id="coverImg" src="/image/f1-02.jpg"
+                                                   alt="产品封面" layer-index="0"></div>
             </div>
             <div class="layui-col-md6">
                 <div class="intro-txt">
-                    <h1 class="title" id="roomAlias"> </h1>
-                    <input type="hidden" id="id"  name="id" value="">
+                    <h1 class="title" id="roomAlias"></h1>
+                    <input type="hidden" id="id" name="id" value="">
                     <div class="store-attrs">
                         <div class="summary">
                             <p class="reference"><span>房间号</span> <span id="roomName"></span></p>
@@ -85,8 +88,9 @@
                         </div>
                     </div>
 
-                    <p class="store-detail-active" id="shopEvent"> <a href="javascript:;"  data-type="memberReserveHotel" class="store-bg-orange fly-memberReserveHotel">
-                        <i class="layui-icon layui-icon-dollar"></i>立即预定 </a> </p>
+                    <p class="store-detail-active" id="shopEvent"><a href="javascript:;" data-type="memberReserveHotel"
+                                                                     class="store-bg-orange fly-memberReserveHotel">
+                        <i class="layui-icon layui-icon-dollar"></i>立即预定 </a></p>
                 </div>
             </div>
         </div>
@@ -104,11 +108,49 @@
 
 <!-- 底部 start-->
 <div class="fly-footer">
-    <p>徐广兴 &nbsp;&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-login-qq"></i> 1832377033  &nbsp;&nbsp;&nbsp;&nbsp;
+    <p>徐广兴 &nbsp;&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-login-qq"></i> 1832377033 &nbsp;&nbsp;&nbsp;&nbsp;
         <i class="layui-icon layui-icon-cellphone"></i>18317956639
     </p>
 </div>
 <!-- 底部 end-->
+
+<div id="orderView" style="display: none">
+    <!--预定订单界面开始-->
+    <form  class="layui-form layui-form-pane" lay-filter="formReserveRoom" style="background-color:#ffffff">
+        <input name="id" type="hidden" value="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">房间号</label>
+            <div class="layui-input-block">
+                <input type="text" name="roomName" required lay-verify="required" disabled autocomplete="off"
+                     id="bookRoomName"  class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">入住时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="checkInDate" required lay-verify="required" autocomplete="off" class="layui-input"
+                       id="checkInDate">
+                <!-- <input type="text" name="checkInDate" required id="checkInDate"  lay-verify="required"  class="layui-input">-->
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">退房时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="checkOutDate" required lay-verify="required" autocomplete="off" class="layui-input"
+                       id="checkOutDate">
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="text-align: center">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="addHotelFloor">立即提交</button>
+            </div>
+        </div>
+    </form>
+    <!--预定订单界面结束-->
+</div>
 <script src="/static/layuiadmin/layui/layui.js"></script>
 <script src="/static/js/project/details/details.js"></script>
 <script src="/static/js/project/common/common.js"></script>
@@ -118,3 +160,4 @@
 </ul>
 </body>
 </html>
+
