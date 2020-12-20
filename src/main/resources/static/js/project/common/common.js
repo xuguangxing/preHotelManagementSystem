@@ -90,5 +90,5 @@ function toLists() {
         key: 'roomTypeId'
         , remove: true
     });
-    window.open("/lists/lists");
+    window.location.href="/lists/lists";
 }

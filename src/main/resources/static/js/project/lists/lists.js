@@ -159,7 +159,7 @@ function toRoomInfo(obj) {
         key: 'roomId'
         , value: dataId
     });
-    window.open("/details/details");
+    window.location.href="/details/details";
 }
 /**
  * 获取所有的楼层信息
@@ -168,17 +168,26 @@ function getAllFloor(obj) {
     $(obj).parent("li").siblings().children().html("")
     $(obj).append('<i class="layui-icon layui-icon-ok"></i>');
     //取出本页面的房型id
-    let localDate = layui.sessionData('roomTypeDataLists');
-    let roomTypeId = localDate.roomTypeId;
-    if (typeof (roomTypeId) == "undefined"){
-        roomTypeId=null;
-    }
+    let localRoomType = layui.sessionData('roomTypeDataLists');
+    let localRoomTypeId = localRoomType.roomTypeId;
     //存入本页面的楼层id
     layui.sessionData('floorDataLists', {
         key: 'floorId'
         , value: null
     });
-    getRoomListByType(roomTypeId, null);
+    if (typeof (localRoomTypeId) == "undefined"){
+        localRoomTypeId=null;
+
+        //获取其他页传过来的房间类别Id
+        var roomTypeId;
+        let localDate = layui.sessionData('roomTypeData');
+        if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId!=null) {
+            roomTypeId = localDate.roomTypeId;
+            getRoomListByType(roomTypeId, null);
+        }
+    }else {
+        getRoomListByType(localRoomTypeId, null);
+    }
 }
 
 /**
@@ -192,19 +201,29 @@ function getFloor(obj) {
     //楼层id
     let a = $(obj).parent('li');
     let floorId = a.data('id');
-
-    //取出本页面的房型id
-    let localDate = layui.sessionData('roomTypeDataLists');
-    let roomTypeId = localDate.roomTypeId;
-    if (typeof (roomTypeId) == "undefined"){
-        roomTypeId=null;
-    }
     //存入本页面的楼层id
     layui.sessionData('floorDataLists', {
         key: 'floorId'
         , value: floorId
     });
-    getRoomListByType(roomTypeId, floorId);
+    //取出本页面的房型id
+    let localDate = layui.sessionData('roomTypeDataLists');
+    let localRoomTypeId = localDate.roomTypeId;
+    if (typeof (localRoomTypeId) == "undefined"){
+        localRoomTypeId=null;
+        //获取其他页传过来的房间类别Id
+        var roomTypeId;
+        let localDate = layui.sessionData('roomTypeData');
+        if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId!=null) {
+            roomTypeId = localDate.roomTypeId;
+            getRoomListByType(roomTypeId, floorId);
+        }
+
+    }else {
+        getRoomListByType(localRoomTypeId, floorId);
+    }
+
+
 }
 
 /**
@@ -216,17 +235,28 @@ function getAllRoomType(obj) {
     $(obj).parent("li").addClass("active");
     //取出本页面的楼层id
     let localDate = layui.sessionData('floorDataLists');
-    let floorId = localDate.floorId;
-    if (typeof (floorId) == "undefined"){
-        floorId=null;
-    }
+    let localFloorId = localDate.floorId;
     //存入本页面的房型id
     layui.sessionData('roomTypeDataLists', {
         key: 'roomTypeId'
         , value: null
     });
+    if (typeof (localFloorId) == "undefined"){
+        localFloorId=null;
+        //获取其他页传过来的楼层Id
+        let localFloorData = layui.sessionData('floorData');
+        var floorId;
+        if (typeof (localFloorData.floorId) != "undefined" && localFloorData.floorId!=null) {
+             floorId = localFloorData.floorId;
+        }
+        if (floorId!=null){
+            getRoomListByType(null, floorId);
+        }
+    }else {
+        getRoomListByType(null, localFloorId);
+    }
 
-   getRoomListByType(null, floorId);
+
 }
 //获取本页对应id的房型信息
 function getRoomType(obj) {
@@ -238,16 +268,28 @@ function getRoomType(obj) {
     let roomTypeId = a.data('id');
     //取出本页面的楼层id
     let localDate = layui.sessionData('floorDataLists');
-    let floorId = localDate.floorId;
-    if (typeof (floorId) == "undefined"){
-        floorId=null;
-    }
+    let localFloorId = localDate.floorId;
+
     //存入本页面的房型id
     layui.sessionData('roomTypeDataLists', {
         key: 'roomTypeId'
         , value: roomTypeId
     });
-   getRoomListByType(roomTypeId, floorId);
+    if (typeof (localFloorId) == "undefined"){
+        localFloorId=null;
+        //获取其他页传过来的楼层Id
+        let localFloorData = layui.sessionData('floorData');
+        var floorId;
+        if (typeof (localFloorData.floorId) != "undefined" && localFloorData.floorId!=null) {
+            floorId = localFloorData.floorId;
+        }
+        if (floorId!=null){
+            getRoomListByType(roomTypeId, floorId);
+        }
+    }else {
+        getRoomListByType(roomTypeId, localFloorId);
+    }
+
 
 }
 function getRoomListByType(roomTypeId, floorId) {

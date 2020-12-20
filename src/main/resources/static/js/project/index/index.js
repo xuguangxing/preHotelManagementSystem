@@ -292,7 +292,7 @@ function toRoomInfo(obj) {
         key: 'roomId'
         , value: dataId
     });
-    window.open("/details/details");
+    window.location.href="/details/details";
 }
 
 /**
@@ -307,7 +307,18 @@ function toRoomTypeListByLists(obj) {
         key: 'roomTypeId'
         , value: roomTypeId
     });
-    window.open("/lists/lists");
+
+    //清除本页房间列表，楼层和房型的session
+    layui.sessionData('floorDataLists', {
+        key: 'floorId'
+        ,remove: true
+    });
+    layui.sessionData('roomTypeDataLists', {
+        key: 'roomTypeId'
+        ,remove: true
+    });
+
+    window.location.href="/lists/lists";
 }
 
 
