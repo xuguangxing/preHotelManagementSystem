@@ -178,68 +178,6 @@ layui.config({
             .replace(/mm/g, hms[1])
             .replace(/ss/g, hms[2]);
     };
-
-
-//监听用户提交注册
-    form.on('submit(register)', function (data) {
-        let loadIndex = layer.load(2, {
-            shade: [0.3, '#333']
-        });
-
-        $.ajax({
-            type: "post",
-            url: registerUrl,
-            data: data.field,
-            dataType: "json",//返回的
-            success: function (data) {
-                layer.close(loadIndex);
-                layer.msg(data.message, function () {
-                    parent.location.href = "../hotel/login.html";
-                });
-            },
-            error: function (msg) {
-                console.log(msg);
-            }
-        });
-
-
-    });
-
-//监听用户提交登录
-    form.on('submit(login)', function (data) {
-        let loadIndex = layer.load(2, {
-            shade: [0.3, '#333']
-        });
-        $.post({
-            url: loginUrl,
-            data: data.field,
-            dataType: "json",
-            timeout: 300000,
-            xhrFields: {withCredentials: true},
-            success: function (res) {
-                layer.close(loadIndex);
-                if (res.success) {
-                    layui.sessionData('sessionMemberDate', {
-                        key: 'sessionMember'
-                        , value: res.data
-                    });
-                    layui.sessionData('navCodeData', {
-                        key: 'navCode'
-                        , remove: true
-                    });
-                    window.location.href = "/index/index";
-                } else {
-                    layer.msg(res.message);
-                }
-            },
-            error: function () {
-
-            }
-        });
-
-    });
-
-
 //图片轮播
     carousel.render({
         elem: '#LAY-store-banner'
@@ -248,20 +186,6 @@ layui.config({
         , interval: 5000
     });
 
-
-   /* layui.focusInsert = function (obj, str) {
-        var result, val = obj.value;
-        obj.focus();
-        if (document.selection) { //ie
-            result = document.selection.createRange();
-            document.selection.empty();
-            result.text = str;
-        } else {
-            result = [val.substring(0, obj.selectionStart), str, val.substr(obj.selectionEnd)];
-            obj.focus();
-            obj.value = result.join('');
-        }
-    };*/
 
 
     //数字前置补零

@@ -184,6 +184,8 @@ function getAllFloor(obj) {
         if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId!=null) {
             roomTypeId = localDate.roomTypeId;
             getRoomListByType(roomTypeId, null);
+        }else{
+            getRoomListByType(localRoomTypeId, floorId);
         }
     }else {
         getRoomListByType(localRoomTypeId, null);
@@ -217,6 +219,8 @@ function getFloor(obj) {
         if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId!=null) {
             roomTypeId = localDate.roomTypeId;
             getRoomListByType(roomTypeId, floorId);
+        }else{
+            getRoomListByType(localRoomTypeId, floorId);
         }
 
     }else {
@@ -230,6 +234,7 @@ function getFloor(obj) {
  * 获取本页所有的房型信息
  */
 function getAllRoomType(obj) {
+
 
     $(obj).parent("li").siblings().removeClass("active");
     $(obj).parent("li").addClass("active");
@@ -251,6 +256,8 @@ function getAllRoomType(obj) {
         }
         if (floorId!=null){
             getRoomListByType(null, floorId);
+        }else {
+            getRoomListByType(null, localFloorId);
         }
     }else {
         getRoomListByType(null, localFloorId);
@@ -260,6 +267,7 @@ function getAllRoomType(obj) {
 }
 //获取本页对应id的房型信息
 function getRoomType(obj) {
+
 
     $(obj).parent("li").siblings().removeClass("active");
     $(obj).parent("li").addClass("active");
@@ -275,7 +283,9 @@ function getRoomType(obj) {
         key: 'roomTypeId'
         , value: roomTypeId
     });
+
     if (typeof (localFloorId) == "undefined"){
+
         localFloorId=null;
         //获取其他页传过来的楼层Id
         let localFloorData = layui.sessionData('floorData');
@@ -285,6 +295,8 @@ function getRoomType(obj) {
         }
         if (floorId!=null){
             getRoomListByType(roomTypeId, floorId);
+        }else{
+            getRoomListByType(roomTypeId, localFloorId);
         }
     }else {
         getRoomListByType(roomTypeId, localFloorId);
