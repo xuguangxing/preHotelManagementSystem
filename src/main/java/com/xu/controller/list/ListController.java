@@ -1,4 +1,4 @@
-package com.xu.controller.index;
+package com.xu.controller.list;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

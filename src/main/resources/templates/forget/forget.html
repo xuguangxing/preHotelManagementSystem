@@ -57,26 +57,10 @@
             <!--登录 start-->
             <div class="login-bg">
                 <div class="login-cont w1200">
-                    <div class="form-box" style="height: 620px;top: 60px; right: 90px">
+                    <div class="form-box" style="height: 520px;top: 60px; right: 90px">
                         <form class="layui-form" action="">
-                            <legend>用户注册</legend>
+                            <legend>忘记密码</legend>
                             <div class="layui-form-item">
-
-                                <div class="layui-inline iphone">
-                                    <div class="layui-input-inline">
-                                        <i class="layui-icon layui-icon-username iphone-icon"></i>
-                                        <input type="text" name="userName" id="userName" lay-verify="required"
-                                               placeholder="请输入用户名" autocomplete="off" class="layui-input">
-                                    </div>
-                                </div>
-
-                                <div class="layui-inline iphone">
-                                    <div class="layui-input-inline">
-                                        <i class="layui-icon layui-icon-cellphone iphone-icon"></i>
-                                        <input type="tel" name="userPhone" id="userPhone" lay-verify="required|phone"
-                                               placeholder="请输入手机号" autocomplete="off" class="layui-input">
-                                    </div>
-                                </div>
 
                                 <div class="layui-inline iphone">
                                     <div class="layui-input-inline">
@@ -86,6 +70,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="layui-inline iphone">
                                     <div class="layui-input-inline">
                                         <i class="layui-icon layui-icon-email iphone-icon"></i>
@@ -94,13 +79,26 @@
                                     </div>
                                 </div>
 
+
                                 <div class="layui-inline iphone">
                                     <div class="layui-input-inline">
-                                        <i class="layui-icon layui-icon-username iphone-icon"></i>
-                                        <input type="tel" name="realName" id="realName" lay-verify="required"
-                                               placeholder="请输真实姓名" autocomplete="off" class="layui-input">
+                                        <div class="layui-col-xs7">
+                                            <i class="layui-icon layui-icon-auz iphone-icon"></i>
+                                            <input type="tel" name="vercode" id="vercode" lay-verify="required|email"
+                                                   placeholder="QQ邮箱验证码" autocomplete="off" class="layui-input">
+                                        </div>
+
+                                        <div class="layui-col-xs5">
+                                            <div style="margin-left: 5px;">
+                                                <button type="button" id="yzmbt"
+                                                        class="layui-btn layui-btn-primary layui-btn-fluid">
+                                                    获取验证码
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
 
                                 <div class="layui-inline iphone">
                                     <div class="layui-input-inline">
