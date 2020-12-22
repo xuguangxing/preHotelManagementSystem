@@ -68,42 +68,71 @@
                         <li lay-id="pass">密码</li>
 
                     </ul>
-                    <div class="layui-tab-content" style="padding: 20px 0;">
+                    <div class="layui-tab-content" style="padding: 20px 0;height:300px">
                         <div class="layui-form layui-form-pane layui-tab-item layui-show">
                             <form class="layui-form layui-form-pane"  lay-filter="formMyInfo">
-                                <div class="layui-form-item">
-                                    <label for="userPhone" class="layui-form-label">手机</label>
-                                    <div class="layui-input-inline">
-                                        <input type="hidden"  name="id" value="">
-                                        <input type="text" id="userPhone" name="userPhone" required="" lay-verify="phone" autocomplete="off" value="" placeholder="请输入手机号" class="layui-input">
+
+                                <div style="float: left">
+
+                                    <div class="layui-form-item">
+                                        <label for="userName" class="layui-form-label">登录名</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" id="userName" name="userName" placeholder="请输入登录名" required="" lay-verify="required" autocomplete="off" value="" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label for="realName" class="layui-form-label">真实姓名</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" id="realName" name="realName" placeholder="请输入真实姓名" autocomplete="off" value="" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label for="idCard" class="layui-form-label">身份证号</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" id="idCard" name="idCard" autocomplete="off" placeholder="请输入身份证号" value="" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label for="userPhone" class="layui-form-label">手机</label>
+                                        <div class="layui-input-inline">
+                                            <input type="hidden"  name="id" value="">
+                                            <input type="text" id="userPhone" name="userPhone" required="" lay-verify="phone" autocomplete="off" value="" placeholder="请输入手机号" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label for="userEmail" class="layui-form-label">邮箱</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" id="userEmail" name="userEmail" required="" placeholder="请输入QQ邮箱" lay-verify="email" autocomplete="off" value="" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item" style="display: none">
+                                        <label for="userEmail" class="layui-form-label">用户登录照片</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" id="userNameImage" name="userNameImage" required="" autocomplete="off" value="" class="layui-input">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <button class="layui-btn" key="set-mine" lay-filter="updateMember" lay-submit="" onclick="return false">确认修改</button>
                                     </div>
                                 </div>
 
-                                <div class="layui-form-item">
-                                    <label for="userEmail" class="layui-form-label">邮箱</label>
-                                    <div class="layui-input-inline">
-                                        <input type="text" id="userEmail" name="userEmail" required="" lay-verify="email" autocomplete="off" value="" class="layui-input">
+                                <div style="float: left;margin-left: 50px">
+                                    <div class="layui-upload" style="text-align: center;">
+                                        <div class="layui-upload-drag" id="demo1" style="height: 250px">
+                                            <i class="layui-icon"></i>
+                                            <p>点击上传用户头像,或将相片拖拽到此处</p>
+                                            <div class="layui-hide" id="uploadDemoView"  >
+                                                <hr>
+                                                <img src="" style="max-width:240px;height: 180px">
+                                            </div>
+                                        </div>
                                     </div>
-
-                                </div>
-
-
-                                <div class="layui-form-item">
-                                    <label for="L_city" class="layui-form-label">真实姓名</label>
-                                    <div class="layui-input-inline">
-                                        <input type="text" id="L_city" name="realName" autocomplete="off" value="" class="layui-input">
-                                    </div>
-                                </div>
-
-                                <div class="layui-form-item">
-                                    <label for="userName" class="layui-form-label">登录名</label>
-                                    <div class="layui-input-inline">
-                                        <input type="text" id="userName" name="userName" required="" lay-verify="required" autocomplete="off" value="" class="layui-input">
-                                    </div>
-                                </div>
-
-                                <div class="layui-form-item">
-                                    <button class="layui-btn" key="set-mine" lay-filter="updateMember" lay-submit="" onclick="return false">确认修改</button>
                                 </div>
                             </form>
                         </div>

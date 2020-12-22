@@ -77,7 +77,6 @@ public class UserRealm extends AuthorizingRealm {
          * 用户名，密码，从数据库中取
          */
         User user = userServer.findByUserName(usernamePasswordToken.getUsername());
-        System.out.println("================>passWord="+user.getPassWord());
 
         /**
          * 没有这个用户,抛出异常
