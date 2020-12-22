@@ -23,7 +23,10 @@ layui.config({
 
         //确认密码
         if (field.passWord !== field.repass) {
-            return layer.msg('两次密码输入不一致');
+            return layer.msg('两次密码输入不一致',{
+                icon: 2,
+                time: 1000
+            });
         }
         //监听身份证位数
         if ($("#idCard").val().length !== 18) {

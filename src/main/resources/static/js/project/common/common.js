@@ -50,7 +50,7 @@ layui.config({
         loginMemberHtml += '<cite class="layui-hide-xs">欢迎您：' + userData.user.userName + '</cite>';
         loginMemberHtml += '</a>';
         loginMemberHtml += '</li>';
-        loginMemberHtml += '<li class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="exitSystem" href="JavaScript:void(0);">退出</a> </li>';
+        loginMemberHtml += '<li class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="exitSystem" onclick=logOut(this)>退出</a> </li>';
     } else {
         if (typeof (userData.user) != "undefined") {
             loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
@@ -88,4 +88,17 @@ function toLists() {
         , remove: true
     });
     window.location.href="/lists/lists";
+}
+
+/*点击退出*/
+function logOut() {
+    //清空session中存的客户信息
+    layui.sessionData('userSession', {
+        key: 'user',
+        remove: true
+    });
+
+    //跳转到主页面
+    window.location.href="/index/index"
+
 }

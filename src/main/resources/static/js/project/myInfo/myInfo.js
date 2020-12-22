@@ -51,22 +51,44 @@ layui.config({
 
     });
 
+
+
     //监听更新提交密码
     form.on('submit(updatePsw)', function (data) {
 
-        $.ajax({
-            type: "post",
-            url: updatePswUrl,
-            data: data.field,
-            dataType: "json",//返回的
-            success: function (data) {
-                layer.msg(data.message);
-
-            },
-            error: function (msg) {
-                console.log(msg);
-            }
-        });
+        if($("#passWord").val()!=$("#L_repass").val()){
+           return  layer.msg("两次密码输入不一致",{
+                icon: 2,
+                time: 1000
+            })
+        }else{
+            $.ajax({
+                url: "http://localhost:9001/user/updateUserPassWord",
+                data: {idCard: userData.user.idCard,passWord: $("#passWord").val()},
+                success: function (res) {
+                    //通过登录名查找该用户
+                    $.ajax({
+                        url: "http://localhost:9001/user/queryUserByUserName",
+                        data: {userName: userData.user.userName},
+                        success: function (res) {
+                            //将用户存入session中
+                            layui.sessionData('userSession', {
+                                key: 'user'
+                                , value: res
+                            });
+                        }
+                    })
+                    layer.msg("修改成功",{
+                        icon:1,
+                        time: 1000
+                    },function () {
+                        window.location.href="/myInfo/myInfo";
+                    })
+                },
+                error: function (msg) {
+                }
+            });
+        }
     });
 
     //用户登录头像
