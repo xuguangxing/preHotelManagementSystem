@@ -2,7 +2,7 @@ layui.config({
     base: '../../../layuiadmin/' //静态资源所在路径
 }).extend({
     index: 'lib/index' //主入口模块
-}).use(['index', 'user', 'table', 'layer', 'form', 'laytpl', 'util', 'upload', 'laydate', 'element', 'carousel', 'flow'], function () {
+}).use(['index', 'user', 'table', 'layer', 'form', 'upload', 'laydate', 'element'], function () {
     var table = layui.table;
     var form = layui.form;
     var $ = layui.$;
@@ -10,12 +10,7 @@ layui.config({
     var upload = layui.upload;
     var laydate = layui.laydate;
     var element = layui.element;
-    var carousel = layui.carousel;
     var device = layui.device()
-    var laytpl = layui.laytpl;
-    var util = layui.util;
-    var flow = layui.flow;
-
     let loadIndex = layer.load(0, {
         shade: [0.3, '#333']
     });
@@ -57,7 +52,6 @@ layui.config({
         //房间Id
         $("#id").val(data.id);
         $("#roomAlias").html(data.roomAlias);
-        /* $('title').html(data.roomName+'-酒店管理系统');*/
         //房型
         $("#roomTypeName").html(data.roomTypeName);
         //房间名称
@@ -73,15 +67,15 @@ layui.config({
     //预定酒店
     $('body').on('click', '#shopEvent', function () {
 
-        let sessionMemberDate = layui.sessionData('sessionMemberDate');
-        /* if (typeof (sessionMemberDate.sessionMembe) == "undefined" || sessionMemberDate.sessionMembe == null) {
+        let userData = layui.sessionData('userSession');
+         if (typeof (userData.user) == "undefined" || userData.user == null) {
              layer.msg('请先登录', {
                  icon: 2,
                  time: 1000
              }, function () {
                  window.location.href = "/login/login";
              })
-         } else {*/
+         } else {
         $("#bookRoomName").val($("#roomName").html())
         let index = layer.open({
             title: '会员预定房间'
@@ -91,7 +85,7 @@ layui.config({
             , content: $('#orderView')
             , shade: 0 //不显示遮罩
         });
-        /*}*/
+        }
     });
 
     //获取列表页传过来的角色数据reserveRoomData
