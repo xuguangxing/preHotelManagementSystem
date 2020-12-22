@@ -81,7 +81,7 @@
                                 <div class="layui-inline iphone">
                                     <div class="layui-input-inline">
                                         <i class="layui-icon layui-icon-auz iphone-icon"></i>
-                                        <input type="tel" name="idCard" id="idCard" lay-verify="required|phone"
+                                        <input type="tel" name="idCard" id="idCard" lay-verify="required"
                                                placeholder="请输入身份证" autocomplete="off" class="layui-input">
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                 <div class="layui-inline iphone">
                                     <div class="layui-input-inline">
                                         <i class="layui-icon layui-icon-password iphone-icon"></i>
-                                        <input id="passWord" type="passWord" name="passWord" lay-verify="required"
+                                        <input id="passWord" type="passWord" name="passWord" lay-verify="pass"
                                                placeholder="请输入登录密码" autocomplete="off" class="layui-input">
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                                 <div class="layui-inline iphone">
                                     <div class="layui-input-inline">
                                         <i class="layui-icon layui-icon-password iphone-icon"></i>
-                                        <input type="sureUserEmail" name="sureUserEmail" id="sureUserEmail"
+                                        <input type="passWord" name="repass" id="repass"
                                                lay-verify="required" placeholder="确认密码" autocomplete="off"
                                                class="layui-input">
                                     </div>
@@ -122,7 +122,7 @@
                                 <div class="layui-form-item login-btn">
                                     <div class="layui-input-block">
                                         <button class="layui-btn" lay-submit="" lay-filter="register"
-                                                onclick="return false">注册
+                                                onclick="return false">提交
                                         </button>
                                     </div>
                                 </div>
@@ -150,5 +150,6 @@
 </ul>
 <script src="/static/layuiadmin/layui/layui.js"></script>
 <script src="/static/js/project/common/common.js"></script>
+<script src="/static/js/project/register/register.js"></script>
 </body>
 </html>
