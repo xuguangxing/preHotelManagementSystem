@@ -28,40 +28,37 @@ layui.config({
 
 //判断会员是否登录
     let loginMemberHtml = '';
-    let sessionMemberDate = layui.sessionData('sessionMemberDate');
+    let userData = layui.sessionData('userSession');
 //获取顶部菜单编码
-    let navCodeData = layui.sessionData('navCodeData');
-
-
-    if (typeof (navCodeData.navCode) == "undefined" || navCodeData.navCode == "index") {
+    if (typeof (userData.user) == "undefined") {
         loginMemberHtml += '<li data-id="index" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/index/index">首页</a> </li>';
     } else {
         loginMemberHtml += '<li data-id="index" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" href="/index/index">首页</a> </li>';
 
     }
 
-    if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "room") {
+    if (typeof (userData.user) != "undefined") {
         loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" onclick=toLists(this)>房间</a> </li>';
     } else {
         loginMemberHtml += '<li data-id="room" class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="toTopNav" onclick=toLists(this)>房间</a> </li>';
     }
 
-    if (typeof (sessionMemberDate.sessionMember) != "undefined" && sessionMemberDate.sessionMember != null) {
+    if (typeof (userData.user) != "undefined" && userData.user != null) {
         loginMemberHtml += '<li data-id="myInfo" class="layui-nav-item fly-layui-user" id="FLY-notice">';
-        loginMemberHtml += '<a class="fly-nav-avatar fly-case-active"data-type="toTopNav" href="JavaScript:void(0);" id="LAY_header_avatar">';
-        loginMemberHtml += '<img src="../hotel/images/head.jpg">';
-        loginMemberHtml += '<cite class="layui-hide-xs">欢迎您：' + sessionMemberDate.sessionMember.mNickname + '</cite>';
+        loginMemberHtml += '<a class="fly-nav-avatar fly-case-active"data-type="toTopNav" href="/myInfo/myInfo" id="LAY_header_avatar">';
+        loginMemberHtml += '<img src="/image/'+userData.user.userNameImage+'">';
+        loginMemberHtml += '<cite class="layui-hide-xs">欢迎您：' + userData.user.userName + '</cite>';
         loginMemberHtml += '</a>';
         loginMemberHtml += '</li>';
         loginMemberHtml += '<li class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="exitSystem" href="JavaScript:void(0);">退出</a> </li>';
     } else {
-        if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "login") {
+        if (typeof (userData.user) != "undefined") {
             loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
         } else {
             loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
         }
 
-        if (typeof (navCodeData.navCode) != "undefined" && navCodeData.navCode == "register") {
+        if (typeof (userData.user) != "undefined" ) {
             loginMemberHtml += '<li data-id="register" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/register/register">注册<span class="layui-badge-dot"></span></a>';
             loginMemberHtml += '</li>';
         } else {

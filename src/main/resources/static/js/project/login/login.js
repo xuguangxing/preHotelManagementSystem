@@ -23,6 +23,19 @@ layui.config({
                     },function () {
                         window.location.href="/index/index";
                     })
+
+                    //通过登录名查找该用户
+                    $.ajax({
+                        url: "http://localhost:9001/user/queryUserByUserName",
+                        data: {userName: userName},
+                        success: function (res) {
+                            //将用户存入session中
+                            layui.sessionData('userSession', {
+                                key: 'user'
+                                , value: res
+                            });
+                        }
+                    })
                 }else{
                     layer.msg(obj,{
                         icon: 2,
