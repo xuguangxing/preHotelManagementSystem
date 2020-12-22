@@ -47,7 +47,7 @@ public class ShiroConfig {
         /**
          * 设置登录界面
          */
-        bean.setLoginUrl("/login");
+        bean.setLoginUrl("/login/login");
 
         /**
          * 未授权界面
