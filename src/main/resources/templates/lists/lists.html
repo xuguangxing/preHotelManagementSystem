@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="/css/global.css" charset="utf-8">
     <link rel="stylesheet" href="/css/global(1).css" charset="utf-8">
     <link rel="stylesheet" href="/css/store.css" charset="utf-8">
-    <link rel="icon" href="image/favicon.ico">
-
+    <link rel="icon" href="/image/favicon.ico">
+    <link rel="stylesheet" href="/css/lists.css" charset="utf-8">
 </head>
 <!-- 头部 end-->
 <title>全部房间列表 - 酒店管理系统</title>
@@ -101,8 +101,6 @@
     <div class="temp-normal">
         <div class="layui-container">
             <div class="layui-row layui-col-space20 shoplist" id="roomList">
-
-
                 <!--<div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">
                     <a class="template store-list-box" href="../hotel/details.html" target="_blank">
                         <img src="../hotel/images/f1-01.jpg" class="store-list-cover">
@@ -122,6 +120,184 @@
         </div>
     </div>
 </div>
+
+<!--用户评论开始-->
+<div class="shop-temp shoplist">
+    <div class="temp-normal">
+        <div class="layui-container">
+
+
+            <div class="comment_list">
+                <h3 style="text-indent: 2em;">用户评论</h3>
+                <hr>
+                <div class="comment">
+                    <div class="imgdiv">
+                        <img class="imgcss"  src="/image/user.jpg"/>
+                    </div>
+                    <div class="conmment_details">
+                        <div style="float:left;">
+                            <span class="comment_name">大白 </span>     <span>22分钟前</span>
+
+                        </div>
+                        <div class="del">
+                            <span  class="show_reply_list">查看回复</span>
+                            <i class="icon layui-icon" >赞(164)</i>
+                            <a class="del_comment" data-id="1"> <i class="icon layui-icon" >删除</i></a>
+                        </div>
+                        <div class="comment_content" >  感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒
+                        </div>
+                    </div>
+                    <div class="reply_list"  >   <!--style="display:none;"-->
+                        <div class="reply" >
+                            <div class="imgdiv">
+                                <img class="imgcss"  src="/image/user.jpg"/>
+                            </div>
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon " >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <div class="imgdiv">
+                                <img class="imgcss"  src="/image/user.jpg"/>
+                            </div>
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <div class="imgdiv">
+                                <img class="imgcss"  src="/image/user.jpg"/>
+                            </div>
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <div class="imgdiv">
+                                <img class="imgcss"  src="/image/user.jpg"/>
+                            </div>
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="show_remain_reply">查看剩下的回复</div>
+                    <!--回复列表结束-->
+                </div>
+                <hr>
+
+                <div class="comment">
+                    <div class="imgdiv">
+                        <img class="imgcss"  src="/image/user.jpg"/>
+                    </div>
+                    <div class="conmment_details">
+                        <div style="float:left;">
+                            <span class="comment_name">大白 </span>     <span>22分钟前</span>
+
+                        </div>
+                        <div class="del">
+                            <span  class="show_reply_list">查看回复</span>
+                            <i class="icon layui-icon" >赞(164)</i>
+                            <a class="del_comment" data-id="1"> <i class="icon layui-icon" >删除</i></a>
+                        </div>
+                        <div class="comment_content" >  感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒
+                        </div>
+                    </div>
+                    <div class="reply_list"  >   <!--style="display:none;"-->
+                        <div class="reply" >
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon " >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="show_remain_reply">查看剩下的回复</div>
+                    <!--回复列表结束-->
+                </div>
+                <hr>
+                <div class="comment">
+                    <div class="imgdiv">
+                        <img class="imgcss"  src="/image/user.jpg"/>
+                    </div>
+                    <div class="conmment_details">
+                        <div style="float:left;">
+                            <span class="comment_name">大白 </span>     <span>22分钟前</span>
+
+                        </div>
+                        <div class="del">
+                            <span  class="show_reply_list">查看回复</span>
+                            <i class="icon layui-icon" >赞(164)</i>
+                            <a class="del_comment" data-id="1"> <i class="icon layui-icon" >删除</i></a>
+                        </div>
+                        <div class="comment_content" >  感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒
+                        </div>
+                    </div>
+                    <div class="reply_list"  >   <!--style="display:none;"-->
+                        <div class="reply" >
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon " >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+                        <div class="reply">
+                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 </span>
+                            <a  data-id="1" class="del_reply">
+                                <i class="icon layui-icon" >    删除</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="show_remain_reply">查看剩下的回复</div>
+                    <!--回复列表结束-->
+                </div>
+                <hr>
+
+
+                <div class="comment_add_or_last" >
+                    点击加载更多评论
+                </div>
+                <hr>
+            </div>
+
+        </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- 底部 start-->
 <div class="fly-footer">

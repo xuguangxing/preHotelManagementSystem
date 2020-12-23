@@ -111,7 +111,7 @@
 .shop-temp .temp-hot p.price del{line-height: 14px; color: #9c9c9c;}
 
 /*鎵�鏈夋ā鏉�*/
-.shop-temp .temp-normal{padding-top: 60px;padding-bottom:60px}
+.shop-temp .temp-normal{padding-top: 0px;padding-bottom:0px}
 .shop-temp .temp-normal .title{font-size: 26px; color: #333; letter-spacing: 3px; margin-bottom: 55px; font-weight: 300;}
 .shop-temp .temp-normal .title a i{font-size: 28px; color: #5eba78;}
 .shop-temp .temp-normal .layui-btn-group{position: absolute; top: 0; right: 0; border: 1px solid #5eba78; border-radius: 2px;}
@@ -190,8 +190,8 @@
 .shopdata-reply dd .reply-content + span i{font-size: 14px;margin-right: 10px;}
 
 /*鍒楄〃椤�*/
-.shop-temp.shoplist .temp-normal{padding-top: 45px;}
-.shop-temp.shoplist div.shoplist{padding-top: 45px;}
+.shop-temp.shoplist .temp-normal{padding-top: 0px;}
+.shop-temp.shoplist div.shoplist{padding-top: 0px;}
 
 .store-list-box h2{font-size: 18px; padding: 20px 15px; line-height: 26px;text-align: center;}
 .temp-hot .store-list-box h2{padding: 20px 10px;}
