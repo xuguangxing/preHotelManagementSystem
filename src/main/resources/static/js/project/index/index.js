@@ -75,25 +75,30 @@ layui.config({
 
                 //遍历data
                 $.each(res.data, function (index, floor) {
-                    <!--循环开始 start-->
-                    getIndexFloorHtml += '<div class="temp-hot">\n';
-                    getIndexFloorHtml += '<div class="layui-container">\n';
-                    getIndexFloorHtml += '<p class="temp-title-cn"><span ></span>酒店' + floor.floorName + '<span></span></p>\n';
-                    getIndexFloorHtml += '<div class="layui-row layui-col-space20">\n';
-                    $.each(floor.roomList, function (index, room) {
-                        getIndexFloorHtml += '<div data-id="' + room.id + '" class="layui-col-xs6 layui-col-md3">\n';
-                        getIndexFloorHtml += '<a class="template store-list-box fly-case-active" onclick=toRoomInfo(this) data-type="toRoomInfo">\n';
-                        getIndexFloorHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
-                        getIndexFloorHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
-                        getIndexFloorHtml += '<p class="price"> <span title="金额"> ￥' + room.roomPrice + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
-                        getIndexFloorHtml += '</a>\n';
+                    if(floor.roomList.length<=0){
+
+                    }else{
+                        <!--循环开始 start-->
+                        getIndexFloorHtml += '<div class="temp-hot">\n';
+                        getIndexFloorHtml += '<div class="layui-container">\n';
+                        getIndexFloorHtml += '<p class="temp-title-cn"><span ></span>酒店' + floor.floorName + '<span></span></p>\n';
+                        getIndexFloorHtml += '<div class="layui-row layui-col-space20">\n';
+                        $.each(floor.roomList, function (index, room) {
+                            getIndexFloorHtml += '<div data-id="' + room.id + '" class="layui-col-xs6 layui-col-md3">\n';
+                            getIndexFloorHtml += '<a class="template store-list-box fly-case-active" onclick=toRoomInfo(this) data-type="toRoomInfo">\n';
+                            getIndexFloorHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
+                            getIndexFloorHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
+                            getIndexFloorHtml += '<p class="price"> <span title="金额"> ￥' + room.roomPrice + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
+                            getIndexFloorHtml += '</a>\n';
+                            getIndexFloorHtml += '</div>\n';
+                        });
                         getIndexFloorHtml += '</div>\n';
-                    });
-                    getIndexFloorHtml += '</div>\n';
-                    getIndexFloorHtml += '</div>\n';
-                    getIndexFloorHtml += '</div>\n';
-                    <!--循环结束 end-->
-                    getIndexFloorHtml += '\n';
+                        getIndexFloorHtml += '</div>\n';
+                        getIndexFloorHtml += '</div>\n';
+                        <!--循环结束 end-->
+                        getIndexFloorHtml += '\n';
+                    }
+
                     /*	getIndexFloorHtml += '<dd data-id="'+roomType.id+'"><a class="fly-case-active"  href="JavaScript:void(0);" data-type="toRoomTypeList" target="_blank">' + roomType.typeName + '</a></dd>\n';*/
                 });
                 $('#getIndexFloor').html(getIndexFloorHtml);

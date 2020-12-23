@@ -184,8 +184,6 @@ function getAllFloor(obj) {
         if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId!=null) {
             roomTypeId = localDate.roomTypeId;
             getRoomListByType(roomTypeId, null);
-        }else{
-            getRoomListByType(localRoomTypeId, floorId);
         }
     }else {
         getRoomListByType(localRoomTypeId, null);
