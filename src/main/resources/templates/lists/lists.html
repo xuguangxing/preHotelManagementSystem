@@ -131,7 +131,10 @@
 
 
             <div class="comment_list">
-                <h3 style="text-indent: 2em;">用户评论</h3>
+                <h3 style="text-indent: 2em;font-size: 26px;line-height: 60px;font-weight: 800;float: left">用户评论</h3>
+                <h4 style="float: right;height: auto;margin-right: 50px;font-size: 20px;line-height: 60px">
+                    <i class="icon layui-icon layui-icon-reply-fill " style="font-size: 18px;" onclick=clickComments(this)>点击评论&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                </h4>
                 <hr>
                 <div class="comment">
                     <div class="imgdiv">
@@ -141,25 +144,31 @@
                         <div style="float:left;">
                             <span class="comment_name">大白 </span> <span>22分钟前</span>
                         </div>
-                        <div class="del" >
+                        <div class="del">
                             <span class="show_reply_list">查看回复</span>
-                            <i class="icon layui-icon">赞(164)</i>
-                            <a class="del_comment" data-id="1"> <i class="icon layui-icon">删除</i></a>
+                            <i class="icon layui-icon layui-icon-reply-fill" onclick=clickReplyComment(this)>点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>
+                            <a class="del_comment" data-id="1"> <i class="icon layui-icon" onclick=clickDeleteComment(this)>删除</i></a>
                         </div>
-                        <div class="comment_content"> 感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊 经过两天的公开开庭审理，备受关注的劳荣枝涉嫌故意杀人、绑架、抢劫罪一案于今日（12月22日）下午在南昌市中级人民法院一审庭审结束，法院宣布休庭，将另行择期宣判。
+                        <div class="comment_content">
+                            感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊
+                            经过两天的公开开庭审理，备受关注的劳荣枝涉嫌故意杀人、绑架、抢劫罪一案于今日（12月22日）下午在南昌市中级人民法院一审庭审结束，法院宣布休庭，将另行择期宣判。
 
                             红星新闻记者全程旁听此案，在该案刑事部分辩论期间，控辩双方均就劳荣枝是否犯故意杀人罪，其抢劫罪是否有致人死亡、入室抢劫的加重行为，绑架罪是否存在致人死亡的加重行为进行了辩论。
 
-                            22日，前来参与庭审的被害人之一熊某的弟弟熊先生告诉红星新闻记者，自己是看到新闻后才知道劳荣越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒</div><br/><br/>
+                            22日，前来参与庭审的被害人之一熊某的弟弟熊先生告诉红星新闻记者，自己是看到新闻后才知道劳荣越来越帅了，好棒感觉林丹越来越帅了，好棒感觉林丹越来越帅了，好棒
+                        </div>
+                        <br/><br/>
                     </div>
                     <div class="reply_list">   <!--style="display:none;"-->
                         <div class="reply">
                             <div class="imgdiv">
                                 <img class="imgcss" src="/image/user.jpg"/>
                             </div>
-                            <span class="reply_name">小白</span>回复<span class="reply_name">小黑</span>：<span
-                                class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好 </span>
+                            <span class="reply_name">小白&nbsp;&nbsp;</span>回复<span
+                                class="reply_name">&nbsp;&nbsp;小黑</span>：
+                            <span class="reply_content">你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好没啊你好 </span>
                             <a data-id="1" class="del_reply">
+                                <i class="icon layui-icon layui-icon-reply-fill">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>
                                 <i class="icon layui-icon "> 删除</i>
                             </a>
                         </div>
@@ -175,8 +184,9 @@
 
 22日，前来参与庭审的被害人之一熊某的弟弟熊先生告诉红星新闻记者，自己是看到新闻后才知道劳荣枝落网且案件会公开审理，这些年来熊某一家的惨遭杀害对其家人伤害巨大，希望法院能判处劳荣枝死刑。</span>
                             <br/> <br/>
-                            <span>20201223</span>
+                            <span style="margin-left: 80px">2020-12-23 10:23:43</span>
                             <a data-id="1" class="del_reply">
+                                <i class="icon layui-icon layui-icon-reply-fill">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>
                                 <i class="icon layui-icon"> 删除</i>
                             </a>
                         </div>
@@ -311,7 +321,6 @@
                     <!--回复列表结束-->
                 </div>
                 <hr>
-
 
                 <div class="comment_add_or_last">
                     点击加载更多评论

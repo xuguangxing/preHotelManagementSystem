@@ -15,7 +15,7 @@ layui.config({
     var laytpl = layui.laytpl;
     var util = layui.util;
     var flow = layui.flow;
-    var  layedit = layui.layedit;
+    var layedit = layui.layedit;
 
     let loadIndex = layer.load(0, {
         shade: [0.3, '#333']
@@ -153,36 +153,32 @@ layui.config({
     //用户评论
     layer.photos({
         photos: '#layer-photos-demo'
-        ,anim: 5
+        , anim: 5
     });
-
-    $(document).ready(function(){
+    $(document).ready(function () {
         //alert($(".comment_list").find(".comment")[0] == undefined);
-        if($(".comment_list").find(".comment")[0] == undefined) {
+        if ($(".comment_list").find(".comment")[0] == undefined) {
             $(".comment_add_or_last").html("暂无人评论");
         }
-        $(document).on('click','.show_reply_list', function(){
+        $(document).on('click', '.show_reply_list', function () {
 
-            if($(this).closest('.comment').find(".reply_list").css("display") != "none") {
-                $(this).closest('.comment').find(".show_remain_reply").css("display","none");
+            if ($(this).closest('.comment').find(".reply_list").css("display") != "none") {
+                $(this).closest('.comment').find(".show_remain_reply").css("display", "none");
                 $(this).html("查看回复");
 
-            }else {
-                $(this).closest('.comment').find(".show_remain_reply").css("display","block");
+            } else {
+                $(this).closest('.comment').find(".show_remain_reply").css("display", "block");
                 $(this).html("收起回复");
 
             }
             $(this).closest('.comment').find(".reply_list").toggle(500);
-
-
         });
 
-        $(document).on('click','.show_remain_reply', function(){
+        $(document).on('click', '.show_remain_reply', function () {
             $(this).html("已显示全部回复");
             //TODO发送数据
-
         });
-        $(document).on('click','.comment_add_or_last', function(){
+        $(document).on('click', '.comment_add_or_last', function () {
             var getMoreComment = $(this);
             //TODO如果获取的数据为零
             getMoreComment.html("没有更多评论了");
@@ -201,8 +197,9 @@ function toRoomInfo(obj) {
         key: 'roomId'
         , value: dataId
     });
-    window.location.href="/details/details";
+    window.location.href = "/details/details";
 }
+
 /**
  * 获取所有的楼层信息
  */
@@ -217,17 +214,17 @@ function getAllFloor(obj) {
         key: 'floorId'
         , value: null
     });
-    if (typeof (localRoomTypeId) == "undefined"){
-        localRoomTypeId=null;
+    if (typeof (localRoomTypeId) == "undefined") {
+        localRoomTypeId = null;
 
         //获取其他页传过来的房间类别Id
         var roomTypeId;
         let localDate = layui.sessionData('roomTypeData');
-        if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId!=null) {
+        if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId != null) {
             roomTypeId = localDate.roomTypeId;
             getRoomListByType(roomTypeId, null);
         }
-    }else {
+    } else {
         getRoomListByType(localRoomTypeId, null);
     }
 }
@@ -238,7 +235,7 @@ function getAllFloor(obj) {
 function getFloor(obj) {
 
     $(obj).parent("li").siblings().children().html("")
-     $(obj).append('<i class="layui-icon layui-icon-ok"></i>');
+    $(obj).append('<i class="layui-icon layui-icon-ok"></i>');
 
     //楼层id
     let a = $(obj).parent('li');
@@ -251,19 +248,19 @@ function getFloor(obj) {
     //取出本页面的房型id
     let localDate = layui.sessionData('roomTypeDataLists');
     let localRoomTypeId = localDate.roomTypeId;
-    if (typeof (localRoomTypeId) == "undefined"){
-        localRoomTypeId=null;
+    if (typeof (localRoomTypeId) == "undefined") {
+        localRoomTypeId = null;
         //获取其他页传过来的房间类别Id
         var roomTypeId;
         let localDate = layui.sessionData('roomTypeData');
-        if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId!=null) {
+        if (typeof (localDate.roomTypeId) != "undefined" && localDate.roomTypeId != null) {
             roomTypeId = localDate.roomTypeId;
             getRoomListByType(roomTypeId, floorId);
-        }else{
+        } else {
             getRoomListByType(localRoomTypeId, floorId);
         }
 
-    }else {
+    } else {
         getRoomListByType(localRoomTypeId, floorId);
     }
 
@@ -286,25 +283,26 @@ function getAllRoomType(obj) {
         key: 'roomTypeId'
         , value: null
     });
-    if (typeof (localFloorId) == "undefined"){
-        localFloorId=null;
+    if (typeof (localFloorId) == "undefined") {
+        localFloorId = null;
         //获取其他页传过来的楼层Id
         let localFloorData = layui.sessionData('floorData');
         var floorId;
-        if (typeof (localFloorData.floorId) != "undefined" && localFloorData.floorId!=null) {
-             floorId = localFloorData.floorId;
+        if (typeof (localFloorData.floorId) != "undefined" && localFloorData.floorId != null) {
+            floorId = localFloorData.floorId;
         }
-        if (floorId!=null){
+        if (floorId != null) {
             getRoomListByType(null, floorId);
-        }else {
+        } else {
             getRoomListByType(null, localFloorId);
         }
-    }else {
+    } else {
         getRoomListByType(null, localFloorId);
     }
 
 
 }
+
 //获取本页对应id的房型信息
 function getRoomType(obj) {
 
@@ -324,26 +322,27 @@ function getRoomType(obj) {
         , value: roomTypeId
     });
 
-    if (typeof (localFloorId) == "undefined"){
+    if (typeof (localFloorId) == "undefined") {
 
-        localFloorId=null;
+        localFloorId = null;
         //获取其他页传过来的楼层Id
         let localFloorData = layui.sessionData('floorData');
         var floorId;
-        if (typeof (localFloorData.floorId) != "undefined" && localFloorData.floorId!=null) {
+        if (typeof (localFloorData.floorId) != "undefined" && localFloorData.floorId != null) {
             floorId = localFloorData.floorId;
         }
-        if (floorId!=null){
+        if (floorId != null) {
             getRoomListByType(roomTypeId, floorId);
-        }else{
+        } else {
             getRoomListByType(roomTypeId, localFloorId);
         }
-    }else {
+    } else {
         getRoomListByType(roomTypeId, localFloorId);
     }
 
 
 }
+
 function getRoomListByType(roomTypeId, floorId) {
     $.get({
         url: "http://localhost:9001/room/queryRoomByFloorOrRoomType",
@@ -373,13 +372,61 @@ function getRoomListByType(roomTypeId, floorId) {
                 getRoomListHtml += '</div>\n';
             });
             $('#roomList').html(getRoomListHtml);
-        /*    element.render();*/
+            /*    element.render();*/
         },
         error: function () {
 
         }
     });
 }
+
+/*点击评论*/
+function clickComments(obj) {
+
+    //取出session中的用户信息
+    let userData = layui.sessionData('userSession');
+    if (userData.user== "undefined" || userData.user == null){
+        layer.msg("请先登录",{
+            icon:2,
+            time: 1000
+        },function () {
+            window.location.href="/login/login";
+        })
+
+    }else{
+        alert("点击评论");
+    }
+}
+
+/*点击回复评论信息*/
+function clickReplyComment(obj) {
+
+    //取出session中的用户信息
+    let userData = layui.sessionData('userSession');
+    if (userData.user== "undefined" || userData.user == null){
+        layer.msg("请先登录",{
+            icon:2,
+            time: 1000
+        },function () {
+            window.location.href="/login/login";
+        })
+
+    }else{
+        alert("点击回复");
+    }
+}
+
+function clickDeleteComment(obj) {
+    alert("删除")
+    layer.confirm('确定要删除吗',function () {
+        layer.msg('已删除',{
+            icon: 1,
+            time: 1000
+        })
+    })
+}
+
+
 
 
 
