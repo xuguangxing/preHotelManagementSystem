@@ -69,11 +69,11 @@ p{
 .comment_list {
     background-color: #ffffff;
     /*padding-top:5px;
-    width:900px;*/
+     width:900px;*/
     margin:0 auto;
 }
 .comment {
-    width:900px;
+   /* width:1200px;*/
     margin-top:10px;
 }
 .comment_details {
@@ -130,7 +130,7 @@ margin-bottom: 40px;
 .reply_list {
     clear:both;
     display:none;
-    width:900px;
+    /*width:900px;*/
 
     padding-right:15px;
     margin-top:10px;
@@ -139,8 +139,8 @@ margin-bottom: 40px;
 }
 .reply {
     clear:both;
-    width:700px;
-    margin:4px auto;
+    /*width:700px;*/
+    margin:10px 45px;
 
 }
 .reply_name {
