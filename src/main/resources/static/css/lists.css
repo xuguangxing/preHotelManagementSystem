@@ -90,9 +90,9 @@ p{
     clear: both;
     width:600px;
     height:50px;
-    background: #F0F0F0;
+    /*background: #F0F0F0;*/
     text-align: center;
-    font-size:20px;
+    font-size:16px;
     line-height: 40px;   //行高（与div保持同高，垂直居中写法）
 margin-bottom: 40px;
 }
@@ -152,8 +152,9 @@ margin-bottom: 40px;
 .show_remain_reply {
     width:600px;
     height:40px;
-    text-align:center;font-size:18px;
-    background-color: #F0F0F0;
+    text-align:center;
+    font-size:16px;
+    /*background-color: #F0F0F0;*/
     margin:0 auto;
     line-height: 40px;
     display:none;

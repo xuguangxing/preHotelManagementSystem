@@ -196,9 +196,9 @@ layui.config({
 
                 commentList +=' <div class="comment"><div class="imgdiv"><img class="imgcss" src="/image/'+comment.userNameImage+'"/></div>';
                 commentList += '<div class="conmment_details"><div style="float:left;"> <span class="comment_name">'+comment.userName+' </span> <span>'+comment.commentTime+'</span></div>';
-                commentList += '<div class="del"> <span class="show_reply_list">查看回复</span> <i class="icon layui-icon layui-icon-reply-fill" onclick=clickReplyComment(this)>点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>';
+                commentList += '<div class="del"> <span class="show_reply_list">查看回复</span> <i class="icon layui-icon layui-icon-reply-fill" onclick=clickReplyComment(this) style="margin-right: 25px">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>';
 
-                //取出session中的用户，判断该评论是否是当前用发表的
+                //取出session中的用户，判断该评论是否是当前用户发表的
                 let userData = layui.sessionData('userSession');
                 if(userData.user!= "undefined" && userData.user != null){
                     if (userData.user.id==comment.userId){
@@ -211,10 +211,17 @@ layui.config({
                 $.each(comment.replayVoList,function (index,replay){
                     //循环
                     commentList +='<div class="reply"><div class="imgdiv"><img class="imgcss" src="/image/'+replay.userNameImage+'"/> </div>'
-                    commentList += '<span class="reply_name">'+replay.userName+'&nbsp;&nbsp;</span>回复<span class="reply_name">&nbsp;&nbsp;'+comment.userName+'</span>：';
+
+                    commentList += '<span class="reply_name">'+replay.userName+'&nbsp;&nbsp;</span>回复 <i class="layui-icon layui-icon-at" style="font-size: 16px;"></i><span class="reply_name">&nbsp;&nbsp;'+replay.answerName+'</span>：';
+
                     commentList +='<span class="reply_content">'+replay.repalyContent+'</span>'
                     commentList +='<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>'
-                    commentList +='<i class="icon layui-icon "> 删除</i>';
+
+                    //取出session中的用户，判断该回复是否是当前用户评论的
+                    if(userData.user!= "undefined" && userData.user != null){
+                        if (userData.user.id==replay.userId){
+                            commentList +='<i class="icon layui-icon "> 删除</i>';                        }
+                    }
                     commentList +='</a> </div> <hr/>';
                 })
                 /*回复列表结束*/
