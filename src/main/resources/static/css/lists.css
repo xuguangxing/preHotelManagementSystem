@@ -80,9 +80,14 @@ p{
     float:right;
 }
 .comment_content {
-    clear:both;
+   /* clear:both;
     margin:5px 50px;
-    font-size:16px;
+    font-size:16px;*/
+    font-size: 16px;
+    margin-top: 15px;
+    margin-right: 35px;
+    margin-left: 78px;
+    margin-bottom: 10px;
 }
 .comment_add_or_last {
 

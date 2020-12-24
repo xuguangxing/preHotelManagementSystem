@@ -194,6 +194,8 @@ layui.config({
             let commentList = '';
             $.each(data, function (index, comment) {
 
+                commentList +='<div style="margin-left: 20px">'
+
                 commentList += ' <div class="comment"><div class="imgdiv"><img class="imgcss" src="/image/' + comment.userNameImage + '"/></div>';
                 commentList += '<div class="conmment_details"><div style="float:left;"> <span class="comment_name">' + comment.userName + ' </span> <span>' + comment.commentTime + '</span></div>';
                 commentList += '<div class="del"> <span class="show_reply_list">查看回复</span> <i class="icon layui-icon layui-icon-reply-fill" onclick=clickReplyComment(this) style="margin-right: 25px">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>';
@@ -205,8 +207,8 @@ layui.config({
                         commentList += ' <a class="del_comment" data-id="1"> <i class="icon layui-icon" onclick=clickDeleteComment(this)>删除</i></a>';
                     }
                 }
-
-                commentList += '</div><div class="comment_content">' + comment.commentContent + ' </div><br/><br/></div>'
+            /*    commentList +='<br/>'*/
+                commentList += '</div><br/><div class="comment_content">' + comment.commentContent + ' </div><br/><br/></div>'
                 commentList += '<div class="reply_list">'
                 $.each(comment.replayVoList, function (index, replay) {
                     //循环
@@ -216,6 +218,7 @@ layui.config({
 
                     commentList += '<span class="reply_content">' + replay.repalyContent + '</span>'
 
+                    commentList += '<br/> <br/><span>'+replay.replayTime+'</span>';
                     //取出session中的用户，判断该回复是否是当前用户评论的
                     if (userData.user != "undefined" && userData.user != null) {
                         if (userData.user.id == replay.userId) {
@@ -227,7 +230,7 @@ layui.config({
                     }else {
                         commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
                     }
-                    commentList += '</a> </div> <hr/>';
+                    commentList += '</a> </div> <hr/></div>';
                 })
                 /*回复列表结束*/
                 commentList += '</div> <div class="show_remain_reply">查看剩下的回复</div> </div><hr/>';
