@@ -230,7 +230,7 @@ layui.config({
                     }else {
                         commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
                     }
-                    commentList += '</a> </div> <hr/></div>';
+                    commentList += '</a> </div> <hr/>';
                 })
                 /*回复列表结束*/
                 commentList += '</div> <div class="show_remain_reply">查看剩下的回复</div> </div><hr/>';
