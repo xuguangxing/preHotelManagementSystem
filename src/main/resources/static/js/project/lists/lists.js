@@ -199,7 +199,7 @@ layui.config({
                 commentList += '<div >'
 
                 commentList += ' <div class="comment"><div class="imgdiv"><img class="imgcss" src="/image/' + comment.userNameImage + '"/></div>';
-                commentList += '<div class="conmment_details"><div style="float:left;"> <span class="comment_name">' + comment.userName + ' </span> <span style="font-size: 16px">' + timestampToTime(comment.commentTime) + '</span></div>';
+                commentList += '<div class="conmment_details"><div style="float:left;"><span style="display: none">'+comment.id+'</span> <span class="comment_name">' + comment.userName + ' </span> <span style="font-size: 16px">' + timestampToTime(comment.commentTime) + '</span></div>';
                 commentList += '<div class="del"> <span class="show_reply_list">查看回复</span> <i class="icon layui-icon layui-icon-reply-fill" onclick=clickReplyComment(this) style="margin-right: 25px">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>';
 
                 //取出session中的用户，判断该评论是否是当前用户发表的
@@ -257,10 +257,10 @@ layui.config({
                 time: 1000
             })
         } else {
+            //取出当前sesson中存的用户信息
+            let userData = layui.sessionData('userSession');
+            var userId = userData.user.id;
             if (commentFlag == 0) {
-                //取出当前sesson中存的用户信息
-                let userData = layui.sessionData('userSession');
-                var userId = userData.user.id;
                 $.ajax({
                     url: "http://localhost:9001/comment/addComment",
                     data: {userId: userId, commentContent: commentContent},
@@ -274,7 +274,41 @@ layui.config({
                     }
                 })
             } if (commentFlag ==1) {
-                alert("回复")
+                //取出session中的评论者名称
+               var commentUserNameData = layui.sessionData("commentUserNameData");
+               var commentUserName;
+               if (commentUserNameData.commentUserName!=null && commentUserNameData.commentUserName!="undefined"){
+                   commentUserName = commentUserNameData.commentUserName;
+               }
+                //取出session中的评论者id
+                var commentIdData = layui.sessionData("commentIdData");
+                 var commentId;
+                if (commentIdData.commentId!=null && commentIdData.commentId!="undefined"){
+                    commentId = commentIdData.commentId;
+                }
+
+               //将session中的 评论者名称 清空
+                layui.sessionData("commentUserNameData",{
+                    kay: "commentUserName",
+                    remove: true
+                })
+                //将session中的 评论者id 清空
+                layui.sessionData("commentIdData",{
+                    kay: "commentId",
+                    remove: true
+                })
+                $.ajax({
+                    url: "http://localhost:9001/replay/aadReplay",
+                    data: {userId: userId, commentId: commentId,answerUserName:commentUserName,repalyContent: commentContent},
+                    success: function () {
+                        layer.msg('评论成功', {
+                            icon: 1,
+                            time: 1000
+                        }, function () {
+                            window.location.href = "/lists/lists";
+                        })
+                    }
+                })
             }
         }
     })
@@ -500,9 +534,22 @@ function clickComments(obj) {
     }
 }
 
-/*点击回复*/
+/*点击一级回复*/
 function clickReplyComment(obj) {
     //取出session中的用户信息
+    var commentId = $(obj).parent("div").prev().find('span').eq(0).html();
+    var commentUserName = $(obj).parent("div").prev().find('span').eq(1).html();
+    //将该评论人名称存入到session中
+    layui.sessionData("commentUserNameData",{
+        key: "commentUserName",
+        value: commentUserName
+    });
+    //将评论id存入到session中
+    layui.sessionData("commentIdData",{
+        key: "commentId",
+        value: commentId
+    });
+
     let userData = layui.sessionData('userSession');
     if (userData.user == "undefined" || userData.user == null) {
         layer.msg("请先登录", {
@@ -522,7 +569,6 @@ function clickReplyComment(obj) {
             , area: ['800px', '420px']
             , shade: 0
         })
-
     }
 }
 
