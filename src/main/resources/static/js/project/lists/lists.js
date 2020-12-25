@@ -227,7 +227,7 @@ layui.config({
                         if (userData.user != "undefined" && userData.user != null) {
                             if (userData.user.id == replay.userId) {
                                 commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill" onclick=twoRelay(this)>点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>'
-                                commentList += '<i class="icon layui-icon "> 删除</i>';
+                                commentList += '<i class="icon layui-icon " onclick=deleteReplay(this)> 删除</i>';
                             } else {
                                 commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill" onclick=twoRelay(this)>点击回复</i>'
                             }
@@ -649,12 +649,24 @@ function twoRelay(obj) {
 
 }
 
+/*删除评论*/
 function clickDeleteComment(obj) {
-    alert("删除")
+
+    var commonId = $(obj).parent().parent().prev().find('span').eq(0).html();
+    console.log(commonId);
     layer.confirm('确定要删除吗', function () {
-        layer.msg('已删除', {
-            icon: 1,
-            time: 1000
+        //删除评论信息
+        $.ajax({
+            url: "http://localhost:9001/comment/deleteComment",
+            data: {commonId: commonId},
+            success: function () {
+                layer.msg('已删除', {
+                    icon: 1,
+                    time: 1000
+                },function () {
+                    window.location.href="/lists/lists";
+                })
+            }
         })
     })
 }
