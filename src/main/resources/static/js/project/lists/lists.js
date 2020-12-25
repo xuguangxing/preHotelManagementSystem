@@ -653,12 +653,35 @@ function twoRelay(obj) {
 function clickDeleteComment(obj) {
 
     var commonId = $(obj).parent().parent().prev().find('span').eq(0).html();
-    console.log(commonId);
     layer.confirm('确定要删除吗', function () {
         //删除评论信息
         $.ajax({
             url: "http://localhost:9001/comment/deleteComment",
             data: {commonId: commonId},
+            success: function () {
+                layer.msg('已删除', {
+                    icon: 1,
+                    time: 1000
+                },function () {
+                    window.location.href="/lists/lists";
+                })
+            }
+        })
+    })
+}
+
+/**
+ * 删除回复
+ */
+function deleteReplay(obj) {
+
+    var replayId = $(obj).parent().parent().find('span').eq(0).html();
+
+    layer.confirm('确定要删除吗', function () {
+        //删除评论信息
+        $.ajax({
+            url: "http://localhost:9001/replay/deleteReplay",
+            data: {replayId: replayId},
             success: function () {
                 layer.msg('已删除', {
                     icon: 1,
