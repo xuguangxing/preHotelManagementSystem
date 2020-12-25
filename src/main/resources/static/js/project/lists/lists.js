@@ -1,3 +1,5 @@
+
+var commentFlag; //0代表评论，1代表回复
 layui.config({
     base: '../../../layuiadmin/' //静态资源所在路径
 }).extend({
@@ -194,7 +196,7 @@ layui.config({
             let commentList = '';
             $.each(data, function (index, comment) {
 
-                commentList +='<div style="margin-left: 20px">'
+                commentList += '<div >'
 
                 commentList += ' <div class="comment"><div class="imgdiv"><img class="imgcss" src="/image/' + comment.userNameImage + '"/></div>';
                 commentList += '<div class="conmment_details"><div style="float:left;"> <span class="comment_name">' + comment.userName + ' </span> <span style="font-size: 16px">' + timestampToTime(comment.commentTime) + '</span></div>';
@@ -207,12 +209,11 @@ layui.config({
                         commentList += ' <a class="del_comment" data-id="1"> <i class="icon layui-icon" onclick=clickDeleteComment(this)>删除</i></a>';
                     }
                 }
-            /*    commentList +='<br/>'*/
                 commentList += '</div><br/><div class="comment_content">' + comment.commentContent + ' </div><br/><br/></div>'
                 commentList += '<div class="reply_list">'
-                if (comment.replayVoList==null){
+                if (comment.replayVoList == null) {
 
-                }else{
+                } else {
                     $.each(comment.replayVoList, function (index, replay) {
                         //循环
                         commentList += '<div class="reply"><div class="imgdiv"><img class="imgcss" src="/image/' + replay.userNameImage + '"/> </div>'
@@ -221,16 +222,16 @@ layui.config({
 
                         commentList += '<span class="reply_content">' + replay.repalyContent + '</span>'
 
-                        commentList += '<br/> <br/><span>'+timestampToTime(replay.replayTime)+'</span>';
+                        commentList += '<br/> <br/><span>' + timestampToTime(replay.replayTime) + '</span>';
                         //取出session中的用户，判断该回复是否是当前用户评论的
                         if (userData.user != "undefined" && userData.user != null) {
                             if (userData.user.id == replay.userId) {
                                 commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>'
                                 commentList += '<i class="icon layui-icon "> 删除</i>';
-                            }else{
+                            } else {
                                 commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
                             }
-                        }else {
+                        } else {
                             commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
                         }
                         commentList += '</a> </div> <hr/>';
@@ -249,25 +250,34 @@ layui.config({
 
     //评论文本域提交
     $("#btnEdit").click(function () {
-       var commentContent = $("#commentValue").val();
-       //取出当前sesson中存的用户信息
-        let userData = layui.sessionData('userSession');
-        var userId = userData.user.id;
-        $.ajax({
-            url: "http://localhost:9001/comment/addComment",
-            data: {userId:userId,commentContent:commentContent},
-            success: function (obj) {
-                layer.msg('评论成功',{
-                    icon: 1,
-                    time: 1000
-                },function () {
-                    window.location.href="/lists/lists";
+        var commentContent = $("#commentValue").val();
+        if (commentContent == '' || commentContent == null) {
+            layer.msg('请输入评论信息', {
+                icon: 2,
+                time: 1000
+            })
+        } else {
+            if (commentFlag == 0) {
+                //取出当前sesson中存的用户信息
+                let userData = layui.sessionData('userSession');
+                var userId = userData.user.id;
+                $.ajax({
+                    url: "http://localhost:9001/comment/addComment",
+                    data: {userId: userId, commentContent: commentContent},
+                    success: function (obj) {
+                        layer.msg('评论成功', {
+                            icon: 1,
+                            time: 1000
+                        }, function () {
+                            window.location.href = "/lists/lists";
+                        })
+                    }
                 })
+            } if (commentFlag ==1) {
+                alert("回复")
             }
-        })
+        }
     })
-
-
 });
 
 /*跳转到房间详情界面*/
@@ -462,11 +472,10 @@ function getRoomListByType(roomTypeId, floorId) {
     });
 }
 
-var commentIndex; //评论界面
-var commentFlag ; //0代表评论，1代表回复
+
 /*点击评论*/
 function clickComments(obj) {
-
+    commentFlag = 0;
     //取出session中的用户信息
     let userData = layui.sessionData('userSession');
     if (userData.user == "undefined" || userData.user == null) {
@@ -478,8 +487,8 @@ function clickComments(obj) {
         })
 
     } else {
-        commentFlag=0;
-        commentIndex= layer.open({
+        commentFlag = 0;
+         layer.open({
             type: 1
             , content: $('#comment')
             /*,height: 'full-110'*/
@@ -493,7 +502,6 @@ function clickComments(obj) {
 
 /*点击回复*/
 function clickReplyComment(obj) {
-
     //取出session中的用户信息
     let userData = layui.sessionData('userSession');
     if (userData.user == "undefined" || userData.user == null) {
@@ -503,10 +511,17 @@ function clickReplyComment(obj) {
         }, function () {
             window.location.href = "/login/login";
         })
-
     } else {
-
-        alert("回复");
+        commentFlag = 1;
+        layer.open({
+            type: 1
+            , content: $('#comment')
+            /*,height: 'full-110'*/
+            , title: '<p style="font-weight:bolder">请输入回复信息</p>'
+            , offset: 'auto'
+            , area: ['800px', '420px']
+            , shade: 0
+        })
 
     }
 }
@@ -520,7 +535,6 @@ function clickDeleteComment(obj) {
         })
     })
 }
-
 
 
 /*时间格式化*/
