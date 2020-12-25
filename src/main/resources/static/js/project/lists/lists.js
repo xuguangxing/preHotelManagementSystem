@@ -1,5 +1,5 @@
 
-var commentFlag; //0代表评论，1代表回复
+var commentFlag; //0代表评论，1代表回复,2代表二级回复
 layui.config({
     base: '../../../layuiadmin/' //静态资源所在路径
 }).extend({
@@ -218,7 +218,7 @@ layui.config({
                         //循环
                         commentList += '<div class="reply"><div class="imgdiv"><img class="imgcss" src="/image/' + replay.userNameImage + '"/> </div>'
 
-                        commentList += '<span class="reply_name">' + replay.userName + '&nbsp;&nbsp;</span>回复 <i class="layui-icon layui-icon-at" style="font-size: 16px;"></i><span class="reply_name">&nbsp;&nbsp;' + replay.answerName + '</span>：';
+                        commentList += '<span style="display: none">'+replay.id+'</span><span class="reply_name">' + replay.userName + '</span> 回复 <i class="layui-icon layui-icon-at" style="font-size: 16px;"></i><span class="reply_name">' + replay.answerName + '</span>：';
 
                         commentList += '<span class="reply_content">' + replay.repalyContent + '</span>'
 
@@ -226,13 +226,13 @@ layui.config({
                         //取出session中的用户，判断该回复是否是当前用户评论的
                         if (userData.user != "undefined" && userData.user != null) {
                             if (userData.user.id == replay.userId) {
-                                commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>'
+                                commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill" onclick=twoRelay(this)>点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>'
                                 commentList += '<i class="icon layui-icon "> 删除</i>';
                             } else {
-                                commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
+                                commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill" onclick=twoRelay(this)>点击回复</i>'
                             }
                         } else {
-                            commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
+                            commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill" onclick=twoRelay(this)>点击回复</i>'
                         }
                         commentList += '</a> </div> <hr/>';
                     })
@@ -274,12 +274,6 @@ layui.config({
                     }
                 })
             } if (commentFlag ==1) {
-                //取出session中的评论者名称
-               var commentUserNameData = layui.sessionData("commentUserNameData");
-               var commentUserName;
-               if (commentUserNameData.commentUserName!=null && commentUserNameData.commentUserName!="undefined"){
-                   commentUserName = commentUserNameData.commentUserName;
-               }
                 //取出session中的评论者id
                 var commentIdData = layui.sessionData("commentIdData");
                  var commentId;
@@ -287,14 +281,20 @@ layui.config({
                     commentId = commentIdData.commentId;
                 }
 
-               //将session中的 评论者名称 清空
-                layui.sessionData("commentUserNameData",{
-                    kay: "commentUserName",
-                    remove: true
-                })
+                var commentUserNameData = layui.sessionData("commentUserNameData");
+                var commentUserName;
+                if (commentUserNameData.commentUserName!=null && commentUserNameData.commentUserName!="undefined"){
+                    commentUserName = commentUserNameData.commentUserName;
+                }
                 //将session中的 评论者id 清空
                 layui.sessionData("commentIdData",{
                     kay: "commentId",
+                    remove: true
+                })
+
+                //将session中的 评论者名称 清空
+                layui.sessionData("commentUserNameData",{
+                    kay: "commentUserName",
                     remove: true
                 })
                 $.ajax({
@@ -309,6 +309,42 @@ layui.config({
                         })
                     }
                 })
+            }
+            if (commentFlag ==2){
+                //取出session中的评论者id
+                var TwoCommentData = layui.sessionData("TwoCommentData");
+                var commentId;
+                if (TwoCommentData.commentId!=null && TwoCommentData.commentId!="undefined"){
+                    commentId = TwoCommentData.commentId;
+                }
+                //将session中的 评论者id 清空
+                layui.sessionData("TwoCommentData",{
+                    kay: "commentId",
+                    remove: true
+                })
+                var TwoReplayData = layui.sessionData("TwoReplayData");
+                var replayUserName;
+                if (TwoReplayData.replayUserName!=null && TwoReplayData.replayUserName!="undefined"){
+                    replayUserName = TwoReplayData.replayUserName;
+                }
+                //将session中的 评论者名称 清空
+                layui.sessionData("TwoReplayData",{
+                    kay: "replayUserName",
+                    remove: true
+                })
+                $.ajax({
+                    url: "http://localhost:9001/replay/aadReplay",
+                    data: {userId: userId, commentId: commentId,answerUserName:replayUserName,repalyContent: commentContent},
+                    success: function () {
+                        layer.msg('评论成功', {
+                            icon: 1,
+                            time: 1000
+                        }, function () {
+                            window.location.href = "/lists/lists";
+                        })
+                    }
+                })
+
             }
         }
     })
@@ -539,15 +575,15 @@ function clickReplyComment(obj) {
     //取出session中的用户信息
     var commentId = $(obj).parent("div").prev().find('span').eq(0).html();
     var commentUserName = $(obj).parent("div").prev().find('span').eq(1).html();
-    //将该评论人名称存入到session中
-    layui.sessionData("commentUserNameData",{
-        key: "commentUserName",
-        value: commentUserName
-    });
     //将评论id存入到session中
     layui.sessionData("commentIdData",{
         key: "commentId",
         value: commentId
+    });
+    //将评论者的名称存入到session中
+    layui.sessionData("commentUserNameData",{
+        key: "commentUserName",
+        value: commentUserName
     });
 
     let userData = layui.sessionData('userSession');
@@ -570,6 +606,47 @@ function clickReplyComment(obj) {
             , shade: 0
         })
     }
+}
+
+/*点击二级回复*/
+function twoRelay(obj) {
+
+    var replayUserName =$(obj).parent("a").parent("div").find('span').eq(1).html();
+    var commentId = $(obj).parent("a").parent("div").parent("div").parent("div").find('div').eq(1).find('div').eq(0).find('span').eq(0).html();
+    console.log(replayUserName);
+    console.log(commentId);
+    //将评论id存入到session中
+    layui.sessionData("TwoCommentData",{
+        key: "commentId",
+        value: commentId
+    });
+    //将回复id存入到session中
+    layui.sessionData("TwoReplayData",{
+        key: "replayUserName",
+        value: replayUserName
+    });
+
+    let userData = layui.sessionData('userSession');
+    if (userData.user == "undefined" || userData.user == null) {
+        layer.msg("请先登录", {
+            icon: 2,
+            time: 1000
+        }, function () {
+            window.location.href = "/login/login";
+        })
+    } else {
+        commentFlag = 2;
+        layer.open({
+            type: 1
+            , content: $('#comment')
+            /*,height: 'full-110'*/
+            , title: '<p style="font-weight:bolder">请输入回复信息</p>'
+            , offset: 'auto'
+            , area: ['800px', '420px']
+            , shade: 0
+        })
+    }
+
 }
 
 function clickDeleteComment(obj) {
