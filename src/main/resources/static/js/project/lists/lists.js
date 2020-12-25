@@ -197,7 +197,7 @@ layui.config({
                 commentList +='<div style="margin-left: 20px">'
 
                 commentList += ' <div class="comment"><div class="imgdiv"><img class="imgcss" src="/image/' + comment.userNameImage + '"/></div>';
-                commentList += '<div class="conmment_details"><div style="float:left;"> <span class="comment_name">' + comment.userName + ' </span> <span>' + comment.commentTime + '</span></div>';
+                commentList += '<div class="conmment_details"><div style="float:left;"> <span class="comment_name">' + comment.userName + ' </span> <span style="font-size: 16px">' + timestampToTime(comment.commentTime) + '</span></div>';
                 commentList += '<div class="del"> <span class="show_reply_list">查看回复</span> <i class="icon layui-icon layui-icon-reply-fill" onclick=clickReplyComment(this) style="margin-right: 25px">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>';
 
                 //取出session中的用户，判断该评论是否是当前用户发表的
@@ -210,28 +210,33 @@ layui.config({
             /*    commentList +='<br/>'*/
                 commentList += '</div><br/><div class="comment_content">' + comment.commentContent + ' </div><br/><br/></div>'
                 commentList += '<div class="reply_list">'
-                $.each(comment.replayVoList, function (index, replay) {
-                    //循环
-                    commentList += '<div class="reply"><div class="imgdiv"><img class="imgcss" src="/image/' + replay.userNameImage + '"/> </div>'
+                if (comment.replayVoList==null){
 
-                    commentList += '<span class="reply_name">' + replay.userName + '&nbsp;&nbsp;</span>回复 <i class="layui-icon layui-icon-at" style="font-size: 16px;"></i><span class="reply_name">&nbsp;&nbsp;' + replay.answerName + '</span>：';
+                }else{
+                    $.each(comment.replayVoList, function (index, replay) {
+                        //循环
+                        commentList += '<div class="reply"><div class="imgdiv"><img class="imgcss" src="/image/' + replay.userNameImage + '"/> </div>'
 
-                    commentList += '<span class="reply_content">' + replay.repalyContent + '</span>'
+                        commentList += '<span class="reply_name">' + replay.userName + '&nbsp;&nbsp;</span>回复 <i class="layui-icon layui-icon-at" style="font-size: 16px;"></i><span class="reply_name">&nbsp;&nbsp;' + replay.answerName + '</span>：';
 
-                    commentList += '<br/> <br/><span>'+replay.replayTime+'</span>';
-                    //取出session中的用户，判断该回复是否是当前用户评论的
-                    if (userData.user != "undefined" && userData.user != null) {
-                        if (userData.user.id == replay.userId) {
-                            commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>'
-                            commentList += '<i class="icon layui-icon "> 删除</i>';
-                        }else{
+                        commentList += '<span class="reply_content">' + replay.repalyContent + '</span>'
+
+                        commentList += '<br/> <br/><span>'+timestampToTime(replay.replayTime)+'</span>';
+                        //取出session中的用户，判断该回复是否是当前用户评论的
+                        if (userData.user != "undefined" && userData.user != null) {
+                            if (userData.user.id == replay.userId) {
+                                commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>'
+                                commentList += '<i class="icon layui-icon "> 删除</i>';
+                            }else{
+                                commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
+                            }
+                        }else {
                             commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
                         }
-                    }else {
-                        commentList += '<a data-id="1" class="del_reply"><i class="icon layui-icon layui-icon-reply-fill">点击回复</i>'
-                    }
-                    commentList += '</a> </div> <hr/>';
-                })
+                        commentList += '</a> </div> <hr/>';
+                    })
+                }
+
                 /*回复列表结束*/
                 commentList += '</div> <div class="show_remain_reply">查看剩下的回复</div> </div><hr/>';
 
@@ -240,6 +245,28 @@ layui.config({
             $("#comment_list").append(commentList);
         }
     })
+
+
+    //评论文本域提交
+    $("#btnEdit").click(function () {
+       var commentContent = $("#commentValue").val();
+       //取出当前sesson中存的用户信息
+        let userData = layui.sessionData('userSession');
+        var userId = userData.user.id;
+        $.ajax({
+            url: "http://localhost:9001/comment/addComment",
+            data: {userId:userId,commentContent:commentContent},
+            success: function (obj) {
+                layer.msg('评论成功',{
+                    icon: 1,
+                    time: 1000
+                },function () {
+                    window.location.href="/lists/lists";
+                })
+            }
+        })
+    })
+
 
 });
 
@@ -435,6 +462,8 @@ function getRoomListByType(roomTypeId, floorId) {
     });
 }
 
+var commentIndex; //评论界面
+var commentFlag ; //0代表评论，1代表回复
 /*点击评论*/
 function clickComments(obj) {
 
@@ -449,11 +478,20 @@ function clickComments(obj) {
         })
 
     } else {
-        alert("点击评论");
+        commentFlag=0;
+        commentIndex= layer.open({
+            type: 1
+            , content: $('#comment')
+            /*,height: 'full-110'*/
+            , title: '<p style="font-weight:bolder">请输入评论信息</p>'
+            , offset: 'auto'
+            , area: ['800px', '420px']
+            , shade: 0
+        })
     }
 }
 
-/*点击回复评论信息*/
+/*点击回复*/
 function clickReplyComment(obj) {
 
     //取出session中的用户信息
@@ -468,7 +506,7 @@ function clickReplyComment(obj) {
 
     } else {
 
-        alert("评论");
+        alert("回复");
 
     }
 }
@@ -485,6 +523,17 @@ function clickDeleteComment(obj) {
 
 
 
-
+/*时间格式化*/
+function timestampToTime(time) {
+    var date = new Date(time);
+    var Y = date.getFullYear() + '-';
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    var D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
+    var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+    var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+    var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+    var strDate = Y + M + D + h + m + s;
+    return strDate;
+}
 
 
