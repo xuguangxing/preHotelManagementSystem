@@ -99,26 +99,17 @@ layui.config({
     laydate.render({
         elem: '#checkInDate'
         ,type: 'datetime'
-        ,min: 1
+        ,min: 0
+        ,max:6
     });
 
     //退房时间选择
     laydate.render({
         elem: '#checkOutDate'
         ,type: 'datetime'
-        ,min: 2
-        ,max:7
+        ,min: 0
+        ,max:6
     });
-
-  /*  $.ajaxSetup({
-        // 发送cookie
-        xhrFields: {
-            withCredentials: true
-        }
-    });
-*/
-
-
 
     //监听提交
     form.on('submit(addHotelFloor)',function(data){
@@ -169,6 +160,11 @@ layui.config({
                 , shade: 0
             })
         });
+
+        $("#btnBack").click(function () {
+            layer.close(payIndex);
+        })
+
 
 
         //上传支付截图
