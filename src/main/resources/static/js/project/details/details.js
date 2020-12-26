@@ -109,14 +109,7 @@ layui.config({
 
 
     //监听提交
-    $("#addHotelFloor").click({
-
-    })
     form.on('submit(addHotelFloor)',function(data) {
-        /*  let loadIndex = layer.load(2, {
-              shade: [0.3, '#333']
-          });*/
-
         var roomName = data.field.roomName;
         var checkInDate = data.field.checkInDate;
         var checkOutDate = data.field.checkOutDate;
@@ -135,13 +128,6 @@ layui.config({
         console.log(roomTypeName);
        /* 跳转到支付界面*/
         location.href="http://localhost:9001/pay/payView";
-      /*  $.ajax({
-            url: "http://localhost:9001/pay/payView",
-            data: "",
-            success:function () {
-                alert("支付")
-            }
-        })*/
     });
     return false;
 })
