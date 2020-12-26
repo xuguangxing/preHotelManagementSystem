@@ -144,13 +144,59 @@
         </div>
 
         <div class="layui-form-item" style="text-align: center">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="addHotelFloor">立即提交</button>
+            <div class="" style="height: 45px; text-align: center;margin-top: 20px">
+                <button class="layui-btn" id="addHotelFloor" type="submit"
+                        lay-submit=""
+                        lay-filter="addHotelFloor">
+                    立即预定
+                </button>
             </div>
         </div>
     </form>
     <!--预定订单界面结束-->
 </div>
+
+<!--二维码界面开始-->
+<div style="display: none" id="moneryReceiveCode">
+    <img src="/image/moneryReceiveCode.jpg">
+    <div class="" style="height: 45px; text-align: center;margin-top: 20px">
+        <button class="layui-btn layui-btn-normal" id="btnEdit" type="submit"
+                lay-submit=""
+                lay-filter="btnEdit">
+            已交付
+        </button>
+        <button class="layui-btn  layui-btn-primary" id="btnBack" type="submit"
+                lay-submit=""
+                lay-filter="btnBack">
+            返回
+        </button>
+    </div>
+</div>
+<!--二维码界面结束-->
+
+<!--上传付款截图界面开始-->
+<div style="display: none" id="payView">
+    <div class="layui-upload" style="text-align: center;" >
+        <div class="layui-upload-drag" id="demo1" style="height: 400px">
+            <i class="layui-icon"></i>
+            <p>点击上传付款照片,或将照片拖拽到此处</p>
+            <div class="layui-hide" id="uploadDemoView" >
+                <hr>
+                <img src="" style="max-width:320px;height: 300px">
+            </div>
+        </div>
+
+        <div class="" style="height: 45px; text-align: center;margin-top: 20px">
+            <button class="layui-btn" id="closePlayBut" type="submit"
+                    lay-submit=""
+                    lay-filter="btnEdit">
+                关闭
+            </button>
+        </div>
+    </div>
+</div>
+<!--上传付款截图界面结束-->
+
 <script src="/static/layuiadmin/layui/layui.js"></script>
 <script src="/static/js/project/details/details.js"></script>
 <script src="/static/js/project/common/common.js"></script>
