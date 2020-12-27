@@ -94,17 +94,17 @@ layui.config({
     //入住时间选择
     laydate.render({
         elem: '#checkInDate'
-        ,type: 'datetime'
         ,min: 0
         ,max:6
+        ,showBottom: false
     });
 
     //退房时间选择
     laydate.render({
         elem: '#checkOutDate'
-        ,type: 'datetime'
-        ,min: 0
-        ,max:6
+        ,min: 1
+        ,max: 7
+        ,showBottom: false
     });
 
 
@@ -119,15 +119,15 @@ layui.config({
         var idCard = userData.user.idCard;
         var userPhone = userData.user.userPhone;
         var roomTypeName = $("#roomTypeName").html();
-        console.log(roomName);
-        console.log(checkInDate);
-        console.log(checkOutDate);
-        console.log(realName);
-        console.log(idCard);
-        console.log(userPhone);
-        console.log(roomTypeName);
+        var roomMonery = $("#roomPrice").html();
+
+        //计算总共住了多少天
+        var days=(Date.parse(checkOutDate)-Date.parse(checkInDate))/(1*24*60*60*1000);
+       var total_amount = days*roomMonery;
+
+
        /* 跳转到支付界面*/
-        location.href="http://localhost:9001/pay/payView";
+        location.href="http://localhost:9001/pay/payView?subject="+roomName+"房间   单价："+roomMonery+"元一天&&body=共住"+days+"天&&total_amount="+total_amount;
     });
     return false;
 })
