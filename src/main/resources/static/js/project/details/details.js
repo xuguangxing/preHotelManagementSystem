@@ -126,8 +126,31 @@ layui.config({
        var total_amount = days*roomMonery;
 
 
-       /* 跳转到支付界面*/
-        location.href="http://localhost:9001/pay/payView?subject="+roomName+"房间   单价："+roomMonery+"元一天&&body=共住"+days+"天&&total_amount="+total_amount;
+        //生成订单号
+        var myDate = new Date();
+        var time="";
+        time=time+myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+        time=time+myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+        time=time+myDate.getDate();        //获取当前日(1-31)
+        time=time+myDate.getHours();       //获取当前小时数(0-23)
+        time=time+myDate.getMinutes();     //获取当前分钟数(0-59)
+
+        time=time+myDate.getSeconds();     //获取当前秒数(0-59)
+        var a = Math.ceil(Math.random()*9000)+1000;// 获取从1000到10000的随机整数 ，取0的概率极小。
+        time = time+a;
+        alert(a);
+        //生成订单信息
+         $.ajax({
+             url: "http://localhost:9001/bookOrder/addBookOrder",
+             data: {"orderNum": time,"realName": realName,"idCard": idCard,"userPhone":userPhone,"arriveDate": checkInDate,
+             "leaveDate":checkOutDate,"roomTypeName":roomTypeName,"roomName": roomName,"sumMonery":total_amount},
+             success: function (obj) {
+
+             }
+         })
+
+        /* 跳转到支付界面*/
+       //  location.href="http://localhost:9001/pay/payView?out_trade_no="+time+"&&subject="+roomName+"房间   单价："+roomMonery+"元一天&&body=共住"+days+"天&&total_amount="+total_amount;
     });
     return false;
 })
