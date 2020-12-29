@@ -94,6 +94,11 @@
                     <ul class="layui-tab-title" id="LAY_mine">
                         <li class="layui-this" lay-id="info">我的预定</li>
                     </ul>
+                    <table class="layui-hide" id="bookOrderTable" lay-filter="bookOrderTable"></table>
+
+                    <script type="text/html" id="barDemo">
+                        <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">退款</a>
+                    </script>
                   <!--  <div class="layui-tab-content" style="padding: 20px 0;    height: 385px;">
                         <table class="layui-hide" id="myReserve" lay-filter="reserveRecordList"></table>
                         <script type="text/html" id="status">
@@ -158,6 +163,14 @@
         </div>
     </div>
 </div>
+
+<!--我的预定-->
+<div style="display: none">
+
+</div>
+
+
+
 <!-- 底部 -->
 <div class="fly-footer">
     <p>徐广兴 &nbsp;&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-login-qq"></i> 1832377033  &nbsp;&nbsp;&nbsp;&nbsp;

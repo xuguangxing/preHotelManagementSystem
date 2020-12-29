@@ -150,7 +150,7 @@ layui.config({
          })
 
         /* 跳转到支付界面*/
-       //  location.href="http://localhost:9001/pay/payView?out_trade_no="+time+"&&subject="+roomName+"房间   单价："+roomMonery+"元一天&&body=共住"+days+"天&&total_amount="+total_amount;
+       location.href="http://localhost:9001/pay/payView?out_trade_no="+time+"&&subject="+roomName+"房间   单价："+roomMonery+"元一天&&body=共住"+days+"天&&total_amount="+total_amount;
     });
     return false;
 })
