@@ -136,9 +136,14 @@ layui.config({
         time=time+myDate.getMinutes();     //获取当前分钟数(0-59)
 
         time=time+myDate.getSeconds();     //获取当前秒数(0-59)
-        var a = Math.ceil(Math.random()*9000)+1000;// 获取从1000到10000的随机整数 ，取0的概率极小。
+
+        //生成4位随机数
+        var a="";
+        for (var i=0;i<4;i++){
+            a=a+Math.ceil(Math.random()*10)+"";
+        }
+        // 获取从1000到10000的随机整数 ，取0的概率极小。
         time = time+a;
-        alert(a);
         //生成订单信息
          $.ajax({
              url: "http://localhost:9001/bookOrder/addBookOrder",
@@ -150,7 +155,7 @@ layui.config({
          })
 
         /* 跳转到支付界面*/
-       location.href="http://localhost:9001/pay/payView?out_trade_no="+time+"&&subject="+roomName+"房间   单价："+roomMonery+"元一天&&body=共住"+days+"天&&total_amount="+total_amount;
+    //   location.href="http://localhost:9001/pay/payView?out_trade_no="+time+"&&subject="+roomName+"房间   单价："+roomMonery+"元一天&&body=共住"+days+"天&&total_amount="+total_amount;
     });
     return false;
 })

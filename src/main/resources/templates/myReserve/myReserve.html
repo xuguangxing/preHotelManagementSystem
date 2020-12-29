@@ -80,8 +80,6 @@
                 <dl>
                     <dt><a href="/myInfo/myInfo">会员中心</a></dt>
                     <dd><a href="/myInfo/myInfo">个人信息</a></dd>
-                    <!--<dd><a href="../hotel/myInfo.html">个人信息</a></dd>-->
-                    <!--<dd class="activate"><a href="../hotel/myReserve.html">我的预定</a></dd>-->
                     <dd class="activate"><a href="/myReserve/myReserve">我的预定</a></dd>
                 </dl>
             </div>
@@ -97,67 +95,13 @@
                     <table class="layui-hide" id="bookOrderTable" lay-filter="bookOrderTable"></table>
 
                     <script type="text/html" id="barDemo">
-                        <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">退款</a>
+                        <!--<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="refundMonery">退款</a>-->
+                        {{#  if(d.status ==0){ }}
+                        <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="refundMonery">退款</button>
+                        {{#  } else { }}
+                        <button class="layui-btn layui-btn-xs layui-btn-disabled" disabled>退款</button>
+                        {{#  } }}
                     </script>
-                  <!--  <div class="layui-tab-content" style="padding: 20px 0;    height: 385px;">
-                        <table class="layui-hide" id="myReserve" lay-filter="reserveRecordList"></table>
-                        <script type="text/html" id="status">
-                            {{#  if(d.status == 0){ }}
-                            <span class="layui-badge layui-badge-green">已预定，待付款</span>
-                            {{#  } else if(d.status == 1) { }}
-                            <span class="layui-badge layui-badge-blue">已付款待入住</span>
-                            {{#  } else if(d.status == 2) { }}
-                            <span class="layui-badge layui-badge-cyan">已入住未退房</span>
-                            {{#  } else if(d.status == 3) { }}
-                            <span class="layui-badge layui-badge-red">已退订</span>
-                            {{#  } else if(d.status == 4) { }}
-                            <span class="layui-badge layui-badge-black">已完成</span>
-                            {{#  } else { }}
-                            <span class="layui-badge layui-badge-warm">已换房</span>
-                            {{#  } }}
-                        </script>
-                        <script type="text/html" id="roomIdTpl">
-                            {{#  if(d.room !=null){ }}
-                            <span class="layui-badge layui-bg-green">{{d.room.roomNumber}}</span>
-                            {{#  } else { }}
-                            <span class="layui-badge layui-bg-gray">未知</span>
-                            {{#  } }}
-                        </script>
-                        <script type="text/html" id="standardPriceTpl">
-
-                            {{#  if(d.room !=null){ }}
-                            <span class="layui-badge layui-bg-blue">单价：￥{{d.room.standardPrice}}，天数：{{d.reserveDays}}总额：￥{{d.amountMoney}}</span>
-                            {{#  } else { }}
-                            <span class="layui-badge layui-bg-green">未知</span>
-                            {{#  } }}
-                        </script>
-
-                        <script type="text/html" id="amountMoneyTpl">
-                            {{#  if(d.amountMoney !=null){ }}
-                            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="showStandardPrice"><span class="layui-badge layui-bg-blue">￥{{d.amountMoney}}</span></a>
-                            {{#  } else { }}
-                            <span class="layui-badge layui-bg-green">未知</span>
-                            {{#  } }}
-                        </script>
-                        <script type="text/html" id="roomNameTpl">
-                            {{#  if(d.room !=null){ }}
-                            <span>{{d.room.roomName}}</span>
-                            {{#  } else { }}
-                            <span class="layui-badge layui-bg-green">未知</span>
-                            {{#  } }}
-                        </script>
-                        <script type="text/html" id="currentTableBar">
-                            <div class="layui-btn-container">
-                                {{#  if(d.status ==1){ }}
-                                <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="unsubscribe">退订</a>
-                                <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="change">换房</a>
-                                {{#  } }}
-                                {{#  if(d.status ==0){ }}
-                                <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="payment">付款</a>
-                                {{#  } }}
-                            </div>
-                        </script>
-                    </div>-->
                 </div>
             </div>
         </div>
@@ -168,7 +112,6 @@
 <div style="display: none">
 
 </div>
-
 
 
 <!-- 底部 -->
