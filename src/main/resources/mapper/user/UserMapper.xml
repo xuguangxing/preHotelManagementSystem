@@ -16,22 +16,11 @@
         <result property="idCardImagePositive" column="idCardImagePositive"/>
         <result property="idCardImageNegative" column="idCardImageNegative"/>
         <result property="address" column="address"/>
-        <collection property="roles" ofType="com.xu.pojo.role.Role">
-            <result column="roleName" property="roleName"/>
-            <collection property="authorities" ofType="com.xu.pojo.authority.Authority">
-                <result property="id" column="id"></result>
-                <result property="authorityName" column="authorityName"></result>
-            </collection>
-        </collection>
     </resultMap>
 
     <!--查询所有的用户信息及对应的角色信息-->
     <select id="findByUserName" resultMap="userMap">
-       select user.id,userName,passWord,roleName, authorityName from user
-            left join user_role on user.id=user_role.userid
-            left join role on role.id= user_role.roleId
-            JOIN role_authority on user_role.roleId=role_authority.role_id
-            JOIN authority on role_authority.authority_id=authority.id
+       select user.id,userName,passWord from user
             where user.userName=#{userName}
     </select>
 
