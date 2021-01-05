@@ -77,8 +77,9 @@ layui.config({
         console.log(data);
         /*退款*/
         if (obj.event === 'refundMonery') {
-
-
+            layer.confirm('确定要退款吗',function () {
+                alert("退款");
+            })
         }
         if (obj.event === 'payMonery') {
             $.ajaxSetup({

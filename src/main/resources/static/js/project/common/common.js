@@ -18,13 +18,13 @@ layui.config({
     var flow = layui.flow;
 
     //加载搜索框
-    let searchRoomHtml = '';
+   /* let searchRoomHtml = '';
     searchRoomHtml += '<input type="text" placeholder="搜索你需要的房间" name="keywords" id="searchKeywords" autocomplete="off" value="">';
     searchRoomHtml += '<button class="layui-btn layui-btn-shop" lay-submit="" lay-filter="searchHotelRoom">';
     searchRoomHtml += '<i class="layui-icon layui-icon-search"></i>';
     searchRoomHtml += '</button>';
     $("#searchRoom").html(searchRoomHtml);
-
+*/
 
 //判断会员是否登录
     let loginMemberHtml = '';
