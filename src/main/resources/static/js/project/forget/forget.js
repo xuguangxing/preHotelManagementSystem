@@ -45,12 +45,11 @@ layui.config({
     form.on('submit(forget)', function (obj) {
 
         var field = obj.field;
-        //监听身份证位数
-        if ($("#idCard").val().length !== 18) {
-            return layer.msg('身份证必须为18位', {
+        //监听登录名
+        if ($("#userName").val().length <0 || $("#userName").val().length>20) {
+            return layer.msg('账号名应不超过20位', {
                 icon: 2,
                 time: 1000
-
             })
         }
 
@@ -62,54 +61,47 @@ layui.config({
             })
         }
         if ( $("#vercode").val()==vercode){
-            //查找身份证号
+            //查找账号
             $.ajax({
-                url: "http://localhost:9001/user/queryIdCard"
-                , data: {idCard: $("#idCard").val()}
-                , success: function (res) {
-                    if (res == true) {
+                url: "http://localhost:9001/user/queryUserByUserName"
+                , data: {userName: $("#userName").val()}
+                , success: function (obj) {
+                    if (obj != undefined && obj != "") {
                         //查找邮箱
                         $.ajax({
                             url: "http://localhost:9001/user/queryUserEmail",
                             data: {userEmail: $("#userEmail").val()},
                             success: function (res) {
                                 if (res == true) {
-
-                                    //判断身份证号和邮箱是否为同一个用户
-                                    $.get({
-                                        url: "http://localhost:9001/user/queryByIdCard",
-                                        hrFields: {withCredentials: false},
-                                        data: {idCard: $("#idCard").val()},
-                                        success: function (res) {
-                                            if (res.userEmail==$("#userEmail").val()) {
-                                                //修改信息
-                                                $.ajax({
-                                                    url: "http://localhost:9001/user/updateUserPassWord",
-                                                    data: {idCard: $("#idCard").val(),passWord: $("#passWord").val()},
-                                                    success: function (obj) {
-                                                        layer.msg('修改成功', {
-                                                            icon: 1,
-                                                            time: 1000
-                                                        }, function () {
-                                                            window.location.href = "/index/index";
-                                                        })
-                                                    },
-                                                    error:function () {
-                                                        layer.msg('修改失败', {
-                                                            icon: 2,
-                                                            time: 1000
-                                                        })
-                                                    }
+                                    //判断账号和邮箱是否为同一个用户
+                                    if (obj.userEmail==$("#userEmail").val()){
+                                        console.log($("#userName").val())
+                                        //修改信息
+                                        $.ajax({
+                                            url: "http://localhost:9001/user/updateUserPassWord",
+                                            data: {userName: $("#userName").val(),passWord: $("#passWord").val()},
+                                            success: function (obj) {
+                                                layer.msg('修改成功', {
+                                                    icon: 1,
+                                                    time: 1000
+                                                }, function () {
+                                                    window.location.href = "/index/index";
                                                 })
-
-                                            } else {
-                                                layer.msg('邮箱和身份证号不匹配，请重新输入，或者找管理员', {
+                                            },
+                                            error:function () {
+                                                layer.msg('修改失败', {
                                                     icon: 2,
-                                                    time: 2000
+                                                    time: 1000
                                                 })
                                             }
-                                        }
-                                    })
+                                        })
+
+                                    }else{
+                                        layer.msg('邮箱和身份证号不匹配，请重新输入，或者找管理员', {
+                                            icon: 2,
+                                            time: 2000
+                                        })
+                                    }
                                 } else {
                                     layer.msg('该邮箱还没有注册', {
                                         icon: 2,
@@ -120,7 +112,7 @@ layui.config({
                         })
 
                     } else {
-                        layer.msg('该身份证号还没有注册', {
+                        layer.msg('该账号还没有注册', {
                             icon: 2,
                             time: 1000
                         })
