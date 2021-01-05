@@ -74,7 +74,7 @@ layui.config({
     //监听行工具事件
     table.on('tool(bookOrderTable)', function (obj) {
        var data = obj.data;
-        console.log(data);
+
         /*退款*/
         if (obj.event === 'refundMonery') {
             layer.confirm('确定要退款吗',function () {
@@ -142,3 +142,4 @@ function timestampToTime(time) {
     let strDate = Y + M + D;
     return strDate;
 }
+

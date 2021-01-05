@@ -75,7 +75,6 @@ layui.config({
                                 if (res == true) {
                                     //判断账号和邮箱是否为同一个用户
                                     if (obj.userEmail==$("#userEmail").val()){
-                                        console.log($("#userName").val())
                                         //修改信息
                                         $.ajax({
                                             url: "http://localhost:9001/user/updateUserPassWord",

@@ -95,10 +95,25 @@
 
                     <script type="text/html" id="barDemo">
                         {{#  if(d.status ==0){ }}
-                        <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="refundMonery" id="refundMonery">退款</button>
+                       <!-- <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="refundMonery" id="refundMonery">退款</button>-->
+
+                        {{#  if(StringToDate(d.leaveDate) < new Date().getTime()){ }}
+                        <button class="layui-btn layui-btn-xs layui-btn-disabled">退款</button>
                         {{#  } else { }}
-                        <button class="layui-btn layui-btn-xs" lay-event="payMonery" id="payMonery">支付</button>
+                        <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="refundMonery">退款</button>
                         {{#  } }}
+
+                        {{#  } else { }}
+                        <button class="layui-btn layui-btn-xs" lay-event="payMonery">支付</button>
+                        {{#  } }}
+                    </script>
+                    <script type="text/javascript">
+                        function StringToDate(str)
+                        {
+                            /*返回毫秒值*/
+                            var data  = new Date(str);
+                            return data.getTime();
+                        }
                     </script>
                 </div>
             </div>
