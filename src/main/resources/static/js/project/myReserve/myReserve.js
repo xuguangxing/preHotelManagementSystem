@@ -128,7 +128,6 @@ function toOrderNum() {
     for (var i = 0; i < 4; i++) {
         a = a + Math.ceil(Math.random() * 10) + "";
     }
-    // 获取从1000到10000的随机整数 ，取0的概率极小。
     time = time +month+ strDate+strHours+strMinutes+strSeconds+a;
     return time;
 }
