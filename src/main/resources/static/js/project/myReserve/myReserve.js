@@ -114,23 +114,22 @@ layui.config({
 
 //生成订单号
 function toOrderNum() {
-
-    var myDate = new Date();
+    //生成订单号
+    var date = new Date();
     var time = "";
-    time = time + myDate.getFullYear();    //获取完整的年份(4位,1970-????)
-    time = time + myDate.getMonth();       //获取当前月份(0-11,0代表1月)
-    time = time + myDate.getDate();        //获取当前日(1-31)
-    time = time + myDate.getHours();       //获取当前小时数(0-23)
-    time = time + myDate.getMinutes();     //获取当前分钟数(0-59)
-    time = time + myDate.getSeconds();     //获取当前秒数(0-59)
-
+    time =date.getFullYear();    //获取完整的年份(4位,1970-????)
+    let month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1; //获取月,如果小于10,前面补个0
+    let strDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate(); //获取日,如果小于10,前面补个0
+    let strHours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(); //获取小时,如果小于10,前面补个0
+    let strMinutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(); //获取分,如果小于10,前面补个0
+    let strSeconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds(); //获取秒,如果小于10,前面补个0
     //生成4位随机数
     var a = "";
     for (var i = 0; i < 4; i++) {
         a = a + Math.ceil(Math.random() * 10) + "";
     }
     // 获取从1000到10000的随机整数 ，取0的概率极小。
-    time = time + a;
+    time = time +month+ strDate+strHours+strMinutes+strSeconds+a;
     return time;
 }
 
