@@ -138,6 +138,16 @@ layui.config({
             data: {out_trade_no:obj.field.out_trade_no,total_amount: obj.field.total_amount,refund_reason: obj.field.refund_reason},
             success: function (obj) {
                 console.log(obj);
+                console.log(obj.alipay_trade_refund_response);
+               if(obj.alipay_trade_refund_response.code==10000){
+                   layer.msg("退款成功",{
+                       icon: 1,
+                       time:1000
+                   },function () {
+                       window.location.reload();
+                   })
+
+               }
             }
         })
         layer.close(index);
