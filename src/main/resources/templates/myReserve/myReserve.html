@@ -77,7 +77,7 @@
             <!--会员菜单 start-->
             <div class="product-list">
                 <dl>
-                    <dt><a href="/myInfo/myInfo">会员中心</a></dt>
+                    <dt><a href="/myInfo/myInfo">信息中心</a></dt>
                     <dd><a href="/myInfo/myInfo">个人信息</a></dd>
                     <dd class="activate"><a href="/myReserve/myReserve">我的预定</a></dd>
                 </dl>
@@ -121,9 +121,47 @@
     </div>
 </div>
 
-<!--我的预定-->
-<div style="display: none">
+<!--退款界面开始-->
+<div style="display: none" id="refundMoneryView">
+    <div class="layui-form" >
+        <div class="layui-form-item layui-form-pane">
+            <label class="layui-form-label" style="width: 150px">订单号：</label>
+            <div class="layui-input-block" style=" margin: 0px 0px 5px 150px;display: block;width: 400px">
+                <input type="text" name="out_trade_no" lay-verify="title" disabled autocomplete="off" id="out_trade_no"
+                       placeholder="订单号"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="  layui-form-pane">
+            <div class="layui-inline">
+                <label class="layui-form-label" style="width: 150px">总价：</label>
+                <div class="layui-input-block" style=" margin: 0px 0px 20px 150px;display: block;width: 400px">
+                    <input type="text" name="total_amount" lay-verify="total_amount" id="total_amount" disabled autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-pane">
+            <div class="layui-inline">
+                <label class="layui-form-label" style="width: 150px">退款说明：</label>
+                <div class="layui-input-block" style=" margin: 0px 0px 20px 150px;display: block;width: 400px">
+                   <!-- <input type="text" name="remark" lay-verify="remark" id="remark" autocomplete="off"
+                           placeholder="请输入退款说明"
+                           class="layui-input">-->
+                    <textarea name="refund_reason" id="refund_reason" style="width: 400px;height:200px">
 
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="" style="height: 45px; text-align: center">
+            <button class="layui-btn" id="btnEdit" type="submit"
+                    lay-submit=""
+                    lay-filter="btnEdit">
+                确定
+            </button>
+        </div>
+    </div>
 </div>
 
 

@@ -71,15 +71,28 @@ layui.config({
     };
     table.render(reserveTable);
 
+    var refundIndex;
+    var index;
+
     //监听行工具事件
     table.on('tool(bookOrderTable)', function (obj) {
        var data = obj.data;
-
+        console.log(data);
         /*退款*/
         if (obj.event === 'refundMonery') {
-            layer.confirm('确定要退款吗',function () {
-                alert("退款");
+             index=layer.confirm('确定要退款吗',function () {
+                 refundIndex = layer.open({
+                    type: 1
+                    , title: '<p style="color: #702fff;font-weight:bolder">退款</p>'
+                    , offset: 'auto'
+                    , area: ['560px', '450px']
+                    , content: $('#refundMoneryView')
+                    , shade: 0 //不显示遮罩
+                });
             })
+            $("#out_trade_no").val(data.orderNum);
+            $("#total_amount").val(data.sumMonery);
+
         }
         if (obj.event === 'payMonery') {
             $.ajaxSetup({
@@ -110,6 +123,28 @@ layui.config({
             })
         }
     })
+
+    //点击退款
+    form.on("submit(btnEdit)",function (obj) {
+        $.ajaxSetup({
+            // 发送cookie
+            xhrFields: {
+                withCredentials: false
+            }
+        });
+        $.ajax({
+            url: "http://localhost:9001/pay/refundMonery",
+            hrFields: {withCredentials: false},
+            data: {out_trade_no:obj.field.out_trade_no,total_amount: obj.field.total_amount,refund_reason: obj.field.refund_reason},
+            success: function (obj) {
+                console.log(obj);
+            }
+        })
+        layer.close(index);
+        layer.close(refundIndex);
+    })
+
+
 })
 
 //生成订单号
