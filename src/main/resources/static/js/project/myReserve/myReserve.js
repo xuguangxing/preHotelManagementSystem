@@ -111,8 +111,7 @@ layui.config({
                         /* 跳转到支付界面*/
                         //计算总共住了多少天
                         var days = (Date.parse(data.leaveDate) - Date.parse(data.arriveDate)) / (1 * 24 * 60 * 60 * 1000);
-
-                        location.href = "http://localhost:9001/pay/payView?out_trade_no=" + toOrderNum() + "&&subject=" + data.roomName + "房间   单价：" + data.roomPrice + "元一天&&body=共住" + days + "天&&total_amount=" + data.sumMonery;
+                       location.href = "http://localhost:9001/pay/payView?out_trade_no=" + data.orderNum + "&&subject=" + data.roomName + "房间   单价：" + data.roomPrice + "元一天&&body=共住" + days + "天&&total_amount=" + data.sumMonery;
                     } else {
                         layer.msg("该房间已被使用", {
                             icon: 2,
@@ -136,14 +135,31 @@ layui.config({
             url: "http://localhost:9001/pay/refundMonery",
             hrFields: {withCredentials: false},
             data: {out_trade_no:obj.field.out_trade_no,total_amount: obj.field.total_amount,refund_reason: obj.field.refund_reason},
-            success: function (obj) {
-                console.log(obj);
-                console.log(obj.alipay_trade_refund_response);
-               if(obj.alipay_trade_refund_response.code==10000){
+            success: function (res) {
+
+               if(res.alipay_trade_refund_response.code==10000){
                    layer.msg("退款成功",{
                        icon: 1,
                        time:1000
                    },function () {
+
+                       //删除该订单信息
+                       $.ajax({
+                           url: "http://localhost:9001/bookOrder/deleteByOrderNum",
+                           data: {orderNum:obj.field.out_trade_no},
+                           success: function (res) {
+                               if (res==true){
+
+                               }else {
+                                   layer.msg("退款失败",{
+                                       icon: 2,
+                                       time: 1000
+                                   })
+                               }
+
+                           }
+                       })
+
                        window.location.reload();
                    })
 
@@ -156,28 +172,6 @@ layui.config({
 
 
 })
-
-//生成订单号
-function toOrderNum() {
-    //生成订单号
-    var date = new Date();
-    var time = "";
-    time =date.getFullYear();    //获取完整的年份(4位,1970-????)
-    let month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1; //获取月,如果小于10,前面补个0
-    let strDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate(); //获取日,如果小于10,前面补个0
-    let strHours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(); //获取小时,如果小于10,前面补个0
-    let strMinutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(); //获取分,如果小于10,前面补个0
-    let strSeconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds(); //获取秒,如果小于10,前面补个0
-    //生成4位随机数
-    var a = "";
-    for (var i = 0; i < 4; i++) {
-        a = a + Math.ceil(Math.random() * 10) + "";
-    }
-    time = time +month+ strDate+strHours+strMinutes+strSeconds+a;
-    return time;
-}
-
-
 /*时间格式化*/
 function timestampToTime(time) {
     var date = new Date(time);
