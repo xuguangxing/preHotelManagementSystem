@@ -156,13 +156,10 @@ layui.config({
                                        time: 1000
                                    })
                                }
-
                            }
                        })
-
                        window.location.reload();
                    })
-
                }
             }
         })
