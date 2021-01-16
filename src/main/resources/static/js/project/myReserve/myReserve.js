@@ -26,6 +26,7 @@ layui.config({
     //我的预定
     reserveTable = {
         id: "bookOrderTable"
+        , height: 'full-410'
         , elem: '#bookOrderTable'
         , url: "http://localhost:9001/bookOrder/queryBookOrderByUserId?userId=" + userId
         , title: '预定订单信息表'

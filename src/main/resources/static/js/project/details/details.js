@@ -80,7 +80,7 @@ layui.config({
                 title: '预定房间'
                 , type: 1
                 , offset: 'auto'
-                , area: ['30%', '30%']
+                , area: ['30%', '35%']
                 , content: $('#orderView')
                 , shade: 0 //不显示遮罩
             });
