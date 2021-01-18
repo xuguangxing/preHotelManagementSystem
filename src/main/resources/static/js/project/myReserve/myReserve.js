@@ -35,7 +35,7 @@ layui.config({
             [{type: 'numbers', title: '序号', align: 'center'}
                 , {title: '操作', minWidth: 120, templet: '#barDemo', align: "center"}
                 , {field: 'id', title: 'ID', hide: true, width: 80, unresize: true, sort: true, align: 'center'}
-                , {field: 'orderNum', title: '订单号', minWidth: 260, align: 'center'}
+                , {field: 'orderNum', title: '订单号', width: 200, align: 'center'}
                 , {field: 'roomName', title: '房间号', width: 80, templet: '#roomIdTpl', align: 'center'}
                 , {field: 'sumMonery', title: '总金额', width: 100, templet: '#amountMoneyTpl', align: 'center'}
                 , {
