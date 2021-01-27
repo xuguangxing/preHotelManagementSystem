@@ -21,14 +21,14 @@ layui.config({
         console.log(data.field)
         $.ajax({
             type: "post",
-            url: "http://localhost:9001/user/updateUser",
+            url: "http://101.132.135.146:9001/user/updateUser",
             data: {id:data.field.id, userName:data.field.userName, passWord:userData.user.passWord, idCard:data.field.idCard, userPhone:data.field.userPhone, realName:data.field.realName, userNameImage:data.field.userNameImage
                 , userEmail:data.field.userEmail , remark:data.field.remark,beforeUserNameImage:beforeUserNameImage
             },
             success: function (res) {
                 //通过登录名查找该用户
                 $.ajax({
-                    url: "http://localhost:9001/user/queryUserByUserName",
+                    url: "http://101.132.135.146:9001/user/queryUserByUserName",
                     data: {userName: data.field.userName},
                     success: function (res) {
                         //将用户存入session中
@@ -63,12 +63,12 @@ layui.config({
             })
         }else{
             $.ajax({
-                url: "http://localhost:9001/user/updateUserPassWord",
+                url: "http://101.132.135.146:9001/user/updateUserPassWord",
                 data: {idCard: userData.user.idCard,passWord: $("#passWord").val()},
                 success: function (res) {
                     //通过登录名查找该用户
                     $.ajax({
-                        url: "http://localhost:9001/user/queryUserByUserName",
+                        url: "http://101.132.135.146:9001/user/queryUserByUserName",
                         data: {userName: userData.user.userName},
                         success: function (res) {
                             //将用户存入session中
@@ -94,7 +94,7 @@ layui.config({
     //用户登录头像
     upload.render({
         elem: '#demo1'
-        , url: 'http://localhost:9001/user/uploadImg'
+        , url: 'http://101.132.135.146:9001/user/uploadImg'
         , accept: "images"
         , done: function (res) {
             layer.msg('上传成功');

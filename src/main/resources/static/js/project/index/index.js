@@ -36,7 +36,7 @@ layui.config({
                 $.get({
                     dataType: "json",
                     xhrFields: {withCredentials: false},
-                    url: "http://101.132.135.146:9001/:9001/roomType/queryAllRoomRType?page=" + page + "&limit=7",
+                    url: "http://101.132.135.146:9001/roomType/queryAllRoomType?page=" + page + "&limit=7",
                     /*xhrFields:{withCredentials: true},*/
                     success: function (res) {
                         if (res.count % 7 == 0) {

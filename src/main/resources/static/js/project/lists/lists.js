@@ -42,7 +42,7 @@ layui.config({
 
     function getAllRoomTypeList() {
         $.get({
-            url: "http://localhost:9001/roomType/queryAll",
+            url: "http://101.132.135.146:9001/roomType/queryAll",
             hrFields: {withCredentials: false},
             success: function (res) {
                 let getAllRoomTypeHtml = '';
@@ -74,7 +74,7 @@ layui.config({
 
     function getAllFloorList() {
         $.get({
-            url: "http://localhost:9001/floor/queryAllFloor2",
+            url: "http://101.132.135.146:9001/floor/queryAllFloor2",
             dataType: "json",
             xhrFields: {withCredentials: false},
             success: function (res) {
@@ -115,7 +115,7 @@ layui.config({
     //根据房间类别Id或者楼层Id获取房间列表
     function getRoomListByType(roomTypeId, floorId) {
         $.get({
-            url: "http://localhost:9001/room/queryRoomByFloorOrRoomType",
+            url: "http://101.132.135.146:9001/room/queryRoomByFloorOrRoomType",
             dataType: "json",
             data: {
                 roomTypeId: roomTypeId,
@@ -189,7 +189,7 @@ layui.config({
 
     //加载评论列表
     $.ajax({
-        url: "http://localhost:9001/comment/queryAllCommentAndReplay",
+        url: "http://101.132.135.146:9001/comment/queryAllCommentAndReplay",
         data: {},
         success: function (data) {
             //加载评论列表
@@ -262,7 +262,7 @@ layui.config({
             var userId = userData.user.id;
             if (commentFlag == 0) {
                 $.ajax({
-                    url: "http://localhost:9001/comment/addComment",
+                    url: "http://101.132.135.146:9001/comment/addComment",
                     data: {userId: userId, commentContent: commentContent},
                     success: function (obj) {
                         layer.msg('评论成功', {
@@ -298,7 +298,7 @@ layui.config({
                     remove: true
                 })
                 $.ajax({
-                    url: "http://localhost:9001/replay/aadReplay",
+                    url: "http://101.132.135.146:9001/replay/aadReplay",
                     data: {userId: userId, commentId: commentId,answerUserName:commentUserName,repalyContent: commentContent},
                     success: function () {
                         layer.msg('评论成功', {
@@ -333,7 +333,7 @@ layui.config({
                     remove: true
                 })
                 $.ajax({
-                    url: "http://localhost:9001/replay/aadReplay",
+                    url: "http://101.132.135.146:9001/replay/aadReplay",
                     data: {userId: userId, commentId: commentId,answerUserName:replayUserName,repalyContent: commentContent},
                     success: function () {
                         layer.msg('评论成功', {
@@ -507,7 +507,7 @@ function getRoomType(obj) {
 
 function getRoomListByType(roomTypeId, floorId) {
     $.get({
-        url: "http://localhost:9001/room/queryRoomByFloorOrRoomType",
+        url: "http://101.132.135.146:9001/room/queryRoomByFloorOrRoomType",
         dataType: "json",
         data: {
             roomTypeId: roomTypeId,
@@ -656,7 +656,7 @@ function clickDeleteComment(obj) {
     layer.confirm('确定要删除吗', function () {
         //删除评论信息
         $.ajax({
-            url: "http://localhost:9001/comment/deleteComment",
+            url: "http://101.132.135.146:9001/comment/deleteComment",
             data: {commonId: commonId},
             success: function () {
                 layer.msg('已删除', {
@@ -680,7 +680,7 @@ function deleteReplay(obj) {
     layer.confirm('确定要删除吗', function () {
         //删除评论信息
         $.ajax({
-            url: "http://localhost:9001/replay/deleteReplay",
+            url: "http://101.132.135.146:9001/replay/deleteReplay",
             data: {replayId: replayId},
             success: function () {
                 layer.msg('已删除', {

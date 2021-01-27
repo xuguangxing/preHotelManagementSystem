@@ -54,7 +54,7 @@ layui.config({
 
         //判断该身份证是否已被注册
         $.ajax({
-            url: "http://localhost:9001/user/queryIdCard",
+            url: "http://101.132.135.146:9001/user/queryIdCard",
             data: {idCard: field.idCard},
             success: function (res) {
                 if (res == true) {
@@ -65,7 +65,7 @@ layui.config({
                 } else {
                     //判断该登录名是否被注册
                     $.get({
-                        url: "http://localhost:9001/user/queryUserName",
+                        url: "http://101.132.135.146:9001/user/queryUserName",
                         hrFields: {withCredentials: false},
                         data: {userName: field.userName},
                         success: function (res) {
@@ -78,7 +78,7 @@ layui.config({
 
                                 //判断该邮箱是否被注册
                                 $.ajax({
-                                    url: "http://localhost:9001/user/queryUserEmail",
+                                    url: "http://101.132.135.146:9001/user/queryUserEmail",
                                     data: {userEmail: $("#userEmail").val()},
                                     success: function (res) {
                                         if (res == true) {
@@ -89,7 +89,7 @@ layui.config({
                                         } else {
                                             //请求接口
                                             $.get({
-                                                url: "http://localhost:9001/user/clientRegister" //实际使用请改成服务端真实接口
+                                                url: "http://101.132.135.146:9001/user/clientRegister" //实际使用请改成服务端真实接口
                                                 , hrFields: {withCredentials: false}
                                                 , data: {field: JSON.stringify(field)},
                                                 success: function (res) {

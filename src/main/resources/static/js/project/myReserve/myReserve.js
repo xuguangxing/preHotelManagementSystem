@@ -28,7 +28,7 @@ layui.config({
         id: "bookOrderTable"
         , height: 'full-410'
         , elem: '#bookOrderTable'
-        , url: "http://localhost:9001/bookOrder/queryBookOrderByUserId?userId=" + userId
+        , url: "http://101.132.135.146:9001/bookOrder/queryBookOrderByUserId?userId=" + userId
         , title: '预定订单信息表'
         , cellMinWidth: 80
         , cols: [
@@ -104,7 +104,7 @@ layui.config({
             });
             $.get({
                 hrFields: {withCredentials: false},
-                url: "http://localhost:9001/room/queryRoomById",
+                url: "http://101.132.135.146:9001/room/queryRoomById",
                 data: {id: data.roomId},
                 success: function (res) {
                     if (res.status == 0) {
@@ -112,7 +112,7 @@ layui.config({
                         /* 跳转到支付界面*/
                         //计算总共住了多少天
                         var days = (Date.parse(data.leaveDate) - Date.parse(data.arriveDate)) / (1 * 24 * 60 * 60 * 1000);
-                       location.href = "http://localhost:9001/pay/payView?out_trade_no=" + data.orderNum + "&&subject=" + data.roomName + "房间   单价：" + data.roomPrice + "元一天&&body=共住" + days + "天&&total_amount=" + data.sumMonery;
+                       location.href = "http://101.132.135.146:9001/pay/payView?out_trade_no=" + data.orderNum + "&&subject=" + data.roomName + "房间   单价：" + data.roomPrice + "元一天&&body=共住" + days + "天&&total_amount=" + data.sumMonery;
                     } else {
                         layer.msg("该房间已被使用", {
                             icon: 2,
@@ -133,7 +133,7 @@ layui.config({
             }
         });
         $.ajax({
-            url: "http://localhost:9001/pay/refundMonery",
+            url: "http://101.132.135.146:9001/pay/refundMonery",
             hrFields: {withCredentials: false},
             data: {out_trade_no:obj.field.out_trade_no,total_amount: obj.field.total_amount,refund_reason: obj.field.refund_reason},
             success: function (res) {
@@ -146,7 +146,7 @@ layui.config({
 
                        //删除该订单信息
                        $.ajax({
-                           url: "http://localhost:9001/bookOrder/deleteByOrderNum",
+                           url: "http://101.132.135.146:9001/bookOrder/deleteByOrderNum",
                            data: {orderNum:obj.field.out_trade_no},
                            success: function (res) {
                                if (res==true){

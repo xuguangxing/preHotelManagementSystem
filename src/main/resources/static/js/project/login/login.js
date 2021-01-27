@@ -26,7 +26,7 @@ layui.config({
 
                     //通过登录名查找该用户
                     $.ajax({
-                        url: "http://localhost:9001/user/queryUserByUserName",
+                        url: "http://101.132.135.146:9001/user/queryUserByUserName",
                         data: {userName: userName},
                         success: function (res) {
                             //将用户存入session中

@@ -27,7 +27,7 @@ layui.config({
     //根据房间ID获取房间数据
     function getRoomById() {
         $.get({
-            url: "http://localhost:9001/room/queryRoomById",
+            url: "http://101.132.135.146:9001/room/queryRoomById",
             data: {id: roomId},
             hrFields: {withCredentials: false},
             success: function (res) {
@@ -138,13 +138,13 @@ layui.config({
         //生成4位随机数
         var a = "";
         for (var i = 0; i < 4; i++) {
-            a = a + Math.ceil(Math.random() * 10) + "";
+            a = a + Math.floor(Math.random() * 10) + "";
         }
         // 获取从1000到10000的随机整数 ，取0的概率极小。
         time = time +month+ strDate+strHours+strMinutes+strSeconds+a;
         //生成订单信息
         $.ajax({
-            url: "http://localhost:9001/bookOrder/addBookOrder",
+            url: "http://101.132.135.146:9001/bookOrder/addBookOrder",
             data: {
                 "orderNum": time,
                 "realName": realName,
@@ -162,7 +162,7 @@ layui.config({
         })
 
         /* 跳转到支付界面*/
-        location.href = "http://localhost:9001/pay/payView?out_trade_no=" + time + "&&subject=" + roomName + "房间   单价：" + roomMonery + "元一天&&body=共住" + days + "天&&total_amount=" + total_amount;
+        location.href = "http://101.132.135.146:9001/pay/payView?out_trade_no=" + time + "&&subject=" + roomName + "房间   单价：" + roomMonery + "元一天&&body=共住" + days + "天&&total_amount=" + total_amount;
     });
     return false;
 })

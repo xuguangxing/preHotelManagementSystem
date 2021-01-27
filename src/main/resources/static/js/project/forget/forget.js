@@ -32,7 +32,7 @@ layui.config({
                 time: 1000,
             })
             $.ajax({
-                url: "http://localhost:9001/user/sendAuthCode",
+                url: "http://101.132.135.146:9001/user/sendAuthCode",
                 data: {email: $("#userEmail").val()},
                 success: function (obj) {
                     vercode=obj;
@@ -63,13 +63,13 @@ layui.config({
         if ( $("#vercode").val()==vercode){
             //查找账号
             $.ajax({
-                url: "http://localhost:9001/user/queryUserByUserName"
+                url: "http://101.132.135.146:9001/user/queryUserByUserName"
                 , data: {userName: $("#userName").val()}
                 , success: function (obj) {
                     if (obj != undefined && obj != "") {
                         //查找邮箱
                         $.ajax({
-                            url: "http://localhost:9001/user/queryUserEmail",
+                            url: "http://101.132.135.146:9001/user/queryUserEmail",
                             data: {userEmail: $("#userEmail").val()},
                             success: function (res) {
                                 if (res == true) {
@@ -77,7 +77,7 @@ layui.config({
                                     if (obj.userEmail==$("#userEmail").val()){
                                         //修改信息
                                         $.ajax({
-                                            url: "http://localhost:9001/user/updateUserPassWord",
+                                            url: "http://101.132.135.146:9001/user/updateUserPassWord",
                                             data: {userName: $("#userName").val(),passWord: $("#passWord").val()},
                                             success: function (obj) {
                                                 layer.msg('修改成功', {
