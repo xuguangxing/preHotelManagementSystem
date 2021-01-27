@@ -25,7 +25,8 @@ public class ImageUtil {
      * @param file
      */
     public static void delteImage(String file) {
-        File f = new File("C:\\Users\\xu\\Desktop\\image\\" + file);
+       // File f = new File("C:\\Users\\xu\\Desktop\\image\\" + file);
+        File f = new File("hotelmanagement\\image\\" + file);
         f.delete();
     }
 
@@ -41,7 +42,9 @@ public class ImageUtil {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
         fileName = df.format(new Date()); // new Date()为获取当前系统时间
         fileName = fileName + String.valueOf((int) (Math.random() * 100)) + ".jpg";
-        File destPath = new File("C:\\Users\\xu\\Desktop\\image\\" + fileName);
+       // File destPath = new File("C:\\Users\\xu\\Desktop\\image\\" + fileName);
+        File destPath = new File("hotelmanagement\\image\\" + fileName);
+
         //2.创建通道，先赋空值
         FileOutputStream fos = null;
         //3.创建通道时需要抛出异常

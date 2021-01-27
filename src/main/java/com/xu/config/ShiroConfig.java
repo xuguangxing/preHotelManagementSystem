@@ -36,12 +36,7 @@ public class ShiroConfig {
          * role ： 拥有某个角色的权限才能访问
          */
         Map<String,String> fileterMap = new LinkedHashMap<>();
-        /**
-         * 拦截
-         */
-        fileterMap.put("/test2","perms[test2]");
-        fileterMap.put("/test1","perms[test1]");
-        fileterMap.put("/test1","perms[test1]");
+
         bean.setFilterChainDefinitionMap(fileterMap);
 
         /**

@@ -20,7 +20,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         //和页面有关的静态目录都放在项目的static目录下
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
        //registry.addResourceHandler("/image/**").addResourceLocations("file:///C:/Users/xu/Desktop/preImage/");
-        registry.addResourceHandler("/image/**").addResourceLocations("file:///C:/Users/Administrator/Desktop/image/");
+       // registry.addResourceHandler("/image/**").addResourceLocations("file:///C:/Users/Administrator/Desktop/image/");
+        registry.addResourceHandler("/image/**").addResourceLocations("file:////hotelmanagement/image/");
 
     }
 }
