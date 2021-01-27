@@ -36,7 +36,7 @@ layui.config({
                 $.get({
                     dataType: "json",
                     xhrFields: {withCredentials: false},
-                    url: "http://localhost:9001/roomType/queryAllRoomRType?page=" + page + "&limit=7",
+                    url: "http://101.132.135.146:9001/:9001/roomType/queryAllRoomRType?page=" + page + "&limit=7",
                     /*xhrFields:{withCredentials: true},*/
                     success: function (res) {
                         if (res.count % 7 == 0) {
@@ -68,7 +68,7 @@ layui.config({
 
     function getAllHotelFloor() {
         $.get({
-            url: "http://localhost:9001/floor/queryAllFloorAndRoom?page=1&limit=10",
+            url: "http://101.132.135.146:9001/floor/queryAllFloorAndRoom?page=1&limit=10",
             success: function (res) {
                 layer.close(loadIndex);
                 let getIndexFloorHtml = '';
@@ -125,7 +125,7 @@ layui.config({
 
 
 //监听提交搜索
-    form.on('submit(searchHotelRoom)', function (data) {
+/*    form.on('submit(searchHotelRoom)', function (data) {
 
         let loadIndex = layer.load(2, {
             shade: [0.3, '#333']
@@ -155,7 +155,7 @@ layui.config({
         });
 
         return false;
-    });
+    });*/
 
 
     laytpl.toDateString = function (d, format) {

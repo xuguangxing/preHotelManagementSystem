@@ -12,8 +12,8 @@ spring:
 
 #配置mysql
   datasource:
-    username: root
-    url:  jdbc:mysql://localhost:3306/hotelmanagement?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    username: xu
+    url:  jdbc:mysql://101.132.135.146:3306/hotelmanagement?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
