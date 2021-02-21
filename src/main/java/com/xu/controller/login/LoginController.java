@@ -33,7 +33,7 @@ public class LoginController {
     }
 
     /**
-     * 用户登录
+     * 旅客登录
      * @param userName
      * @param passWord
      * @return
