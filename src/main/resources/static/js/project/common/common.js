@@ -53,9 +53,9 @@ layui.config({
         loginMemberHtml += '<li class="layui-nav-item layui-hide-xs"> <a class="fly-case-active" data-type="exitSystem" onclick=logOut(this)>退出</a> </li>';
     } else {
         if (typeof (userData.user) != "undefined") {
-            loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
+            loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs layui-this"> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登录</a> </li>';
         } else {
-            loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登入</a> </li>';
+            loginMemberHtml += '<li data-id="login" class="layui-nav-item layui-hide-xs "> <a class="fly-case-active" data-type="toTopNav" href="/login/login">登录</a> </li>';
         }
 
         if (typeof (userData.user) != "undefined" ) {
