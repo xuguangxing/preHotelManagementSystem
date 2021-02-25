@@ -243,6 +243,7 @@ layui.config({
 
             })
             commentList += '<div class="comment_add_or_last">点击加载更多评论 </div> <hr>';
+            console.log(commentList);
             $("#comment_list").append(commentList);
         }
     })
