@@ -13,7 +13,7 @@ layui.config({
     //给表单赋值
 
     form.val("formMyInfo",userData.user);
-    layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', "/image/" + userData.user.userNameImage);
+    layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', userData.user.userNameImage);
 
     beforeUserNameImage=$("#userNameImage").val();
     //监听更新提交客户信息
@@ -94,12 +94,12 @@ layui.config({
     //用户登录头像
     upload.render({
         elem: '#demo1'
-        , url: 'http://101.132.135.146:9001/user/uploadImg'
+        , url: 'http://101.132.135.146:9001/image/uploadFile?groupName=group1'
         , accept: "images"
         , done: function (res) {
             layer.msg('上传成功');
-            layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', "/image/" + res.src);
-            $("#userNameImage").val(res.src);
+            layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.body);
+            $("#userNameImage").val(res.body);
         }
     });
 

@@ -80,7 +80,7 @@ layui.config({
             success: function (res) {
                 let getAllFloorHtml = '';
 
-                getAllFloorHtml += '<li style="background: #F2F2F2" title="全部"> <a class="fly-case-active" onclick=getAllFloor(this) data-type="toFloorListByLists"> <img src="/image/all_bg.jpg">';
+                getAllFloorHtml += '<li style="background: #F2F2F2" title="全部"> <a class="fly-case-active" onclick=getAllFloor(this) data-type="toFloorListByLists"> <img src="http://101.132.135.146/group1/M00/00/01/rBEEEmA3bL6AM8YjAAAGV3qBNjs777.jpg">';
                 if (floorId == null) {
                     getAllFloorHtml += '<i class="layui-icon layui-icon-ok"></i>';
                 }
@@ -130,9 +130,9 @@ layui.config({
                 $.each(res.roomVoList, function (index, room) {
                     getRoomListHtml += '<div data-id="' + room.id + '"  class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">\n';
                     getRoomListHtml += '<a class="template store-list-box fly-case-active" onclick=toRoomInfo(this) data-type="toRoomInfo">\n';
-                    getRoomListHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
+                    getRoomListHtml += '<img src="' + room.roomPhoto + '" class="store-list-cover">\n';
                     getRoomListHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
-                    getRoomListHtml += '<div> <label class="layui-badge-rim store-list-pay"> ￥' + room.roomPrice + ' </label>\n';
+                    getRoomListHtml += '<div> <label class="layui-badge-rim store-list-pay"> ￥' + room.roomPrice + '元</label>\n';
                     getRoomListHtml += '<div class="store-list-colorbar">\n';
                     getRoomListHtml += '<span class="store-color-bar" style="border-color: #009688;color: #009688;border-width: 1px;border-style: solid;background-color: #fff;    text-align: center;">NO.' + room.roomName + '</span>\n';
                     getRoomListHtml += '<span class="store-color-bar" style="border-color: #5fb878;color: #5fb878;border-width: 1px;border-style: solid;background-color: #fff;    text-align: center;">' + room.roomTypeName + '</span>\n';
@@ -198,7 +198,7 @@ layui.config({
 
                 commentList += '<div >'
 
-                commentList += ' <div class="comment"><div class="imgdiv"><img class="imgcss" src="/image/' + comment.userNameImage + '"/></div>';
+                commentList += ' <div class="comment"><div class="imgdiv"><img class="imgcss" src="' + comment.userNameImage + '"/></div>';
                 commentList += '<div class="conmment_details"><div style="float:left;"><span style="display: none">'+comment.id+'</span> <span class="comment_name">' + comment.userName + ' </span> <span style="font-size: 16px">' + timestampToTime(comment.commentTime) + '</span></div>';
                 commentList += '<div class="del"> <span class="show_reply_list">查看回复</span> <i class="icon layui-icon layui-icon-reply-fill" onclick=clickReplyComment(this) style="margin-right: 25px">点击回复&nbsp;&nbsp;&nbsp;&nbsp;</i>';
 
@@ -216,7 +216,7 @@ layui.config({
                 } else {
                     $.each(comment.replayVoList, function (index, replay) {
                         //循环
-                        commentList += '<div class="reply"><div class="imgdiv"><img class="imgcss" src="/image/' + replay.userNameImage + '"/> </div>'
+                        commentList += '<div class="reply"><div class="imgdiv"><img class="imgcss" src="' + replay.userNameImage + '"/> </div>'
 
                         commentList += '<span style="display: none">'+replay.id+'</span><span class="reply_name">' + replay.userName + '</span> 回复 <i class="layui-icon layui-icon-at" style="font-size: 16px;"></i><span class="reply_name">' + replay.answerName + '</span>：';
 
@@ -243,7 +243,6 @@ layui.config({
 
             })
             commentList += '<div class="comment_add_or_last">点击加载更多评论 </div> <hr>';
-            console.log(commentList);
             $("#comment_list").append(commentList);
         }
     })
@@ -522,7 +521,7 @@ function getRoomListByType(roomTypeId, floorId) {
             $.each(res.roomVoList, function (index, room) {
                 getRoomListHtml += '<div data-id="' + room.id + '"  class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg3">\n';
                 getRoomListHtml += '<a class="template store-list-box fly-case-active" onclick=toRoomInfo(this) data-type="toRoomInfo">\n';
-                getRoomListHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
+                getRoomListHtml += '<img src="' + room.roomPhoto + '" class="store-list-cover">\n';
                 getRoomListHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
                 getRoomListHtml += '<div> <label class="layui-badge-rim store-list-pay"> ￥' + room.roomPrice + ' </label>\n';
                 getRoomListHtml += '<div class="store-list-colorbar">\n';

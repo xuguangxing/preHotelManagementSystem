@@ -86,7 +86,7 @@ layui.config({
                         $.each(floor.roomList, function (index, room) {
                             getIndexFloorHtml += '<div data-id="' + room.id + '" class="layui-col-xs6 layui-col-md3">\n';
                             getIndexFloorHtml += '<a class="template store-list-box fly-case-active" onclick=toRoomInfo(this) data-type="toRoomInfo">\n';
-                            getIndexFloorHtml += '<img src="/image/' + room.roomPhoto + '" class="store-list-cover">\n';
+                            getIndexFloorHtml += '<img src="' + room.roomPhoto + '" class="store-list-cover">\n';
                             getIndexFloorHtml += '<h2 class="layui-elip">' + room.roomAlias + '</h2>\n';
                             getIndexFloorHtml += '<p class="price"> <span title="金额"> ￥' + room.roomPrice + ' </span> <span title="房号" style="color:  #fff;background: #0e88cc;padding: 3px;text-align: center;border: 1px solid #4cffb3;font-size: 13px;"> NO.' + room.roomName + ' </span></p>\n';
                             getIndexFloorHtml += '</a>\n';
@@ -122,40 +122,6 @@ layui.config({
         }
     });
 
-
-
-//监听提交搜索
-/*    form.on('submit(searchHotelRoom)', function (data) {
-
-        let loadIndex = layer.load(2, {
-            shade: [0.3, '#333']
-        });
-
-        $.post({
-            url: searchUrl,
-            data: data.field,
-            dataType: "json",
-            timeout: 300000,
-            xhrFields: {withCredentials: true},
-            success: function (res) {
-                layer.close(loadIndex);
-                if (res.success) {
-                    layui.sessionData('searchRoomListData', {
-                        key: 'searchRoomList'
-                        , value: res.data
-                    })
-                    window.location.href = "../hotel/search.html";
-                } else {
-                    layer.msg(res.message);
-                }
-            },
-            error: function () {
-
-            }
-        });
-
-        return false;
-    });*/
 
 
     laytpl.toDateString = function (d, format) {

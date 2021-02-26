@@ -46,7 +46,7 @@ layui.config({
     if (typeof (userData.user) != "undefined" && userData.user != null) {
         loginMemberHtml += '<li data-id="myInfo" class="layui-nav-item fly-layui-user" id="FLY-notice">';
         loginMemberHtml += '<a class="fly-nav-avatar fly-case-active"data-type="toTopNav" href="/myInfo/myInfo" id="LAY_header_avatar">';
-        loginMemberHtml += '<img src="/image/'+userData.user.userNameImage+'">';
+        loginMemberHtml += '<img src="'+userData.user.userNameImage+'">';
         loginMemberHtml += '<cite class="layui-hide-xs">欢迎您：' + userData.user.userName + '</cite>';
         loginMemberHtml += '</a>';
         loginMemberHtml += '</li>';

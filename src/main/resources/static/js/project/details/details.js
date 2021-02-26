@@ -59,7 +59,7 @@ layui.config({
         //所属楼层
         $("#floorName").html(data.floorName);
         //设置形象图
-        $('#coverImg').attr("src", '/image/' + data.roomPhoto);
+        $('#coverImg').attr("src", data.roomPhoto);
     }
 
 
