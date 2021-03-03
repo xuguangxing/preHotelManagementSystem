@@ -64,7 +64,7 @@ layui.config({
         }else{
             $.ajax({
                 url: "http://101.132.135.146:9001/user/updateUserPassWord",
-                data: {idCard: userData.user.idCard,passWord: $("#passWord").val()},
+                data: {userName: userData.user.userName,passWord: $("#passWord").val()},
                 success: function (res) {
                     //通过登录名查找该用户
                     $.ajax({

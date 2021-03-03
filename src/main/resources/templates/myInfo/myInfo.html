@@ -74,14 +74,14 @@
                                     <div class="layui-form-item">
                                         <label for="realName" class="layui-form-label">真实姓名</label>
                                         <div class="layui-input-inline">
-                                            <input type="text" id="realName" name="realName" placeholder="请输入真实姓名" autocomplete="off" value="" class="layui-input">
+                                            <input type="text" id="realName" name="realName" placeholder="请输入真实姓名" lay-verify="required" autocomplete="off" value="" class="layui-input">
                                         </div>
                                     </div>
 
                                     <div class="layui-form-item">
                                         <label for="idCard" class="layui-form-label">身份证号</label>
                                         <div class="layui-input-inline">
-                                            <input type="text" id="idCard" name="idCard" autocomplete="off" placeholder="请输入身份证号" value="" class="layui-input">
+                                            <input type="text" id="idCard" name="idCard" autocomplete="off"  lay-verify="identity" placeholder="请输入身份证号" value="" class="layui-input">
                                         </div>
                                     </div>
 
